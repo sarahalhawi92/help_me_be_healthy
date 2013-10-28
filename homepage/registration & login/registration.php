@@ -18,6 +18,10 @@
       if (isset($_POST['submit'])) {
         // Grab the profile data from the POST
         $username = mysqli_real_escape_string($dbc, trim($_POST['username']));
+        $first_name = mysqli_real_escape_string($dbc, trim($_POST['first_name']));
+        $last_name = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
+        $age = mysqli_real_escape_string($dbc, trim($_POST['age']));
+        $num_in_household = mysqli_real_escape_string($dbc, trim($_POST['num_in_household']));
         $password1 = mysqli_real_escape_string($dbc, trim($_POST['password1']));
         $password2 = mysqli_real_escape_string($dbc, trim($_POST['password2']));
         $email_address = mysqli_real_escape_string($dbc, trim($_POST['email_address']));
@@ -29,18 +33,16 @@
 
           if (mysqli_num_rows($data) == 0) {
             // The username is unique, so insert the data into the database
-            $query = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`) 
-            VALUES (NULL, '$username', SHA('$password1'), '$email_address')";
-
-              //INSERT INTO `users`(`user_id`, `username`, `password`, `email_address`) VALUES (NULL,'workplease',SHA('work123'),'work@gmail.com')
+            $query = "INSERT INTO `users` (`user_id`, `username`, `first_name`, `last_name`, `age`, `num_in_household`,`password`, `email_address`) 
+            VALUES (NULL, '$username', '$first_name', '$last_name', '$age', '$num_in_household', SHA('$password1'), '$email_address')";
 
             mysqli_query($dbc, $query); 
 
             // Confirm success with the user
             echo '<p>Your new account has been successfully created. You\'re now ready to <a href="login.php">log in</a>.</p>';
-            echo $_POST ['username'];
-            echo $_POST ['password1'];
-            echo $_POST ['email_address'];
+            //echo $_POST ['username'];
+            //echo $_POST ['password1'];
+            //echo $_POST ['email_address'];
 
             mysqli_close($dbc);
             exit();
@@ -63,18 +65,26 @@
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <title>Mismatch - Sign Up</title>
+      <title>helpmebehealthy sign up</title>
       <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-      <h3>Mismatch - Sign Up</h3>
+      <h3>Registration</h3>
 
-      <p>Please enter your username and desired password to sign up to Mismatch.</p>
+      <p>Please enter your username and desired password to sign up.</p>
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <fieldset>
           <legend>Registration Info</legend>
           <label for="username">Username:</label>
           <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo $username; ?>" /><br />
+          <label for="first_name">First Name (Optional):</label>
+          <input type="text" id="first_name" name="first_name" /><br />
+          <label for="last_name">Last Name (Optional):</label>
+          <input type="text" id="last_name" name="last_name" /><br />
+          <label for="age">Age:</label>
+          <input type="text" id="age" name="age" /><br />
+          <label for="num_in_household">Number of People in Household:</label>
+          <input type="text" id="num_in_household" name="num_in_household" /><br />
           <label for="password1">Password:</label>
           <input type="password" id="password1" name="password1" /><br />
           <label for="password2">Password (retype):</label>

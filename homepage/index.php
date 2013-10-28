@@ -23,12 +23,12 @@ if (!isset($_SESSION['user_id'])) {
   <h2>Welcome to helpmebehealthy.com!</h2>
 
   <ul>
-    <li><a href="carbohydrates.html">The Carbs</a></li>
-    <li><a href="protein.html">The Protein</a></li>
-    <li><a href="fibres.html">The Fibre</a></li> 
-    <li><a href="fats.html">Fats</a></li> 
-    <li><a href="minerals.html">Minerals</a></li> 
-    <li><a href="vitamins.html">Vitamins</a></li> 
+    <li><a href="carbs/carbohydrates.html">The Carbs</a></li>
+    <li><a href="proteins/protein.html">The Protein</a></li>
+    <li><a href="fibres/fibres.html">The Fibre</a></li> 
+    <li><a href="fats/fats.html">Fats</a></li> 
+    <li><a href="minerals/minerals.html">Minerals</a></li> 
+    <li><a href="vitamins/vitamins.html">Vitamins</a></li> 
   </ul>
 
   </body
@@ -47,12 +47,12 @@ if (!isset($_SESSION['user_id'])) {
   // Generate the navigation menu
   if (isset($_SESSION['username'])) {
     //echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
-    echo '&#10084; <a href="viewprofile.php">View Profile</a><br />';
-    echo '&#10084; <a href="logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
+    echo '&#10084; <a href="user profile/viewprofile.php">View Profile</a><br />';
+    echo '&#10084; <a href="registration & login/logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
   }
   else {
-    echo '&#10084; <a href="login.php">Log In</a><br />';
-    echo '&#10084; <a href="registration.php">Sign Up</a>';
+    echo '&#10084; <a href="registration & login/login.php">Log In</a><br />';
+    echo '&#10084; <a href="registration & login/registration.php">Sign Up</a>';
   }
 
   mysqli_close($dbc);
