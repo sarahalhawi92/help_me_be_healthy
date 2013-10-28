@@ -28,7 +28,7 @@ if (!isset($_SESSION['user_id'])) {
     <li><a href="fibres/fibres.html">The Fibre</a></li> 
     <li><a href="fats/fats.html">Fats</a></li> 
     <li><a href="minerals/minerals.html">Minerals</a></li> 
-    <li><a href="vitamins/vitamins.html">Vitamins</a></li> 
+    <li><a href="vitamins and minerals/vitamins and minerals.html">Vitamins</a></li> 
   </ul>
 
   </body
