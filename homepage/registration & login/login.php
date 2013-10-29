@@ -39,7 +39,7 @@
               $_SESSION['username'] = $row['username'];
               setcookie('user_id', $row['user_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
               setcookie('username', $row['username'], time() + (60 * 60 * 24 * 30));  // expires in 30 days
-              echo "<meta http-equiv=\"refresh\" content=\"0;URL=index.php?view=$username\">";
+              echo "<meta http-equiv=\"refresh\" content=\"0;URL=../index.php?view=$username\">";
             }
             else {
               // The username/password are incorrect so set an error message
@@ -58,7 +58,7 @@
       <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Mismatch - Log In</title>
+        <title>Log In</title>
         <link rel="stylesheet" type="text/css" href="style.css" />
       </head>
       <body>

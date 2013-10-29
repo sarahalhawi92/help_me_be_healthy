@@ -67,7 +67,8 @@
 
   <html>
     <ul>
-    <li><a href="index.php">Back to Homepage</a></li>
+    <li><a href="../index.php">Back to Homepage</a></li>
+    <li><a href="calculatebmi.php">Calculate BMI</a></li>
   </ul>
   </html>
   </body> 
