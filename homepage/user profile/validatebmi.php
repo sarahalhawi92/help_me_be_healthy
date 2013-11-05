@@ -20,8 +20,8 @@
 	    // Clear the error message
 	$error_msg = "";
 
-	if (isset($_SESSION['user_id']))
-		echo $_SESSION['user_id'];
+	//if (isset($_SESSION['user_id']))
+	//	echo $_SESSION['user_id'];
 
 	$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 	mysqli_set_charset($dbc, "utf8");
@@ -90,18 +90,24 @@
 			//	$query = "UPDATE `users` SET `user_bmi`= '$bmi' WHERE `user_id` = '" . $_GET['user_id'] . "'";
 			//}
 
-			echo $bmi;
+			//echo $bmi;
 
 			$data = mysqli_query($dbc, $query);
 			if (!mysqli_query($dbc,$query)) {
 				echo "Failed to store";
 			}
-			echo "<pre>\n----\nLookup:\nQuery:$query\n".
-			"Num rows:".mysqli_affected_rows($dbc)."\n</pre>\n";
-			return;
+			//echo "<pre>\n----\nLookup:\nQuery:$query\n".
+			//"Num rows:".mysqli_affected_rows($dbc)."\n</pre>\n";
+			//return;
 
 		}
 	}
 	?>
+
+	<html>
+	<ul>
+		<li><a href="viewprofile.php">Back to Profile</a></li>
+	</ul>
+	</html>
 </body>
 </html>
