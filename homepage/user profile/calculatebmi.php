@@ -12,7 +12,7 @@
 <table cellpadding="1" cellspacing="1">
 <tr>
 	<form action="validatebmi.php" method="post">
-		<td>Killogram</td><td><input type="text" name="kg" placeholder="  In killogram" maxlength="4"/></td>
+		<td>Kilogram</td><td><input type="text" name="kg" placeholder="  In killogram" maxlength="4"/></td>
 </tr>
 	<td>Height</td><td><input type="text" name="mt" placeholder="  In mtr" maxlength="4"/></td>
 	</tr>

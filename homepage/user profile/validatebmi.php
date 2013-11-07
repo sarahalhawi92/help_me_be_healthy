@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Untitled Document</title>
+	<title>BMI Result</title>
 </head>
 <link rel="stylesheet" href="css.css" type="text/css" />
 <body>
@@ -12,6 +12,14 @@
 
     // Start the session
 	session_start();
+
+	    // If the session vars aren't set, try to set them with a cookie
+	if (!isset($_SESSION['user_id'])) {
+		if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+			$_SESSION['user_id'] = $_COOKIE['user_id'];
+			$_SESSION['username'] = $_COOKIE['username'];
+		}
+	}
 
 
     // Make sure the browser is transmitting in UTF-8
