@@ -13,33 +13,37 @@ if (!isset($_SESSION['user_id'])) {
 	}
 }
 
-echo gfgfd;
-
 // Make sure the browser is transmitting in UTF-8
 header('Content-type: text/html; charset=utf-8');
 
 // Clear the error message
 $error_msg = "";
 
-
+// Connecting, selecting database
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 mysqli_set_charset($dbc, "utf8");
 
-//$query = "SELECT `recipe_1_name`, `recipe_2_name` FROM `carbohydrates`";
-//$data= mysqli_query($dbc,$query);
-
-
-if(isset($_POST['submit']))
+if(isset($_POST['submit_1']))
 {
-		//$recipe_name = mysqli_result(mysqli_query("SELECT `recipe_1_name`, `recipe_2_name` FROM `carbohydrates`");
 
-		          //"SELECT `recipe_1_name` OR `recipe_2_name` FROM `carbohydrates` WHERE `user_id` = '" . $_SESSION['user_id'] . "'";
-	$query = "SELECT `recipe_1_name`, `recipe_2_name` FROM `carbohydrates`";
-	$query = "UPDATE `users` SET `recipes_saved` = $query WHERE `user_id` = '" . $_SESSION['user_id'] . "'";
-	$data= mysqli_query($dbc,$query);
+
+	$query = "UPDATE users SET recipes_saved = (SELECT recipe_1_name FROM carbohydrates LIMIT 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+
+	$data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
 
 	echo $query;
-	);
-
 }
+
+
+if(isset($_POST['submit_2']))
+{
+
+
+	$query = "UPDATE users SET recipes_saved = (SELECT recipe_2_name FROM carbohydrates LIMIT 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+
+	$data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
+
+	echo $query;
+}
+
 ?>

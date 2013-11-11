@@ -76,7 +76,7 @@
   <body>
 
     <form action="../user profile/save_recipe.php" method="post">
-     <input type="submit" name="submit" class="btn" value="Save Recipe"></td>
+     <input type="submit" name="submit_1" class="btn" value="Save Recipe"></td>
    </form> 
 
  </body>   
@@ -132,17 +132,15 @@ mysqli_close($con);
 
 ?>
 
-
-
   <html>
   <body>
 
-    <form action="../user profile/save_recipe.php" method="post"> 
-      <input type="submit" name="submit" value="Save Recipe"> 
-    </form>
+    <form action="../user profile/save_recipe.php" method="post">
+     <input type="submit" name="submit_2" class="btn" value="Save Recipe"></td>
+   </form> 
 
-  </body>   
-  </html>
+ </body>   
+ </html>
 
 
 
