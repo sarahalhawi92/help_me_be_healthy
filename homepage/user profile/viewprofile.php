@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <h3>Help me be Healthy - View Profile</h3>
+    <h3>Help me be Healthy - My Profile</h3>
 
     <?php
 
@@ -38,10 +38,10 @@
 
     // Grab the profile data from the database
     if (!isset($_GET['user_id'])) {
-      $query = "SELECT username, email_address, user_bmi, recipes_saved FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
+      $query = "SELECT username, email_address, user_bmi, recipes_saved, goal FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
     }
     else {
-      $query = "SELECT username, email_address, user_bmi, recipes_saved FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
+      $query = "SELECT username, email_address, user_bmi, recipes_saved, goal FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
     }
     $data = mysqli_query($dbc, $query);
 
@@ -60,6 +60,10 @@
       }
       if (!empty($row['recipes_saved'])) {
         echo '<tr><td class="label">Recipes Saved:</td><td>' . $row['recipes_saved'] . '</td></tr>';
+      }
+
+      if (!empty($row['goal'])) {
+        echo '<tr><td class="label">Your Goals:</td><td>' . $row['goal'] . '</td></tr>';
       }
 
       echo '</table>';

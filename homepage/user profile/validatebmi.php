@@ -81,32 +81,14 @@
 			} 
 			include("index.php");
 
-
-
-			//$query = "UPDATE `users` SET `user_bmi`= '$bmi' 
-			//WHERE `user_id` = ($_SESSION = ['user_id'])";
-
-			//echo $_SESSION['user_id'];
-
-
-
-			//if (!isset($_GET['user_id'])) {
-			//$query = "SELECT * FROM 'users'";
 			$query = "UPDATE `users` SET `user_bmi`= $bmi WHERE `user_id` = " . $_SESSION['user_id'];
-			//}
-			//else {
-			//	$query = "UPDATE `users` SET `user_bmi`= '$bmi' WHERE `user_id` = '" . $_GET['user_id'] . "'";
-			//}
 
-			//echo $bmi;
 
 			$data = mysqli_query($dbc, $query);
 			if (!mysqli_query($dbc,$query)) {
 				echo "Failed to store";
 			}
-			//echo "<pre>\n----\nLookup:\nQuery:$query\n".
-			//"Num rows:".mysqli_affected_rows($dbc)."\n</pre>\n";
-			//return;
+
 
 		}
 	}

@@ -23,27 +23,31 @@ $error_msg = "";
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 mysqli_set_charset($dbc, "utf8");
 
-if(isset($_POST['submit_1']))
-{
+if(isset($_POST['submit_1'])){
 
 
-	$query = "UPDATE users SET recipes_saved = (SELECT recipe_1_name FROM carbohydrates LIMIT 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
-
-	$data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
-
-	echo $query;
-}
-
-
-if(isset($_POST['submit_2']))
-{
-
-
-	$query = "UPDATE users SET recipes_saved = (SELECT recipe_2_name FROM carbohydrates LIMIT 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+	$query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
 
 	$data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
 
-	echo $query;
+	echo 'Recipe Successfully saved to your profile';
+
+} elseif (isset($_POST['submit_2'])){
+
+	$query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 2) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+
+	$data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
+
+	echo 'Recipe Successfully saved to your profile';
 }
 
 ?>
+
+    <html>
+    <ul>
+    <li><a href="viewprofile.php">Back to Your Profile</a></li>
+      <li><a href="../index.php">Back to Homepage</a></li>
+    </ul>
+    </html>
+  </body> 
+  </html>
