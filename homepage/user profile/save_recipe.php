@@ -13,6 +13,8 @@ if (!isset($_SESSION['user_id'])) {
 	}
 }
 
+echo $_SESSION['user_id'];
+
 // Make sure the browser is transmitting in UTF-8
 header('Content-type: text/html; charset=utf-8');
 
@@ -23,31 +25,41 @@ $error_msg = "";
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 mysqli_set_charset($dbc, "utf8");
 
+
 if(isset($_POST['submit_1'])){
 
+	  $_POST['submit_1'] = implode(', ', $_POST['submit_1']); //Converts an array into a single string
 
-	$query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+	  $submit_1 = $_POST['submit_1'];
 
-	$data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
+	  $query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
 
-	echo 'Recipe Successfully saved to your profile';
+	  $data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
 
-} elseif (isset($_POST['submit_2'])){
+	  echo 'Recipe Successfully saved to your profile';
 
-	$query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 2) WHERE user_id = '" . $_SESSION['user_id'] . "'";
 
-	$data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
 
-	echo 'Recipe Successfully saved to your profile';
-}
+	} elseif (isset($_POST['submit_2'])){
 
-?>
+     $_POST['submit_2'] = implode(', ', $_POST['submit_2']); //Converts an array into a single string
 
-    <html>
-    <ul>
-    <li><a href="viewprofile.php">Back to Your Profile</a></li>
-      <li><a href="../index.php">Back to Homepage</a></li>
-    </ul>
-    </html>
-  </body> 
-  </html>
+     $submit_2 = $_POST['submit_2'];
+
+     $query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 2) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+
+     $data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
+
+     echo 'Recipe Successfully saved to your profile';
+ }
+
+ ?>
+
+ <html>
+ <ul>
+ 	<li><a href="viewprofile.php">Back to Your Profile</a></li>
+ 	<li><a href="../index.php">Back to Homepage</a></li>
+ </ul>
+ </html>
+</body> 
+</html>

@@ -77,11 +77,12 @@ mysqli_close($con);
 <body>
 
   <form action="../user profile/save_recipe.php" method="post">
-   <input type="submit" name="submit_1" class="btn" value="Save Recipe"></td>
+   <input type="submit" name="submit_1[]" class="btn" value="Save Recipe"></td>
  </form> 
 
 </body>   
 </html>
+
 
 
 <?php
@@ -137,11 +138,12 @@ mysqli_close($con);
 <body>
 
   <form action="../user profile/save_recipe.php" method="post">
-   <input type="submit" name="submit_2" class="btn" value="Save Recipe"></td>
+   <input type="submit" name="submit_2[]" class="btn" value="Save Recipe"></td>
  </form> 
 
 </body>   
 </html>
+
 
 
 
