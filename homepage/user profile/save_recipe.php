@@ -32,19 +32,49 @@ if(isset($_POST['submit_1'])){
 
 	  $submit_1 = $_POST['submit_1'];
 
-	  $query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+	  if (!isset($_SESSION['recipe_id'])) {
 
-	  $data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
+	  	$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 
-	  echo 'Recipe Successfully saved to your profile';
+	  	$query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = 'banana corn fritters'";
+	  	$data= mysqli_query($dbc,$query);
+
+	  	$row = mysqli_fetch_assoc($data);
+	  	$_SESSION['recipe_id'] = $row['recipe_id'];
+        setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
+
+          }
+
+          echo $_SESSION['recipe_id'];
+
+          $query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 1) WHERE user_id = '" . $_SESSION['user_id'] . "'";
+
+          $data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
+
+          echo 'Recipe Successfully saved to your profile';
 
 
 
-	} elseif (isset($_POST['submit_2'])){
+      } elseif (isset($_POST['submit_2'])){
 
      $_POST['submit_2'] = implode(', ', $_POST['submit_2']); //Converts an array into a single string
 
      $submit_2 = $_POST['submit_2'];
+
+     	  if (!isset($_SESSION['recipe_id'])) {
+
+	  	$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+
+	  	$query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = 'banana bread'";
+	  	$data= mysqli_query($dbc,$query);
+
+	  	$row = mysqli_fetch_assoc($data);
+	  	$_SESSION['recipe_id'] = $row['recipe_id'];
+        setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
+
+          }
+
+          echo $_SESSION['recipe_id'];
 
      $query = "UPDATE users SET recipes_saved = (SELECT recipe_name FROM carbohydrates WHERE recipe_id = 2) WHERE user_id = '" . $_SESSION['user_id'] . "'";
 
