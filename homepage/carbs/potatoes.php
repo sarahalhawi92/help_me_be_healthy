@@ -6,11 +6,11 @@ table{
 </style>
 
 <head>
- <title>Carbohydrates: Bananas</title>
+ <title>Carbohydrates: Potatoes</title>
 </head>
 
 <body>
- <h1>Everything you need to know about bananas</h1>
+ <h1>Everything you need to know about potatoes</h1>
 
  <html>
  <ul>
@@ -32,8 +32,8 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`, `recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_potassium`, `recipe_source`
-FROM `carbohydrates` WHERE `ingredient_name`= 'bananas' AND recipe_id = 1";
+$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`, `recipe_fat`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_source`
+FROM `carbohydrates` WHERE `ingredient_name`= 'potatoes' AND recipe_id = 13";
 $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
 echo "<table border='1' width='100%'>
@@ -42,12 +42,10 @@ echo "<table border='1' width='100%'>
 <th>Recipe Price</th>
 <th>Recipe Calories</th>
 <th>Amount of Fat</th>
-<th>Amount of Cholestrol</th>
 <th>Amount of Carbs</th>
 <th>Amount of Protein</th>
 <th>Amount of Fibre</th>
 <th>Amount of Sodium</th>
-<th>Amount of Potassium</th>
 <th>Recipe Source</th>
 </tr>";
 
@@ -58,12 +56,10 @@ while($row = mysqli_fetch_array($data))
   echo "<td>" . $row['recipe_price'] . "</td>";
   echo "<td>" . $row['recipe_calories'] . "</td>";
   echo "<td>" . $row['recipe_fat'] . "</td>";
-  echo "<td>" . $row['recipe_cholestrol'] . "</td>";
   echo "<td>" . $row['recipe_carbs'] . "</td>";
   echo "<td>" . $row['recipe_protein'] . "</td>";
   echo "<td>" . $row['recipe_fibre'] . "</td>";
   echo "<td>" . $row['recipe_sodium'] . "</td>";
-  echo "<td>" . $row['recipe_potassium'] . "</td>";
   echo "<td><a href=\"" . $row['recipe_source'] . "\">Click here to view the recipe</a></td>";
   echo "</tr>";
 }
@@ -96,7 +92,7 @@ if (mysqli_connect_errno())
 }
 
 $query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`,`recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_source` 
-FROM `carbohydrates` WHERE `ingredient_name`= 'bananas' AND recipe_id = 2";
+FROM `carbohydrates` WHERE `ingredient_name`= 'potatoes' AND recipe_id = 14";
 $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
 echo "<table border='1' width='100%'>

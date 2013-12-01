@@ -6,11 +6,11 @@ table{
 </style>
 
 <head>
- <title>Carbohydrates: Bananas</title>
+ <title>Carbohydrates: Parsnips</title>
 </head>
 
 <body>
- <h1>Everything you need to know about bananas</h1>
+ <h1>Everything you need to know about parsnips</h1>
 
  <html>
  <ul>
@@ -33,7 +33,7 @@ if (mysqli_connect_errno())
 }
 
 $query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`, `recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_potassium`, `recipe_source`
-FROM `carbohydrates` WHERE `ingredient_name`= 'bananas' AND recipe_id = 1";
+FROM `carbohydrates` WHERE `ingredient_name`= 'parsnips' AND recipe_id = 11";
 $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
 echo "<table border='1' width='100%'>
@@ -96,7 +96,7 @@ if (mysqli_connect_errno())
 }
 
 $query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`,`recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_source` 
-FROM `carbohydrates` WHERE `ingredient_name`= 'bananas' AND recipe_id = 2";
+FROM `carbohydrates` WHERE `ingredient_name`= 'parsnips' AND recipe_id = 12";
 $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
 echo "<table border='1' width='100%'>
