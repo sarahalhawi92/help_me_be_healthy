@@ -32,20 +32,25 @@ if(isset($_POST['submit'])){
 
     $query = "SELECT `recipe_name` from `carbohydrates` left join `users_recipes` ON carbohydrates.recipe_id = users_recipes.recipe_id WHERE `user_id` = '$user_id'";
 
-
     $data= mysqli_query($dbc,$query);
 
+    $row = mysqli_fetch_assoc($data);
 
     if (!isset($_SESSION['recipe_id'])) {
 
         $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = '$data'";
+        $data= mysqli_query($dbc,$query);
 
+        $row = mysqli_fetch_assoc($data);
         $_SESSION['recipe_id'] = $row['recipe_id'];
-        setcookie('recipe_id', $row['recipe_id'], time() + (60 * 1));
+        setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 30));
+
 
     }
-
     $recipe_id = $_SESSION['recipe_id']; 
+
+    echo $_SESSION['recipe_id'];
+
 
     $query = "INSERT INTO users_recipes (user_id, recipe_id) VALUES ('$user_id', '$recipe_id')";
 
