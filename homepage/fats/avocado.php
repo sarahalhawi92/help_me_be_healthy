@@ -6,11 +6,11 @@
   </style>
 
   <head>
-  	<title>Fats: Salmon</title>
+  	<title>Fats: Avocado</title>
   </head>
 
   <body>
-  	<h1>What you need to know about salmon</h1>
+  	<h1>What you need to know about avocado</h1>
 
   	</body
 
@@ -26,7 +26,7 @@
   	}
 
   	$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`, `recipe_fat`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_source`
-  	          FROM `fats` WHERE `ingredient_name`= 'salmon' AND recipe_id = 1";
+  	          FROM `fats` WHERE `ingredient_name`= 'avocados' AND recipe_id = 7";
   	$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
   	echo "<table border='1' width='100%'>
@@ -57,7 +57,7 @@
   	echo "</table>";
 
   	$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`,`recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_source` 
-              FROM `fats` WHERE `ingredient_name`= 'salmon' AND recipe_id = 2";
+              FROM `fats` WHERE `ingredient_name`= 'avocados' AND recipe_id = 8";
               
   	$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 

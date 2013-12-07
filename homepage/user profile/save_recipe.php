@@ -24,39 +24,50 @@ header('Content-type: text/html; charset=utf-8');
 $error_msg = "";
 
 // Connecting, selecting database
-$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
-mysqli_set_charset($dbc, "utf8");
+$link = mysql_connect('localhost:8889', 'root', 'root')
+or die('Could not connect: ' . mysql_error());
+
+mysql_select_db('help_me_be_healthy') or die('Could not select database');
 
 
 if(isset($_POST['submit'])){
 
+    echo success;
+
     $query = "SELECT `recipe_name` from `carbohydrates` left join `users_recipes` ON carbohydrates.recipe_id = users_recipes.recipe_id WHERE `user_id` = '$user_id'";
 
-    $data= mysqli_query($dbc,$query);
+    $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
-    $row = mysqli_fetch_assoc($data);
+
 
     if (!isset($_SESSION['recipe_id'])) {
 
-        $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = '$data'";
-        $data= mysqli_query($dbc,$query);
+        echo success;
 
-        $row = mysqli_fetch_assoc($data);
-        $_SESSION['recipe_id'] = $row['recipe_id'];
-        setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 30));
+        $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = '$recipe_name'";
 
+        $result = mysql_query($query) or die('Query failed: ' . mysql_error());
+
+        echo "<table>\n";
+        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+            echo "\t<tr>\n";
+            foreach ($line as $col_value) {
+                echo "\t\t<td>$col_value</td>\n";
+            }
+            echo "\t</tr>\n";
+        }
+        echo "</table>\n";
 
     }
-    $recipe_id = $_SESSION['recipe_id']; 
+    //$recipe_id = $_SESSION['recipe_id']; 
 
-    echo $_SESSION['recipe_id'];
+    //echo $recipe_id;
 
+   // $query = "INSERT INTO users_recipes (user_id, recipe_id) VALUES ('$user_id', '$recipe_id')";
 
-    $query = "INSERT INTO users_recipes (user_id, recipe_id) VALUES ('$user_id', '$recipe_id')";
+   // $data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
 
-    $data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
-
-    echo 'Recipe Successfully saved to your profile';
+   // echo 'Recipe Successfully saved to your profile';
 
 }
 

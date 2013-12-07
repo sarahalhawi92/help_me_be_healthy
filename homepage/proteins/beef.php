@@ -6,11 +6,11 @@
   </style>
 
   <head>
-  	<title>Fats: Salmon</title>
+  	<title>Protein: Eggs</title>
   </head>
 
   <body>
-  	<h1>What you need to know about salmon</h1>
+  	<h1>Everything you need to know about eggs</h1>
 
   	</body
 
@@ -25,8 +25,9 @@
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
   	}
 
-  	$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`, `recipe_fat`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_source`
-  	          FROM `fats` WHERE `ingredient_name`= 'salmon' AND recipe_id = 1";
+  	$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`, `recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_source`
+  	          FROM `protein` WHERE `ingredient_name`= 'meat' AND recipe_id = 5";
+
   	$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
   	echo "<table border='1' width='100%'>
@@ -35,9 +36,11 @@
   	<th>Recipe Price</th>
   	<th>Recipe Calories</th>
   	<th>Amount of Fat</th>
+  	<th>Amount of Cholestrol</th>
   	<th>Amount of Carbs</th>
   	<th>Amount of Protein</th>
   	<th>Amount of Fibre</th>
+  	<th>Amount of Sodium</th>
   	<th>Recipe Source</th>
   	</tr>";
 
@@ -48,17 +51,19 @@
   		echo "<td>" . $row['recipe_price'] . "</td>";
   		echo "<td>" . $row['recipe_calories'] . "</td>";
   		echo "<td>" . $row['recipe_fat'] . "</td>";
+  		echo "<td>" . $row['recipe_cholestrol'] . "</td>";
   		echo "<td>" . $row['recipe_carbs'] . "</td>";
   		echo "<td>" . $row['recipe_protein'] . "</td>";
   		echo "<td>" . $row['recipe_fibre'] . "</td>";
+  		echo "<td>" . $row['recipe_sodium'] . "</td>";
   		echo "<td><a href=\"" . $row['recipe_source'] . "\">Click here to view the recipe</a></td>";
   		echo "</tr>";
   	}
   	echo "</table>";
 
-  	$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`,`recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_source` 
-              FROM `fats` WHERE `ingredient_name`= 'salmon' AND recipe_id = 2";
-              
+  	$query = "SELECT `recipe_name`, `recipe_price`, `recipe_calories`,`recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`,`recipe_source` 
+             FROM `protein` WHERE `ingredient_name`= 'meat' AND recipe_id = 6";
+
   	$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
   	echo "<table border='1' width='100%'>
