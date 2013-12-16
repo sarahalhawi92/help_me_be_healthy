@@ -78,6 +78,7 @@
               value="<?php if (!empty($username)) echo $username; ?>" /><br />
               <label for="password">Password:</label>
               <input type="password" id = "password" name="password" />
+              <a href="forgot_password.php">Forgotten your Password?</a>
             </fieldset>
             <input type="submit" value="Log In" name="submit" />
           </form>
@@ -85,6 +86,8 @@
           <?php
         }
         ?>
+
+
 
       </body>
       </html>

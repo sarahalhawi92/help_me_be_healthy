@@ -63,36 +63,48 @@
 
            // if not found 
           else {
-            echo "Not found your email in our database";
+            echo "Email not found in database";
           }
 
            // if your email succesfully sent
           if($sentmail){
+
             echo "Your Confirmation link Has Been Sent To Your Email Address.";
+
           }
+
           else {
+
             echo "Cannot send Confirmation link to your e-mail address";
 
-}// Confirm success with the user
-echo '<p>Your new account has been successfully created. You\'re now ready to <a href="login.php">log in</a>.</p>';
+} // Confirm success with the user
+echo '<p>Your new account has been successfully created.</p>';
 
 
 mysqli_close($dbc);
+
 exit();
+
 }
+
 else {
             // An account already exists for this username, so display an error message
   echo '<p class="error">An account already exists for this username. Please use a different address.</p>';
   $username = "";
+
 }
+
 }
 else {
   echo '<p class="error">You must enter all of the sign-up data, including the desired password twice.</p>';
 }
+
 }
 
 mysqli_close($dbc);
+
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
