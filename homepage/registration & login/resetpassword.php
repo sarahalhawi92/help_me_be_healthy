@@ -10,18 +10,15 @@ header('Content-type: text/html; charset=utf-8');
       // Clear the error message
 $error_msg = "";
 
-echo ggfdg;
 
 if (isset($_POST['submit'])) { // Handle the form.
 
 	$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 	mysqli_set_charset($dbc, "utf8");
 
-	echo blah;
 
 	if (empty($_POST['email_address'])) { // Validate the email address.
 
-		echo blah2;
 
 //$uid = FALSE;
 
@@ -43,7 +40,6 @@ if (isset($_POST['submit'])) { // Handle the form.
 
 		if (mysqli_num_rows($data) == 1) {
 
-			echo blah3;
 
 // Retrieve the user ID.
 
@@ -70,15 +66,15 @@ if (isset($_POST['submit'])) { // Handle the form.
 
           if($query){
 
-          	echo blah5;
+          	//echo blah5;
 
-          	$to=$email_address;
+          	$to=$_POST['email_address'];
 
           	$subject="Reset your Password";
 
           	$header="from: helpmebehealthy <helpmebehealthy.com>";
 
-          	$message="Your password to log into SITENAME has been temporarily changed to ‘$temp_pass’. Please log in using this password and your email address. ";
+          	$message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your email address. ";
 
           	$sentmail = mail($to,$subject,$message,$header);
 
@@ -87,7 +83,7 @@ if (isset($_POST['submit'])) { // Handle the form.
            // if your email succesfully sent
           if($sentmail){
 
-           echo "Your Confirmation link Has Been Sent To Your Email Address.";
+           echo "Please check your email for instructions on how to login into your account";
 
           }
 

@@ -89,7 +89,6 @@
 				echo "Failed to store";
 			}
 
-
 		}
 	}
 	?>
