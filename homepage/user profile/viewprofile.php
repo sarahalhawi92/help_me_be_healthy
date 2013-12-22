@@ -80,6 +80,8 @@
       <li><a href="../index.php">Back to Homepage</a></li>
       <li><a href="calculatebmi.php">Calculate BMI</a></li>
       <br>
+      <li><a href="..\registration & login\change_password.php">Change Password?</a></li>
+      <br>
       <li><a href="creategoal.php">Create Goal</a></li>
     </ul>
     </html>

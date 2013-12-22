@@ -23,52 +23,62 @@ header('Content-type: text/html; charset=utf-8');
 // Clear the error message
 $error_msg = "";
 
-// Connecting, selecting database
-$link = mysql_connect('localhost:8889', 'root', 'root')
-or die('Could not connect: ' . mysql_error());
+$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+mysqli_set_charset($dbc, "utf8");
 
-mysql_select_db('help_me_be_healthy') or die('Could not select database');
+echo popopopop;
 
-
-if(isset($_POST['submit'])){
-
-    echo success;
-
-    $query = "SELECT `recipe_name` from `carbohydrates` left join `users_recipes` ON carbohydrates.recipe_id = users_recipes.recipe_id WHERE `user_id` = '$user_id'";
-
-    $result = mysql_query($query) or die('Query failed: ' . mysql_error());
-
-
-
-    if (!isset($_SESSION['recipe_id'])) {
+if (!isset($_SESSION['recipe_id'])) {
+    if(isset($_POST['submit'])){
 
         echo success;
 
-        $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = '$recipe_name'";
+        $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = \"banana bread\"";
 
-        $result = mysql_query($query) or die('Query failed: ' . mysql_error());
+        $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
-        echo "<table>\n";
-        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-            echo "\t<tr>\n";
-            foreach ($line as $col_value) {
-                echo "\t\t<td>$col_value</td>\n";
-            }
-            echo "\t</tr>\n";
-        }
-        echo "</table>\n";
+        if (mysqli_num_rows($data) == 1) {
 
-    }
-    //$recipe_id = $_SESSION['recipe_id']; 
+            echo succcccess;
 
-    //echo $recipe_id;
+            $row = mysqli_fetch_assoc($data);
+            $_SESSION['recipe_id'] = $row['recipe_id'];
+             setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
 
-   // $query = "INSERT INTO users_recipes (user_id, recipe_id) VALUES ('$user_id', '$recipe_id')";
+         }
 
-   // $data= mysqli_query($dbc,$query) or die("Error " . mysqli_error($data));
+         echo $_SESSION['recipe_id'];
 
-   // echo 'Recipe Successfully saved to your profile';
+     }
+ }
 
-}
+                  if (isset($_SESSION['recipe_id'])) {
+    // Delete the session vars by clearing the $_SESSION array
+            $_SESSION = array();
 
-?>
+    // Delete the session cookie by setting its expiration to an hour ago (3600)
+            if (isset($_COOKIE[session_name()])) {
+              setcookie(session_name(), '', time() - 3600);
+          }
+
+    // Destroy the session
+          session_destroy();
+      }
+
+  // Delete the user ID and username cookies by setting their expirations to an hour ago (3600)
+      setcookie('recipe_id', '', time() - 3600);
+
+         ?>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -33,6 +33,7 @@
             $data= mysqli_query($dbc,$query);
 
             if (mysqli_num_rows($data) == 1) {
+              
               // The log-in is OK so set the user ID and username session vars (and cookies), and redirect to the home page
               $row = mysqli_fetch_assoc($data);
               $_SESSION['user_id'] = $row['user_id'];
@@ -86,8 +87,5 @@
           <?php
         }
         ?>
-
-
-
       </body>
       </html>

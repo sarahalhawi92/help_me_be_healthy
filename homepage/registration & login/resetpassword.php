@@ -13,11 +13,11 @@ $error_msg = "";
 
 if (isset($_POST['submit'])) { // Handle the form.
 
-	$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
-	mysqli_set_charset($dbc, "utf8");
+  $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+  mysqli_set_charset($dbc, "utf8");
 
 
-	if (empty($_POST['email_address'])) { // Validate the email address.
+        if (empty($_POST['email_address'])) { // Validate the email address.
 
 
 //$uid = FALSE;
@@ -26,70 +26,70 @@ if (isset($_POST['submit'])) { // Handle the form.
 
 //Checks if the form below has been submitted. Then it checks that an email address has been entered with the empty() function. If not we warn the visitor.
 
-	} else {
+        } else {
 
 // Check for the existence of that email address.
 
 
-		$query = "SELECT `user_id` FROM `users` WHERE `email_address`= '" . $_POST['email_address'] . "' ";
+          $query = "SELECT `user_id` FROM `users` WHERE `email_address`= '" . $_POST['email_address'] . "' ";
 
-		$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
+          $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
 
 //Here we are checking that the email address they entered is valid. The query asks for a user_id, form the table users, where the value is equal to the email entered. The escape_data() function cleans up the information entered. 
 
-		if (mysqli_num_rows($data) == 1) {
+          if (mysqli_num_rows($data) == 1) {
 
 
 // Retrieve the user ID.
 
-			$row = mysqli_fetch_assoc($data);
-			$_SESSION['user_id'] = $row['user_id'];
+            $row = mysqli_fetch_assoc($data);
+            $_SESSION['user_id'] = $row['user_id'];
 
-			$temp_pass = substr ( md5(uniqid(rand(),1)), 3, 10);
+            $temp_pass = substr ( md5(uniqid(rand(),1)), 3, 10);
 
-			echo $temp_pass;
+            echo $temp_pass;
 
-			$query = "UPDATE `users` SET `password` = SHA('$temp_pass') WHERE `user_id` = '" . $_SESSION['user_id'] . "' ";
+            $query = "UPDATE `users` SET `password` = SHA('$temp_pass') WHERE `user_id` = '" . $_SESSION['user_id'] . "' ";
 
-			mysqli_query($dbc, $query) or die("Error " . mysqli_error($data));
+            mysqli_query($dbc, $query) or die("Error " . mysqli_error($data));
 
-//		} else {
+//                } else {
 
-//			echo ‘<p><font color=”red” size=”+1″>The submitted email address does not match those on file!</font></p>’;
+//                        echo ‘<p><font color=”red” size=”+1″>The submitted email address does not match those on file!</font></p>’;
 
-//			$user_id = FALSE;
-
-		}
-
-	}
-
-          if($query){
-
-          	//echo blah5;
-
-          	$to=$_POST['email_address'];
-
-          	$subject="Reset your Password";
-
-          	$header="from: helpmebehealthy <helpmebehealthy.com>";
-
-          	$message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your email address. ";
-
-          	$sentmail = mail($to,$subject,$message,$header);
+//                        $user_id = FALSE;
 
           }
+
+        }
+
+        if($query){
+
+                  //echo blah5;
+
+          $to=$_POST['email_address'];
+
+          $subject="Reset your Password";
+
+          $header="from: helpmebehealthy <helpmebehealthy.com>";
+
+          $message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your email address. ";
+
+          $sentmail = mail($to,$subject,$message,$header);
+
+        }
 
            // if your email succesfully sent
-          if($sentmail){
+        if($sentmail){
 
-           echo "Please check your email for instructions on how to login into your account";
+         echo "Please check your email for instructions on how to login into your account";
 
-          }
+       }
 
-          else {
+       else {
 
-            echo "Cannot send  link to your e-mail address";
+        echo "Cannot send  link to your e-mail address";
 
 } // Confirm success with the user
 //echo '<p>Your password has been reset.</p>';
@@ -98,9 +98,6 @@ if (isset($_POST['submit'])) { // Handle the form.
 //mysqli_close($dbc);
 
 //exit();
-
-
-
 
 } 
 

@@ -30,7 +30,7 @@ if (!isset($_SESSION['user_id'])) {
     <li><a href="vitamins and minerals/vitamins and minerals.html">Vitamins and Minerals</a></li> 
   </ul>
 
-  </body
+  </body>
 
   </html>
 

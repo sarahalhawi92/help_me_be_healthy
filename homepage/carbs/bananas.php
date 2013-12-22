@@ -24,6 +24,8 @@ table{
 
 <?php
 
+session_start();
+
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 mysqli_set_charset($dbc, "utf8");
 // Check connection
@@ -69,6 +71,12 @@ while($row = mysqli_fetch_array($data))
 }
 echo "</table>";
 
+$recipe_name = $row['recipe_name'];
+
+$_SESSION['recipe_name'] = $recipe_name;
+
+echo $recipe_name;
+
 mysqli_close($con);
 
 ?>
@@ -77,7 +85,7 @@ mysqli_close($con);
 <body>
 
   <form action="../user profile/save_recipe.php" method="post">
-   <input type="submit" name="submit" class="btn" value="Save Recipe"></td>
+   <input type="submit" name="submit[]" class="btn" value="Save Recipe"></td>
  </form> 
 
 </body>   
