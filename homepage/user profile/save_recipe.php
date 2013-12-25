@@ -17,6 +17,12 @@ $user_id = $_SESSION['user_id'];
 
 echo $user_id;
 
+$recipe_name = $_SESSION['recipe_name'];
+$recipe_name_2 = $_SESSION['recipe_name_2'];
+
+//echo $recipe_name;
+//echo $recipe_name_2;
+
 // Make sure the browser is transmitting in UTF-8
 header('Content-type: text/html; charset=utf-8');
 
@@ -26,59 +32,104 @@ $error_msg = "";
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 mysqli_set_charset($dbc, "utf8");
 
-echo popopopop;
 
-if (!isset($_SESSION['recipe_id'])) {
-    if(isset($_POST['submit'])){
+if(isset($_POST['submit_1'])){
 
-        echo success;
+    $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = '$recipe_name'";
 
-        $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = \"banana bread\"";
+    $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
-        $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
+    while ($row = mysqli_fetch_assoc($data)) { 
 
-        if (mysqli_num_rows($data) == 1) {
+        //$recipe_name = $row['recipe_name'];
+        //setcookie('recipe_name', $row['recipe_name'], time() + (60 * 60 * 24 * 30)); 
 
-            echo succcccess;
+        $_SESSION['recipe_id'] = $row['recipe_id'];
+        setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 1)); 
 
-            $row = mysqli_fetch_assoc($data);
-            $_SESSION['recipe_id'] = $row['recipe_id'];
-             setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
+    }
+    //echo $recipe_name;
+    //echo $_SESSION['recipe_id'];;
+    $recipe_id = $_SESSION['recipe_id'];
+}
 
-         }
+if(isset($_POST['submit_2'])){
 
-         echo $_SESSION['recipe_id'];
+    $query = "SELECT `recipe_id` FROM `carbohydrates` WHERE `recipe_name` = '$recipe_name_2'";
 
-     }
- }
+    $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
-                  if (isset($_SESSION['recipe_id'])) {
-    // Delete the session vars by clearing the $_SESSION array
-            $_SESSION = array();
+    while ($row = mysqli_fetch_assoc($data)) { 
 
-    // Delete the session cookie by setting its expiration to an hour ago (3600)
-            if (isset($_COOKIE[session_name()])) {
-              setcookie(session_name(), '', time() - 3600);
-          }
+        //$recipe_name = $row['recipe_name'];
+        //setcookie('recipe_name', $row['recipe_name'], time() + (60 * 60 * 24 * 30)); 
 
-    // Destroy the session
-          session_destroy();
-      }
+        $_SESSION['recipe_id'] = $row['recipe_id'];
+        setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 1)); 
 
-  // Delete the user ID and username cookies by setting their expirations to an hour ago (3600)
-      setcookie('recipe_id', '', time() - 3600);
+    }
+    //echo $recipe_name;
+    //echo $_SESSION['recipe_id'];;
+    $recipe_id = $_SESSION['recipe_id'];
+}
 
-         ?>
+$query = "INSERT INTO `users_recipes` (`users_recipes_id`, `user_id`, `recipe_id`) VALUES (NULL, '$user_id', '$recipe_id')";
+
+$data = mysqli_query($dbc, $query); 
+
+if (mysqli_num_rows($data) == 0) {
+
+    $query = "SELECT recipe_name from carbohydrates left join users_recipes ON carbohydrates.recipe_id = users_recipes.recipe_id WHERE `user_id` = '" . $_SESSION['user_id'] . "' LIMIT 0, 30";
+    
+
+$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
+
+echo "<table border='1' width='50%'>
+<tr>
+<th>Recipes Saved: </th>
+</tr>";
+
+while($row = mysqli_fetch_array($data))
+{
+  echo "<tr>";
+  echo "<td>" . $row['recipe_name'] . "</td>";
+  $recipes_saved = array();
+  $recipes_saved = $row['recipe_name'];
+  echo $recipes_saved;
+  $query = "UPDATE users SET recipes_saved =  ('$recipes_saved') WHERE `user_id` = '" . $_SESSION['user_id'] . "'";
+  echo "</tr>";
+}
+echo "</table>";
 
 
 
+echo 'Recipe Successfully saved to your profile';
+
+}
 
 
+//unset($_SESSION['recipe_id']);
+//unset($_SESSION['recipe_name']);
 
+/*if(isset($_SESSION['recipe_id'])){ 
 
+    $_SESSION = array();
+    unset($_SESSION['recipe_id']);
 
+   } 
 
+   setcookie('recipe_id', '', time() - 3600);
 
+/*if(isset($_SESSION['recipe_name'])){ 
 
+    $_SESSION = array();
+    session_destroy(); 
 
+   } 
+  setcookie('recipe_name', '', time() - 3600);
+*/
+  var_dump();
 
+  print_r();
+
+  ?>

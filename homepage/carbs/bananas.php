@@ -71,21 +71,30 @@ while($row = mysqli_fetch_array($data))
 }
 echo "</table>";
 
-$recipe_name = $row['recipe_name'];
+$query = "SELECT `recipe_name` FROM `carbohydrates` WHERE `ingredient_name`= 'bananas' AND recipe_id = 1";
+$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
-$_SESSION['recipe_name'] = $recipe_name;
+while($row = mysqli_fetch_array($data))
+{
+  echo "<td>" . $row['recipe_name'] . "</td>";
+  $recipe_name = $row['recipe_name'];
+}
 
 echo $recipe_name;
+
+$_SESSION['recipe_name'] = $recipe_name;
+setcookie('recipe_id', $row['recipe_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
 
 mysqli_close($con);
 
 ?>
 
+
 <html>
 <body>
 
   <form action="../user profile/save_recipe.php" method="post">
-   <input type="submit" name="submit[]" class="btn" value="Save Recipe"></td>
+   <input type="submit" name="submit_1" class="btn" value="Save Recipe"></td>
  </form> 
 
 </body>   
@@ -94,6 +103,8 @@ mysqli_close($con);
 
 
 <?php
+
+session_start();
 
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 mysqli_set_charset($dbc, "utf8");
@@ -138,6 +149,19 @@ while($row = mysqli_fetch_array($data))
 }
 echo "</table>";
 
+$query = "SELECT `recipe_name` FROM `carbohydrates` WHERE `ingredient_name`= 'bananas' AND recipe_id = 2";
+$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
+
+while($row = mysqli_fetch_array($data))
+{
+  echo "<td>" . $row['recipe_name'] . "</td>";
+  $recipe_name_2 = $row['recipe_name'];
+}
+
+echo $recipe_name_2;
+
+$_SESSION['recipe_name_2'] = $recipe_name_2;
+
 mysqli_close($con);
 
 ?>
@@ -146,11 +170,13 @@ mysqli_close($con);
 <body>
 
   <form action="../user profile/save_recipe.php" method="post">
-   <input type="submit" name="submit" class="btn" value="Save Recipe"></td>
+   <input type="submit" name="submit_2" class="btn" value="Save Recipe"></td>
  </form> 
 
 </body>   
 </html>
+
+
 
 
 
