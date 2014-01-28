@@ -21,7 +21,7 @@
 		<input type="radio" name="goal[]" value="Eat Better">Eat More Healthily<br>
 
 
-	<p>When would you like to achieve this?</p>
+		<p>When would you like to achieve this?</p>
 
 		<input type="radio" name="time[]" value="1 month or Less">One Month or Less<br>
 		<input type="radio" name="time[]" value="2 - 3 Months">Two to Three Months<br>
@@ -29,18 +29,18 @@
 		<input type="radio" name="time[]" value="6 Months or More">Six Months or More<br>
 
 
-	<p>Do you have an office job?</p>
+		<p>Do you have an office job?</p>
 
 		<input type="radio" name="office[]" value="Yes">Yes<br>
 		<input type="radio" name="office[]" value="No">No<br>
 
 
-	<p>Do you go to the gym?</p>
+		<p>Do you go to the gym?</p>
 
 		<input type="radio" name="gym[]" value="Yes">Yes<br>
 		<input type="radio" name="gym[]" value="No">No<br>
 
-	<p>If yes to the question above, how many times a week do you go?</p>
+		<p>If yes to the question above, how many times a week do you go?</p>
 
 		<input type="radio" name="gymyes[]" value="Once a Week">Once a Week<br>
 		<input type="radio" name="gymyes[]" value="Twice a Week">Twice a Week<br>
@@ -48,7 +48,7 @@
 		<input type="radio" name="gymyes[]" value="More than 4 times a Week">More than Four Times a Week<br>
 
 
-	<p>What foods do you generally eat? Choose from below<p>
+		<p>What foods do you generally eat? Choose from below<p>
 
 			<input type="checkbox" name="food[]" value="Chicken">chicken<br>
 			<input type="checkbox" name="food[]" value="Beef">beef<br>
@@ -65,8 +65,6 @@
 			<input type="submit">
 
 		</form>
+	</body>
 
-
-		</body
-
-		</html>
+	</html>

@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
   if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2']) && !empty($_POST['email_address']) && ($password1 == $password2)) {
           // Make sure someone isn't already registered using this username
-    $query = "SELECT * FROM users WHERE username = '$username'";
+    $query = "SELECT * FROM users WHERE username = '$username' AND email_address = '$email_address'";
     $data = mysqli_query($dbc, $query);
 
     if (mysqli_num_rows($data) == 0) {

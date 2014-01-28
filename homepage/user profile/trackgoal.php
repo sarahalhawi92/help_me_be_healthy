@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <h3>Help me be Healthy - My Profile</h3>
+    <h3>Help me be Healthy - Track Goal</h3>
 
     <?php
 
@@ -38,67 +38,54 @@
 
     // Grab the profile data from the database
     if (!isset($_GET['user_id'])) {
-      $query = "SELECT username, email_address, user_bmi, goal FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
-      $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_SESSION['user_id'] . "%'";
+      $query = "SELECT goal FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
     }
-    else {     
-      $query = "SELECT username, email_address, user_bmi, goal FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
-      $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_GET['user_id'] . "%'";
-
+    else {
+      $query = "SELECT goal FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
     }
     $data = mysqli_query($dbc, $query);
-    $recipeData = mysqli_query($dbc, $query2);
 
-     if (mysqli_num_rows($data) == 1) {
+    if (mysqli_num_rows($data) == 1) {
       // The user row was found so display the user data
       $row = mysqli_fetch_array($data);
       echo '<table>';
-      if (!empty($row['username'])) {
-        echo '<tr><td class="label">Username:</td><td>' . $row['username'] . '</td></tr>';
-      }
-      if (!empty($row['email_address'])) {
-        echo '<tr><td class="label">Email Address:</td><td>' . $row['email_address'] . '</td></tr>';
-      }
-      if (!empty($row['user_bmi'])) {
-        echo '<tr><td class="label">BMI:</td><td>' . $row['user_bmi'] . '</td></tr>';
-      }
-
       if (!empty($row['goal'])) {
         echo '<tr><td class="label">Your Goals:</td><td>' . $row['goal'] . '</td></tr>';
       }
       echo '</table>';
     } // End of check for a single row of user results
-    else 
-    {
+    else {
       echo '<p class="error">There was a problem accessing your profile.</p>';
     }
-    echo "<br>";
-    echo "<h>Saved recipes:</h>";
-    echo '<table>';
-    if (mysqli_num_rows($recipeData) > 0) {
-      while($row = mysqli_fetch_array($recipeData))
-      {
-        echo "<tr>";
-            echo "<td>" . $row['recipe_name'] . "</td>";
-        echo "</tr>";
-      }
-      echo "</table>";
-    }
-
-    echo '</table>';
 
     mysqli_close($dbc);
     ?>
 
     <html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Create Goal</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+	<form action="validategoal.php" method="post">
+
+		<input type="hidden" name = "check_submit", value = "1" />
+
+		<p>Have you lost any weight?</p>
+
+		<input type="radio" name="lost[]" value="Yes">Yes<br>
+		<input type="radio" name="lost[]" value="No">No<br>
+		<input type="radio" name="lost[]" value="Not Sure">Not Sure<br>
+
+			<input type="submit">
+
+		</form>
+	</body>
     <ul>
       <li><a href="../index.php">Back to Homepage</a></li>
-      <li><a href="calculatebmi.php">Calculate BMI</a></li>
-      <br>
-      <li><a href="..\registration & login\change_password.php">Change Password?</a></li>
-      <br>
-      <li><a href="creategoal.php">Create Goal</a></li>
-      <li><a href="trackgoal.php">Track Goal</a></li>
     </ul>
     </html>
   </body> 

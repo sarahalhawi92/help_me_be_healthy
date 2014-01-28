@@ -36,6 +36,7 @@ if (!isset($_SESSION['user_id'])) {
 
   <?php
   $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+  //$dbc = mysqli_connect('mysql8.000webhost.com', 'a2976397_healthy', 'masabi2014', 'a2976397_healthy') or die("Error " . mysqli_error($dbc));
   mysqli_set_charset($dbc, "utf8");
 
   if (!empty($_SESSION['user_id'])) {
@@ -50,8 +51,8 @@ if (!isset($_SESSION['user_id'])) {
     echo '&#10084; <a href="registration & login/logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
   }
   else {
-    echo '&#10084; <a href="registration & login/login.php">Log In</a><br />';
-    echo '&#10084; <a href="registration & login/registration.php">Sign Up</a>';
+    echo '<a href="registration & login/login.php">Log In</a><br />';
+    echo '<a href="registration & login/registration.php">Sign Up</a>';
   }
 
   mysqli_close($dbc);
