@@ -38,18 +38,21 @@
 
     // Grab the profile data from the database
     if (!isset($_GET['user_id'])) {
-      $query = "SELECT username, email_address, user_bmi, goal FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
+      $query = "SELECT username, email_address, user_bmi FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
       $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_SESSION['user_id'] . "%'";
+      $query3 = "SELECT * FROM users_goals WHERE user_id LIKE  '%" . $_SESSION['user_id'] . "%'";
     }
     else {     
-      $query = "SELECT username, email_address, user_bmi, goal FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
+      $query = "SELECT username, email_address, user_bmi FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
       $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_GET['user_id'] . "%'";
-
+      $query3 = "SELECT * FROM users_goals WHERE user_id LIKE  '%" . $_SESSION['user_id'] . "%'";
     }
     $data = mysqli_query($dbc, $query);
     $recipeData = mysqli_query($dbc, $query2);
+    $goalsData = mysqli_query($dbc, $query3);
 
-     if (mysqli_num_rows($data) == 1) {
+    if (mysqli_num_rows($data) == 1) 
+    {
       // The user row was found so display the user data
       $row = mysqli_fetch_array($data);
       echo '<table>';
@@ -61,10 +64,6 @@
       }
       if (!empty($row['user_bmi'])) {
         echo '<tr><td class="label">BMI:</td><td>' . $row['user_bmi'] . '</td></tr>';
-      }
-
-      if (!empty($row['goal'])) {
-        echo '<tr><td class="label">Your Goals:</td><td>' . $row['goal'] . '</td></tr>';
       }
       echo '</table>';
     } // End of check for a single row of user results
@@ -79,7 +78,24 @@
       while($row = mysqli_fetch_array($recipeData))
       {
         echo "<tr>";
-            echo "<td>" . $row['recipe_name'] . "</td>";
+        echo "<td>" . $row['recipe_name'] . "</td>";
+        echo "</tr>";
+      }
+      echo "</table>";
+    }
+    echo "<br>";
+    echo "<h>Your Goals:</h>";
+    echo '<table>';
+    if (mysqli_num_rows($goalsData) > 0) {
+      while($row = mysqli_fetch_array($goalsData))
+      {
+        echo "<tr>";
+        echo "<td>" . $row['goal'] . "</td>";
+        echo "<td>" . $row['time'] . "</td>";
+        echo "<td>" . $row['office'] . "</td>";
+        echo "<td>" . $row['gym'] . "</td>";
+        echo "<td>" . $row['gym_yes'] . "</td>";
+        echo "<td>" . $row['food'] . "</td>";
         echo "</tr>";
       }
       echo "</table>";
