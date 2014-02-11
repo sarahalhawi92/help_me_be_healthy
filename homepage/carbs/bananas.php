@@ -10,7 +10,7 @@ table{
 </head>
 
 <body>
- <h1>Everything you need to know about bananas</h1>
+ <h1>Bananas: nutritional information</h1>
 
  <html>
  <ul>

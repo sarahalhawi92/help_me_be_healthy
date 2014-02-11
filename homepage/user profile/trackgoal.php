@@ -38,22 +38,24 @@
 
     // Grab the profile data from the database
     if (!isset($_GET['user_id'])) {
-      $query = "SELECT goal FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
+      $query = "SELECT goal FROM users_goals WHERE user_id LIKE  '%" . $_SESSION['user_id'] . "%'";
     }
     else {
-      $query = "SELECT goal FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
+      $query = "SELECT goal FROM users_goals WHERE user_id LIKE  '%" . $_SESSION['user_id'] . "%'";
     }
     $data = mysqli_query($dbc, $query);
 
-    if (mysqli_num_rows($data) == 1) {
-      // The user row was found so display the user data
-      $row = mysqli_fetch_array($data);
-      echo '<table>';
-      if (!empty($row['goal'])) {
-        echo '<tr><td class="label">Your Goals:</td><td>' . $row['goal'] . '</td></tr>';
+    echo "<h>Your Goals:</h>";
+    echo '<table>';
+    if (mysqli_num_rows($data) > 0) {
+      while($row = mysqli_fetch_array($data))
+      {
+        echo "<tr>";
+        echo "<td>" . $row['goal'] . "</td>";
+        echo "</tr>";
       }
-      echo '</table>';
-    } // End of check for a single row of user results
+      echo "</table>";
+    }
     else {
       echo '<p class="error">There was a problem accessing your profile.</p>';
     }
@@ -61,32 +63,34 @@
     mysqli_close($dbc);
     ?>
 
+
     <html>
     <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Create Goal</title>
-	<link rel="stylesheet" type="text/css" href="style.css" />
-</head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <title>Create Goal</title>
+     <link rel="stylesheet" type="text/css" href="style.css" />
+   </head>
 
-<body>
+   <body>
 
-	<form action="validategoal.php" method="post">
+     <form action="validategoal.php" method="post">
 
-		<input type="hidden" name = "check_submit", value = "1" />
+      <input type="hidden" name = "check_submit", value = "1" />
 
-		<p>Have you lost any weight?</p>
+      <p>Have you lost any weight?</p>
 
-		<input type="radio" name="lost[]" value="Yes">Yes<br>
-		<input type="radio" name="lost[]" value="No">No<br>
-		<input type="radio" name="lost[]" value="Not Sure">Not Sure<br>
+      <input type="radio" name="yes[]" value="Yes">Yes<br>
+      <input type="radio" name="no[]" value="No">No<br>
+      <input type="radio" name="not_sure[]" value="Not Sure">Not Sure<br>
 
-			<input type="submit">
 
-		</form>
-	</body>
-    <ul>
-      <li><a href="../index.php">Back to Homepage</a></li>
-    </ul>
-    </html>
-  </body> 
+      <tr><td colspan="2"><input type="submit" name="submit" class="btn" value="Submit"></td></tr></table>
+
+    </form>
+  </body>
+  <ul>
+    <li><a href="../index.php">Back to Homepage</a></li>
+  </ul>
   </html>
+</body> 
+</html>

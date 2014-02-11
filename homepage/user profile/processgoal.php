@@ -27,7 +27,7 @@ if (mysqli_connect_errno())
 
 //Check whether the form has been submitted
 if (array_key_exists('check_submit', $_POST)) {
-   //Check whether a $_GET['Languages'] is set
+
  if ( isset($_POST['goal']) ) { 
 
      $_POST['goal'] = implode(', ', $_POST['goal']); //Converts an array into a single string

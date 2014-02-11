@@ -12,17 +12,16 @@ header('Content-type: text/html; charset=utf-8');
 $error_msg = "";
 
 
-if (isset($_SESSION['user_id'])) {
+session_start();
 
-	echo blah;
-
-}
-$user_id = $_SESSION['user_id'];
-echo $user_id;
-
+   if (!isset($_SESSION['user_id'])) {
+    if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+      $_SESSION['user_id'] = $_COOKIE['user_id'];
+      $_SESSION['username'] = $_COOKIE['username'];
+    }
+  }
 
 if (isset($_POST['submit'])) {
-	echo blah3;
 
 	$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 	mysqli_set_charset($dbc, "utf8");
@@ -34,14 +33,12 @@ if (isset($_POST['submit'])) {
 
 	if (!empty($_POST['current_password']) && !empty($_POST['new_password']) && !empty($_POST['confirm_new_password'])){
 
-		echo blah4;
 
 		$query = "SELECT `password` FROM `users` WHERE `username`=  '" . $_SESSION['user_id'] . "' ";
 		$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysql_error());
 
 		if($new_password == $confirm_new_password) {
 
-			echo blah5;
 
 			$query = "UPDATE `users` SET `password` = SHA('$new_password') WHERE `user_id` = '" . $_SESSION['user_id'] . "' ";
 			mysqli_query($dbc, $query) or die("Error " . mysqli_error($data));

@@ -39,12 +39,12 @@
     // Grab the profile data from the database
     if (!isset($_GET['user_id'])) {
       $query = "SELECT username, email_address, user_bmi FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
-      $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_SESSION['user_id'] . "%'";
+      $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_SESSION['user_id'] . "%' ORDER BY recipe_calories DESC";
       $query3 = "SELECT * FROM users_goals WHERE user_id LIKE  '%" . $_SESSION['user_id'] . "%'";
     }
     else {     
       $query = "SELECT username, email_address, user_bmi FROM users WHERE user_id = '" . $_GET['user_id'] . "'";
-      $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_GET['user_id'] . "%'";
+      $query2 = "SELECT * FROM recipes WHERE user_ids LIKE  '%" . $_GET['user_id'] . "%' ORDER BY recipe_calories DESC";
       $query3 = "SELECT * FROM users_goals WHERE user_id LIKE  '%" . $_SESSION['user_id'] . "%'";
     }
     $data = mysqli_query($dbc, $query);
@@ -72,21 +72,42 @@
       echo '<p class="error">There was a problem accessing your profile.</p>';
     }
     echo "<br>";
-    echo "<h>Saved recipes:</h>";
-    echo '<table>';
+
+    echo "<table border='1' width='45%'>
+    <tr>
+    <th>Recipe Name</th>
+    <th>Recipe Calories</th>
+    <th>Recipe Price</th>
+    </tr>";
     if (mysqli_num_rows($recipeData) > 0) {
+      echo "<h>Saved recipes:</h>";
+      echo "<br>";
+      echo "<br>";
       while($row = mysqli_fetch_array($recipeData))
       {
         echo "<tr>";
         echo "<td>" . $row['recipe_name'] . "</td>";
+        echo "<td>" . $row['recipe_calories'] . "</td>";
+        echo "<td>" . $row['recipe_price'] . "</td>";
         echo "</tr>";
       }
       echo "</table>";
     }
     echo "<br>";
-    echo "<h>Your Goals:</h>";
-    echo '<table>';
+    echo "<table border='1' width='50%'>
+    <tr>
+    <th>Goal</th>
+    <th>Time to achieve</th>
+    <th>Office Job</th>
+    <th>Gym?</th>
+    <th>Number of times to gym</th>
+    <th>Foods You Eat</th>
+    </tr>";
+    
     if (mysqli_num_rows($goalsData) > 0) {
+      echo "<h>Your Goals:</h>";
+      echo "<br>";
+      echo "<br>";
       while($row = mysqli_fetch_array($goalsData))
       {
         echo "<tr>";

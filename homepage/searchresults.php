@@ -6,11 +6,11 @@ table{
 </style>
 
 <head>
- <title>Carbohydrates: Tuna</title>
+ <title>Carbohydrates: Bananas</title>
 </head>
 
 <body>
- <h1>Tuna: nutritional information</h1>
+ <h1>Everything you need to know about bananas</h1>
 
  <html>
  <ul>
@@ -22,17 +22,8 @@ table{
 </html>
 
 <?php
+ $key = $_GET['search']; 
 
-session_start();
-
-   if (!isset($_SESSION['user_id'])) {
-    if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-      $_SESSION['user_id'] = $_COOKIE['user_id'];
-      $_SESSION['username'] = $_COOKIE['username'];
-    }
-  }
-
-// Connect to server and select database.
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
 mysqli_set_charset($dbc, "utf8");
 
@@ -41,7 +32,7 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$query ="SELECT * FROM recipes WHERE category_name Like 'fats%' AND ingredient_name = 'tuna'";
+$query = "SELECT `recipe_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
 $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
 ?>

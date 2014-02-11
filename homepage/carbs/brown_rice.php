@@ -6,11 +6,11 @@ table{
 </style>
 
 <head>
- <title>Carbohydrates: Bananas</title>
+ <title>Carbohydrates: Brown Rice</title>
 </head>
 
 <body>
- <h1>Everything you need to know about bananas</h1>
+ <h1>Brown Rice: nutritional information</h1>
 
  <html>
  <ul>
