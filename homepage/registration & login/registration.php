@@ -1,81 +1,73 @@
-<?php
+     <?php
       // Display any errors.
-error_reporting(E_ALL &~ E_NOTICE);
-
-    // Start the session
-session_start();
+     error_reporting(E_ALL &~ E_NOTICE);
 
     // Make sure the browser is transmitting in UTF-8
-header('Content-type: text/html; charset=utf-8');
+     header('Content-type: text/html; charset=utf-8');
 
-    // Clear the error message
-$error_msg = "";
-
-$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
-mysqli_set_charset($dbc, "utf8");
+     $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+     mysqli_set_charset($dbc, "utf8");
 
 
-if (isset($_POST['submit'])) {
+     if (isset($_POST['submit'])) {
         // Grab the profile data from the POST
-  $username = mysqli_real_escape_string($dbc, trim($_POST['username']));
-  $first_name = mysqli_real_escape_string($dbc, trim($_POST['first_name']));
-  $last_name = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
-  $age = mysqli_real_escape_string($dbc, trim($_POST['age']));
-  $num_in_household = mysqli_real_escape_string($dbc, trim($_POST['num_in_household']));
-  $password1 = mysqli_real_escape_string($dbc, trim($_POST['password1']));
-  $password2 = mysqli_real_escape_string($dbc, trim($_POST['password2']));
-  $email_address = mysqli_real_escape_string($dbc, trim($_POST['email_address']));
-  $email_code = mysqli_real_escape_string($dbc, md5($_POST['$username'] + microtime()));
+      $username = mysqli_real_escape_string($dbc, trim($_POST['username']));
+      $first_name = mysqli_real_escape_string($dbc, trim($_POST['first_name']));
+      $last_name = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
+      $age = mysqli_real_escape_string($dbc, trim($_POST['age']));
+      $num_in_household = mysqli_real_escape_string($dbc, trim($_POST['num_in_household']));
+      $password1 = mysqli_real_escape_string($dbc, trim($_POST['password1']));
+      $password2 = mysqli_real_escape_string($dbc, trim($_POST['password2']));
+      $email_address = mysqli_real_escape_string($dbc, trim($_POST['email_address']));
+      $email_code = mysqli_real_escape_string($dbc, md5($_POST['$username'] + microtime()));
 
-  if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2']) && !empty($_POST['email_address']) && ($password1 == $password2)) {
+      if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2']) && !empty($_POST['email_address']) && ($password1 == $password2)) {
           // Make sure someone isn't already registered using this username
-    $query = "SELECT * FROM users WHERE username = '$username' AND email_address = '$email_address'";
-    $data = mysqli_query($dbc, $query);
+        $query = "SELECT * FROM users WHERE username = '$username'";
+        $data = mysqli_query($dbc, $query);
 
-    if (mysqli_num_rows($data) == 0) {
+        if (mysqli_num_rows($data) == 0) {
             // The username is unique, so insert the data into the database
-      $query = "INSERT INTO `users` (`user_id`, `username`, `first_name`, `last_name`, `age`, `num_in_household`,`password`, `email_address`, `email_code`) 
-      VALUES (NULL, '$username', '$first_name', '$last_name', '$age', '$num_in_household', SHA('$password1'), '$email_address', '$email_code')";
+          $query = "INSERT INTO `users` (`user_id`, `username`, `first_name`, `last_name`, `age`, `num_in_household`,`password`, `email_address`, `email_code`) 
+          VALUES (NULL, '$username', '$first_name', '$last_name', '$age', '$num_in_household', SHA('$password1'), '$email_address', '$email_code')";
 
-      mysqli_query($dbc, $query); 
+          mysqli_query($dbc, $query); 
 
           //mail ('$email_address', 'Activate your Account', "Hello " . '$first_name' . ",\n \n You need to activate your account, you can use the link below: http://localhost:8888/homepage/registration & login/activate.php?email=" . ['$email_address'] . "&email_code=" . ['$email_code'] . "\n \n  -helpmebehealthy");
 
-      if($query){
+          if($query){
 
             // send e-mail to ...
-        $to=$email_address;
+            $to=$email_address;
 
             // Your subject
-        $subject="Your confirmation link here";
+            $subject="Your confirmation link here";
 
-             // From
-        $header="from: helpmebehealthy <helpmebehealthy.com>";
 
              // Your message
-        $message="Your Comfirmation link \r\n";
-        $message.="Click on this link to activate your account \r\n";
-        $message.="http://localhost:8888/homepage/registration%20&%20login/activation.php?passkey=$email_code";
+            $message="Your Comfirmation link \r\n";
+            $message.="Click on this link to activate your account \r\n";
+            $message.="http://localhost:8888/homepage/registration%20&%20login/activation.php?passkey=$email_code";
 
-            // send email
-        $sentmail = mail($to,$subject,$message,$header);
-      }
+            $sentmail = mail('$to', '$subject', '$message', 'From: helpmebehealthy.com');
+
+          }
 
            // if not found 
-      else {
-        echo "Email not found in database";
-      }
+          else {
+            echo "Email not found in database";
+          }
 
            // if your email succesfully sent
-      if($sentmail){
+          if($sentmail){
 
-        echo "Your Confirmation link Has Been Sent To Your Email Address.";
+            echo "Your Confirmation link Has Been Sent To Your Email Address.";
 
-      }
+          }
 
-      else {
+          else {
 
-        echo "Cannot send Confirmation link to your e-mail address";
+            echo "Cannot send Confirmation link to your e-mail address";
 
 } // Confirm success with the user
 echo '<p>Your new account has been successfully created.</p>';

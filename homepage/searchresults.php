@@ -6,20 +6,17 @@ table{
 </style>
 
 <head>
- <title>Carbohydrates: Bananas</title>
+ <title>Search Results</title>
 </head>
 
 <body>
- <h1>Everything you need to know about bananas</h1>
-
- <html>
  <ul>
-  <li><a href="../index.php">Back to Homepage</a></li>
+  <li><a href="index.php">Back to Homepage</a></li>
 </ul>
-</html>
+
 
 </body>
-</html>
+
 
 <?php
  $key = $_GET['search']; 
@@ -32,46 +29,32 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$query = "SELECT `recipe_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
+$query = "SELECT `recipe_name`, `ingredient_name`, `category_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
 $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
 ?>
 <body>
 
-<table width="100%" border="1" cellspacing="1" cellpadding="0">
+<table width="20%" border="1" cellspacing="1" cellpadding="0">
 <tr>
 
 <tr>
 <td align="center"><strong>Recipe Name</strong></td>
-<td align="center"><strong>Recipe Price</strong></td>
-<td align="center"><strong>Recipe Calories</strong></td>
-<td align="center"><strong>Amount of Fat</strong></td>
-<td align="center"><strong>Amount of Cholestrol</strong></td>
-<td align="center"><strong>Amount of Carbs</strong></td>
-<td align="center"><strong>Amount of Protein</strong></td>
-<td align="center"><strong>Amount of Fibre</strong></td>
-<td align="center"><strong>Amount of Sodium</strong></td>
-<td align="center"><strong>Amount of Potassium</strong></td>
-<td align="center"><strong>Recipe Source</strong></td>
-<td align="center"><strong>Save recipe?</strong></td>
 </tr>
 
 <?php
 while($row = mysqli_fetch_array($data)){
 ?>
 <tr>
-<td><?php echo $row['recipe_name']; ?></td>
-<td><?php echo $row['recipe_price']; ?></td>
-<td><?php echo $row['recipe_calories']; ?></td>
-<td><?php echo $row['recipe_fat']; ?></td> 
-<td><?php echo $row['recipe_cholestrol']; ?></td> 
-<td><?php echo $row['recipe_carbs']; ?></td> 
-<td><?php echo $row['recipe_protein']; ?></td> 
-<td><?php echo $row['recipe_fibre']; ?></td> 
-<td><?php echo $row['recipe_sodium']; ?></td> 
-<td><?php echo $row['recipe_potassium']; ?></td> 
-<td align="center"><a href=<?php echo $row['recipe_source']; ?>>Click here to view the recipe</a></td>
-<td align="center"><a href="../user profile/save_recipe.php?id=<?php echo $row['recipe_id']; ?>">save</a></td>
+<td>
+<?php 
+echo $row['recipe_name'];
+$firstStr = $row['category_name'] ;
+$secondStr = $row['ingredient_name'];
+$fullStr = $firstStr."/".$secondStr.".php";
+?> 
+</td>
+<td align="center"><a href="../homepage/<?php echo $fullStr; ?>">go to recipe</a></td>
 </tr>
 
 <?php

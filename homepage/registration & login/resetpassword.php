@@ -1,4 +1,11 @@
-<?php
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Password Reset</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <?php
 
       // Display any errors.
 error_reporting(E_ALL &~ E_NOTICE);
@@ -48,7 +55,7 @@ if (isset($_POST['submit'])) { // Handle the form.
 
         $header="from: helpmebehealthy <helpmebehealthy.com>";
 
-        $message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your email address. ";
+        $message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your username. ";
 
         $sentmail = mail($to,$subject,$message,$header);
 
@@ -84,3 +91,12 @@ if (isset($_POST['submit'])) { // Handle the form.
 } 
 
 ?>
+
+
+    <html>
+    <ul>
+      <li><a href="../index.php">Back to Homepage</a></li>
+    </ul>
+    </html>
+  </body> 
+  </html>

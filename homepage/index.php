@@ -22,108 +22,48 @@ if (!isset($_SESSION['user_id'])) {
 
   <h2>Welcome to helpmebehealthy.com!</h2>
 
+  <!-- HTML for SEARCH BAR -->
+  <div id="tfheader">
+    <form method="GET" action="searchresults.php?">
+      <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
+      <input id="submit" type="submit" value="submit">
+    </form>
+    <div class="tfclear"></div>
+  </div>
+
   <ul>
-    <li><a href="carbs/carbohydrates.html">The Carbs</a></li>
+    <li><a href="carbohydrates/carbohydrates.html">The Carbs</a></li>
     <li><a href="proteins/protein.html">The Protein</a></li>
     <li><a href="fibres/fibres.html">The Fibre</a></li> 
     <li><a href="fats/fats.html">Fats</a></li> 
     <li><a href="vitamins and minerals/vitamins and minerals.html">Vitamins and Minerals</a></li> 
   </ul>
 
-  </body>
+</body>
 
-  </html>
+</html>
 
-  <?php
-  $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+<?php
+$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
   //$dbc = mysqli_connect('mysql8.000webhost.com', 'a2976397_healthy', 'masabi2014', 'a2976397_healthy') or die("Error " . mysqli_error($dbc));
-  mysqli_set_charset($dbc, "utf8");
+mysqli_set_charset($dbc, "utf8");
 
-  if (!empty($_SESSION['user_id'])) {
+if (!empty($_SESSION['user_id'])) {
         // Confirm the successful log-in
-    echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
-  }
+  echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
+}
 
   // Generate the navigation menu
-  if (isset($_SESSION['username'])) {
+if (isset($_SESSION['username'])) {
     //echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
-    echo '<a href="user profile/viewprofile.php">View Profile</a><br />';
-    echo '<a href="registration & login/logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
-  }
-  else {
-    echo '<a href="registration & login/login.php">Log In</a><br />';
-    echo '<a href="registration & login/registration.php">Sign Up</a>';
-  }
+  echo '<a href="user profile/viewprofile.php">View Profile</a><br />';
+  echo '<a href="registration & login/logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
+}
+else {
+  echo '<a href="registration & login/login.php">Log In</a><br />';
+  echo '<a href="registration & login/registration.php">Sign Up</a>';
+}
 
-  mysqli_close($dbc);
-  ?>
+mysqli_close($dbc);
+?>
 
-</body> 
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Search Box Example 1</title>
-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
-<!-- CSS styles for standard search box -->
-<style type="text/css">
-  #tfheader{
-    background-color:#c3dfef;
-  }
-  #tfnewsearch{
-    float:right;
-    padding:20px;
-  }
-  .tftextinput{
-    margin: 0;
-    padding: 5px 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
-    border:1px solid #0076a3; border-right:0px;
-    border-top-left-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-  }
-  .tfbutton {
-    margin: 0;
-    padding: 5px 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    border: solid 1px #0076a3; border-right:0px;
-    background: #0095cd;
-    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
-    background: -moz-linear-gradient(top,  #00adee,  #0078a5);
-    border-top-right-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
-  }
-  .tfbutton:hover {
-    text-decoration: none;
-    background: #007ead;
-    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
-    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
-  }
-  /* Fixes submit button height problem in Firefox */
-  .tfbutton::-moz-focus-inner {
-    border: 0;
-  }
-  .tfclear{
-    clear:both;
-  }
-</style>
-</head>
-<body>
-  <!-- HTML for SEARCH BAR -->
-  <div id="tfheader">
-    <form method="GET" action="searchresults.php?">
-            <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
-            <input id="submit" type="submit" value="submit">
-    </form>
-  <div class="tfclear"></div>
-  </div>
-</body>
-</html>
