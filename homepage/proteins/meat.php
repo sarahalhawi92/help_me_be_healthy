@@ -1,5 +1,13 @@
 <html>
 <style type="text/css">
+  body {
+    background-color: FFFFCC;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 5px dotted green;
+    padding: 10px 10px 10px 10px;
+    font-family: sans-serif;
+  }
 table{
  margin: 10px 0;
 }

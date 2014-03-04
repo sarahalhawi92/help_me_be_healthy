@@ -3,7 +3,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Reset Password</title>
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	        <style type = "text/css">
+        body {
+          background-color: FFFFCC;
+          margin-left: 10%;
+          margin-right: 10%;
+          border: 5px dotted green;
+          padding: 10px 10px 10px 10px;
+          font-family: sans-serif;
+        }
+        </style>
 </head>
 
 <body>

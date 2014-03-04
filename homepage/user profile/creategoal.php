@@ -1,9 +1,19 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Create Goal</title>
-	<link rel="stylesheet" type="text/css" href="style.css" />
-</head>
+  <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Create Goal</title>
+    <style type = "text/css">
+    body {
+      background-color: FFFFCC;
+      margin-left: 10%;
+      margin-right: 10%;
+      border: 5px dotted green;
+      padding: 10px 10px 10px 10px;
+      font-family: sans-serif;
+    }
+    </style>
+
+  </head>
 
 <body>
 

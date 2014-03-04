@@ -1,22 +1,64 @@
 <html>
 <style type="text/css">
+  body {
+    background-color: FFFFCC;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 5px dotted green;
+    padding: 10px 10px 10px 10px;
+    font-family: sans-serif;
+  }
+
 table{
  margin: 10px 0;
 }
 </style>
 
 <head>
- <title>Carbohydrates: Bananas</title>
+ <title>Vitamins: Sweet Potato</title>
 </head>
 
 <body>
- <h1>Everything you need to know about bananas</h1>
+ <h1>Everything you need to know about sweet potato</h1>
 
- <html>
- <ul>
-  <li><a href="../index.php">Back to Homepage</a></li>
-</ul>
-</html>
+  <style type = "text/css">
+  body {
+    background-color: FFFFCC;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 5px dotted green;
+    padding: 10px 10px 10px 10px;
+    font-family: sans-serif;
+  }
+  ul
+  {
+    background-color: #efe5d0;
+    list-style-type:none;
+    margin:0;
+    padding: 5px 0px 5px 0px;
+  }
+  ul li
+  {
+    display:inline;
+    padding: 5px 10px 5px 10px;
+  }
+  ul li a:link, nav ul li a:visited {
+    color: #954b4b;
+    border-bottom: none;
+    font-weight: bold;
+  }
+  ul li.selected {
+    background-color: #c8b99c;
+  }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li><a href="../index.php">HOME</a></li>
+    <li class="selected"><a href="sweetpotato.php">SWEET POTATO</a></li>
+    <li><a href="../vitamins%20and%20minerals/chickpeas.php">CHICKPEAS</a></li>
+  </ul>
 
 </body>
 </html>

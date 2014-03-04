@@ -1,5 +1,20 @@
-<title>update</title>
-</head>
+  <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Save Recipe</title>
+    <style type = "text/css">
+    body {
+      background-color: FFFFCC;
+      margin-left: 10%;
+      margin-right: 10%;
+      border: 5px dotted green;
+      padding: 10px 10px 10px 10px;
+      font-family: sans-serif;
+    }
+    </style>
+
+  </head>
+  </html>
 
 <?php
 
@@ -13,7 +28,6 @@ if (!isset($_SESSION['user_id'])) {
       $_SESSION['username'] = $_COOKIE['username'];
   }
 }
-
 
 $user_id = $_SESSION['user_id'];
 
@@ -38,19 +52,16 @@ if (mysqli_num_rows($data) == 0) {
 
 }
 
-// if successfully updated. 
-if($result){
-    echo "Successful";
+if ($result)
+{
+      echo "Successful";
     echo "<BR>";
     echo "<a href='viewprofile.php'>View result</a>";
-}
 
-else {
-       // the recipe has already been saved so display an error message
-  echo '<p class="error">You have already saved this recipe to your profile. Please choose a new recipe to save.</p>';
+
 }
 
 ?>
-<body>
+
 
 

@@ -18,11 +18,11 @@ table{
 </style>
 
 <head>
- <title>Carbohydrates: Lentils</title>
+ <title>Carbohydrates: Chickpeas</title>
 </head>
 
 <body>
- <h1>Lentils: nutritional information</h1>
+ <h1>Chickpeas: nutritional information</h1>
 
   <style type = "text/css">
   body {
@@ -59,14 +59,8 @@ table{
 <body>
   <ul>
     <li><a href="../index.php">HOME</a></li>
-    <li><a href="../carbohydrates/bananas.php">BANANAS</a></li>
-    <li><a href="../carbohydrates/beans.php">BEANS</a></li>
-    <li><a href="../carbohydrates/brown_rice.php">BROWN RICE</a></li>
-    <li><a href="../carbohydrates/chickpeas.php">CHICKPEAS</a></li>
-    <li class="selected"><a href="lentils.php">LENTILS</a></li>
-    <li><a href="../carbohydrates/parsnips.php">PARSNIPS</a></li>
-    <li><a href="../carbohydrates/potatoes.php">POTATOES</a></li>
-    <li><a href="../carbohydrates/sweetcorn.php">SWEETCORN</a></li>
+    <li><a href="../vitamins%20and%20minerals/sweetpotato.php">SWEET POTATO</a></li>
+    <li class="selected"><a href="chickpeas.php">CHICKPEAS</a></li>
   </ul>
 
 </body>
@@ -92,7 +86,7 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$query ="SELECT * FROM recipes WHERE category_name Like 'carbohydrates%' AND ingredient_name = 'lentils'";
+$query ="SELECT * FROM recipes WHERE category_name Like 'carbohydrates%' AND ingredient_name = 'chickpeas'";
 $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
 ?>

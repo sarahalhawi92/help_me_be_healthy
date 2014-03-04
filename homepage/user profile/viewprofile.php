@@ -10,13 +10,21 @@
   }
   ?>
 
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>View Profile</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style type = "text/css">
+    body {
+      background-color: FFFFCC;
+      margin-left: 10%;
+      margin-right: 10%;
+      border: 5px dotted green;
+      padding: 10px 10px 10px 10px;
+      font-family: sans-serif;
+    }
+    </style>
+
   </head>
   <body>
     <h3>Help me be Healthy - My Profile</h3>
@@ -73,14 +81,15 @@
     }
     echo "<br>";
 
-    echo "<table border='1' width='45%'>
-    <tr>
-    <th>Recipe Name</th>
-    <th>Recipe Calories</th>
-    <th>Recipe Price</th>
-    </tr>";
+
     if (mysqli_num_rows($recipeData) > 0) {
       echo "<h>Saved recipes:</h>";
+      echo "<table border='1' width='45%'>
+      <tr>
+      <th>Recipe Name</th>
+      <th>Recipe Calories</th>
+      <th>Recipe Price</th>
+      </tr>";
       echo "<br>";
       echo "<br>";
       while($row = mysqli_fetch_array($recipeData))
@@ -94,18 +103,18 @@
       echo "</table>";
     }
     echo "<br>";
-    echo "<table border='1' width='50%'>
-    <tr>
-    <th>Goal</th>
-    <th>Time to achieve</th>
-    <th>Office Job</th>
-    <th>Gym?</th>
-    <th>Number of times to gym</th>
-    <th>Foods You Eat</th>
-    </tr>";
     
     if (mysqli_num_rows($goalsData) > 0) {
       echo "<h>Your Goals:</h>";
+      echo "<table border='1' width='50%'>
+      <tr>
+      <th>Goal</th>
+      <th>Time to achieve</th>
+      <th>Office Job</th>
+      <th>Gym?</th>
+      <th>Number of times to gym</th>
+      <th>Foods You Eat</th>
+      </tr>";
       echo "<br>";
       echo "<br>";
       while($row = mysqli_fetch_array($goalsData))

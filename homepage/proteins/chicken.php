@@ -1,5 +1,13 @@
 <html>
 <style type="text/css">
+  body {
+    background-color: FFFFCC;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 5px dotted green;
+    padding: 10px 10px 10px 10px;
+    font-family: sans-serif;
+  }
 table{
  margin: 10px 0;
 }
@@ -12,11 +20,46 @@ table{
 <body>
  <h1>Chicken: nutritional information</h1>
 
- <html>
- <ul>
-  <li><a href="../index.php">Back to Homepage</a></li>
-</ul>
-</html>
+  <style type = "text/css">
+  body {
+    background-color: FFFFCC;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 5px dotted green;
+    padding: 10px 10px 10px 10px;
+    font-family: sans-serif;
+  }
+  ul
+  {
+    background-color: #efe5d0;
+    list-style-type:none;
+    margin:0;
+    padding: 5px 0px 5px 0px;
+  }
+  ul li
+  {
+    display:inline;
+    padding: 5px 10px 5px 10px;
+  }
+  ul li a:link, nav ul li a:visited {
+    color: #954b4b;
+    border-bottom: none;
+    font-weight: bold;
+  }
+  ul li.selected {
+    background-color: #c8b99c;
+  }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li><a href="../index.php">HOME</a></li>
+    <li><a href="../proteins/fish.php">FISH</a></li>
+    <li><a href="../proteins/eggs.php">EGGS</a></li>
+    <li><a href="../proteins/beef.php">BEEF</a></li>
+    <li class="selected"><a href="chicken.php">CHICKEN</a></li>
+  </ul>
 
 </body>
 </html>

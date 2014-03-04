@@ -1,26 +1,22 @@
-<?php
-session_start();
-
-  // If the session vars aren't set, try to set them with a cookie
-if (!isset($_SESSION['user_id'])) {
-  if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-    $_SESSION['user_id'] = $_COOKIE['user_id'];
-    $_SESSION['username'] = $_COOKIE['username'];
-  }
-}
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Homepage</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <style type = "text/css">
+  body {
+    background-color: FFFFCC;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 5px dotted green;
+    padding: 10px 10px 10px 10px;
+    font-family: sans-serif;
+  }
+  </style>
 </head>
+
 <body>
 
-  <h2>Welcome to helpmebehealthy.com!</h2>
+  <h2>Welcome to helpmebehealthy!</h2>
 
   <!-- HTML for SEARCH BAR -->
   <div id="tfheader">
@@ -32,9 +28,9 @@ if (!isset($_SESSION['user_id'])) {
   </div>
 
   <ul>
-    <li><a href="carbohydrates/carbohydrates.html">The Carbs</a></li>
+    <li><a href="carbohydrates/carbohydrates.html">The Carbohydrates</a></li>
     <li><a href="proteins/protein.html">The Protein</a></li>
-    <li><a href="fibres/fibres.html">The Fibre</a></li> 
+    <li><a href="fibres/fibres.html">The Fibres</a></li> 
     <li><a href="fats/fats.html">Fats</a></li> 
     <li><a href="vitamins and minerals/vitamins and minerals.html">Vitamins and Minerals</a></li> 
   </ul>
@@ -42,6 +38,18 @@ if (!isset($_SESSION['user_id'])) {
 </body>
 
 </html>
+
+<?php
+session_start();
+
+  // If the session vars aren't set, try to set them with a cookie
+if (!isset($_SESSION['user_id'])) {
+  if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+    $_SESSION['user_id'] = $_COOKIE['user_id'];
+    $_SESSION['username'] = $_COOKIE['username'];
+  }
+}
+?>
 
 <?php
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));

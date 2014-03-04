@@ -33,7 +33,7 @@
             $data= mysqli_query($dbc,$query);
 
             if (mysqli_num_rows($data) == 1) {
-              
+
               // The log-in is OK so set the user ID and username session vars (and cookies), and redirect to the home page
               $row = mysqli_fetch_assoc($data);
               $_SESSION['user_id'] = $row['user_id'];
@@ -54,13 +54,21 @@
         }
       }
       ?>
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+      <html>
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Log In</title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <style type = "text/css">
+        body {
+          background-color: FFFFCC;
+          margin-left: 10%;
+          margin-right: 10%;
+          border: 5px dotted green;
+          padding: 10px 10px 10px 10px;
+          font-family: sans-serif;
+        }
+        </style>
+
       </head>
       <body>
         <h3>Help me be Healthy - Log In</h3>
