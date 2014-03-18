@@ -1,72 +1,58 @@
+<!DOCTYPE HTML>
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Vitamins and Minerals: The Facts</title>
-	<style type = "text/css">
-	body {
-		background-color: FFFFCC;
-		margin-left: 10%;
-		margin-right: 10%;
-		border: 5px dotted green;
-		padding: 10px 10px 10px 10px;
-		font-family: sans-serif;
-	}
-	ul
-	{
-		background-color: #efe5d0;
-		list-style-type:none;
-		margin:0;
-		padding: 5px 0px 5px 0px;
-	}
-	ul li
-	{
-		display:inline;
-		padding: 5px 10px 5px 10px;
-	}
-	ul li a:link, nav ul li a:visited {
-		color: #954b4b;
-		border-bottom: none;
-		font-weight: bold;
-	}
-	ul li.selected {
-		background-color: #c8b99c;
-	}
-	</style>
+  <title>Vitamins & Minerals</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
 </head>
 
 <body>
-	<ul>
-		<li><a href="../index.php">HOME</a></li>
-		<li><a href="../carbohydrates/carbohydrates.html">CARBOHYDRATES</a></li>
-		<li><a href="../proteins/protein.html">PROTEINS</a></li>
-		<li><a href="../fats/fats.html">FATS</a></li>
-		<li><a href="../fibres/fibres.html">FIBRES</a></li>
-		<li class="selected"><a href="vitamins and minerals.html">VITAMINS AND MINERALS</a></li>
-	</ul>
-
-	<h2>What do I need to know about minerals?</h2>
-
-	<p>Minerals are essential for human metabolism. They are involved in responses of the nervous system and muscles, the absorption and secretions of the body's fluids, and maintain a delicate water balance within the body. The bones and teeth of our body have high mineral contents which accounts for their hardness and rigidity.</p>
-
-	<p>
-		<h3>Vitamins</h3>
-		<a href="sweetpotato.php">Sweet Potato: Vitamin A</a> <br>
-		<a href="../carbohydrates/chickpeas.php">Chickpea: Vitamin B6 </a> <br>
-		Clams: Vitamin B12<br>
-		Sweet Red Peppers: Vitamin C<br>
-		Swordfish: Vitamin D<br>
-		Sunflower Seeds: Vitamin E<br>
-        Spinach: Folate<br>
-        Kale: Vitamin K<br>
-
-	    <h3>Minerals</h3>
-		Plain Low Fat Yoghurt: Calcium<br>
-		Chicken Liver: Iron<br>
-		Tomatoes: Lycopene<br>
-		Red Meat: Lysine<br>
-		Wheat Bran: Magnesium<br>
-
-	</p>
-
-</body>
-</html>
+  <div id="container">
+    <img src="../images/sun.png" alt="sunshine" />
+    <div id="main">
+      <header>
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+            <h2>Choose the right lifestyle</h2>
+          </div>
+          <div id="logo_text2">
+            <h3>Contact</h3>
+            <h4>sarah.al-hawi.1@city.ac.uk</h4>
+          </div>
+        </div>
+        <nav>
+          <ul class="sf-menu" id="nav">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a></li>
+            <li><a href="../proteins/protein.html">Proteins</a></li>
+            <li><a href="../fibres/fibres.html">Fibres</a></li>
+            <li><a href="../fats/fats.html">Fats</a></li>
+            <li><a href="vitamins and minerals.html">Vitamins & Minerals</a>
+            </ul>
+          </nav>
+        </header>
+        <div id="content">
+          <h1>Information</h1>
+          <p>Minerals are essential for human metabolism. They are involved in responses of the nervous system and muscles, the absorption and secretions of the body's fluids, and maintain a delicate water balance within the body. The bones and teeth of our body have high mineral contents which accounts for their hardness and rigidity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="grass"></div>
+    <!-- javascript at the bottom for fast page loading -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+    <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+    </script>
+  </body>
+  </html>

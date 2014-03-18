@@ -97,47 +97,84 @@ mysqli_close($dbc);
 
 ?>
 
+<!DOCTYPE HTML>
 <html>
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Sign Up</title>
-  <style type = "text/css">
-  body {
-    background-color: FFFFCC;
-    margin-left: 10%;
-    margin-right: 10%;
-    border: 5px dotted green;
-    padding: 10px 10px 10px 10px;
-    font-family: sans-serif;
-  }
-  </style>
-
+  <title>Carbohydrates</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
 </head>
-<body>
-  <h3>Registration</h3>
 
-  <p>Please enter your username and desired password to sign up.</p>
-  <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <fieldset>
-      <legend>Registration Info</legend>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo $username; ?>" /><br />
-      <label for="first_name">First Name (Optional):</label>
-      <input type="text" id="first_name" name="first_name" /><br />
-      <label for="last_name">Last Name (Optional):</label>
-      <input type="text" id="last_name" name="last_name" /><br />
-      <label for="age">Age:</label>
-      <input type="text" id="age" name="age" /><br />
-      <label for="num_in_household">Number of People in Household:</label>
-      <input type="text" id="num_in_household" name="num_in_household" /><br />
-      <label for="password1">Password:</label>
-      <input type="password" id="password1" name="password1" /><br />
-      <label for="password2">Password (retype):</label>
-      <input type="password" id="password2" name="password2" /><br />
-      <label for="email_address">Email Address:</label>
-      <input type="text" id="email_address" name="email_address" /><br />
-    </fieldset>
-    <input type="submit" value="Sign Up" name="submit" />
-  </form>
-</body> 
+<body>
+  <div id="container">
+    <img src="../images/sun.png" alt="sunshine" />
+    <div id="main">
+      <header>
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+            <h2>Choose the right lifestyle</h2>
+          </div>
+          <div id="logo_text2">
+            <h3>Contact</h3>
+            <h4>sarah.al-hawi.1@city.ac.uk</h4>
+          </div>
+        </div>
+        <nav>
+          <ul class="sf-menu" id="nav">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a></li>
+            <li><a href="../proteins/protein.html">Proteins</a></li>
+            <li><a href="../fibres/fibres.html">Fibres</a></li>
+            <li><a href="../fats/fats.html">Fats</a></li>
+            <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+            </ul>
+          </nav>
+        </header>
+        <div id="content">
+          <h1>Information</h1>
+
+          <p>Please enter your username and desired password to sign up.</p>
+          <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <fieldset>
+              <legend>Registration Info</legend>
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo $username; ?>" /><br />
+              <label for="first_name">First Name (Optional):</label>
+              <input type="text" id="first_name" name="first_name" /><br />
+              <label for="last_name">Last Name (Optional):</label>
+              <input type="text" id="last_name" name="last_name" /><br />
+              <label for="age">Age:</label>
+              <input type="text" id="age" name="age" /><br />
+              <label for="num_in_household">Number of People in Household:</label>
+              <input type="text" id="num_in_household" name="num_in_household" /><br />
+              <label for="password1">Password:</label>
+              <input type="password" id="password1" name="password1" /><br />
+              <label for="password2">Password (retype):</label>
+              <input type="password" id="password2" name="password2" /><br />
+              <label for="email_address">Email Address:</label>
+              <input type="text" id="email_address" name="email_address" /><br />
+            </fieldset>
+            <input type="submit" value="Sign Up" name="submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="grass"></div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('ul.sf-menu').sooperfish();
+  });
+  </script>
+</body>
 </html>

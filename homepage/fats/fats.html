@@ -1,58 +1,58 @@
+<!DOCTYPE HTML>
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Fats: The Facts</title>
-	<style type = "text/css">
-	body {
-		background-color: FFFFCC;
-		margin-left: 10%;
-		margin-right: 10%;
-		border: 5px dotted green;
-		padding: 10px 10px 10px 10px;
-		font-family: sans-serif;
-	}
-	ul
-	{
-		background-color: #efe5d0;
-		list-style-type:none;
-		margin:0;
-		padding: 5px 0px 5px 0px;
-	}
-	ul li
-	{
-		display:inline;
-		padding: 5px 10px 5px 10px;
-	}
-	ul li a:link, nav ul li a:visited {
-		color: #954b4b;
-		border-bottom: none;
-		font-weight: bold;
-	}
-	ul li.selected {
-		background-color: #c8b99c;
-	}
-	</style>
+  <title>Fats</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
 </head>
 
 <body>
-	<ul>
-		<li><a href="../index.php">HOME</a></li>
-		<li><a href="../carbohydrates/carbohydrates.html">CARBOHYDRATES</a></li>
-		<li><a href="../proteins/protein.html">PROTEINS</a></li>
-		<li class="selected"><a href="fats.html">FATS</a></li>
-		<li><a href="../fibres/fibres.html">FIBRES</a></li>
-		<li><a href="../vitamins and minerals/vitamins and minerals.html">VITAMINS AND MINERALS</a></li>
-	</ul>
-	<h2>What do I need to know about fats?</h2>
-
-	<p>Too much saturated fat can raise our cholesterol, which increases the risk of heart disease. It's important to cut down on fat and choose foods that contain unsaturated fat.<br> We need some fat in our diet because it helps the body absorb certain nutrients. There are two main types of fat found in food: saturated and unsaturated. The focus here will be on recipes containing unsaturated fats. </p>
-
-	<p>
-		<a href="salmon.php">salmon</a> <br>
-		<a href="tuna.php">tuna</a> <br>
-		<a href="mackerel.php">mackerel</a> <br>
-		<a href="avocado.php">avocado</a> <br>
-	</p>
-
-</body>
-</html>
+  <div id="container">
+    <img src="../images/sun.png" alt="sunshine" />
+    <div id="main">
+      <header>
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+            <h2>Choose the right lifestyle</h2>
+          </div>
+          <div id="logo_text2">
+            <h3>Contact</h3>
+            <h4>sarah.al-hawi.1@city.ac.uk</h4>
+          </div>
+        </div>
+        <nav>
+          <ul class="sf-menu" id="nav">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a></li>
+            <li><a href="../proteins/protein.html">Proteins</a></li>
+            <li><a href="../fibres/fibres.html">Fibres</a></li>
+            <li><a href="fats.html">Fats</a></li>
+            <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+            </ul>
+          </nav>
+        </header>
+        <div id="content">
+          <h1>Information</h1>
+          <p>Too much saturated fat can raise our cholesterol, which increases the risk of heart disease. It's important to cut down on fat and choose foods that contain unsaturated fat. We need some fat in our diet because it helps the body absorb certain nutrients. There are two main types of fat found in food: saturated and unsaturated. The focus here will be on recipes containing unsaturated fats. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="grass"></div>
+    <!-- javascript at the bottom for fast page loading -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+    <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+    </script>
+  </body>
+  </html>

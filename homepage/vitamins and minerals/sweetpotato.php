@@ -19,7 +19,7 @@ table{
 </head>
 
 <body>
- <h1>Everything you need to know about sweet potato</h1>
+ <h1>Sweet Potato: Nutritional Information</h1>
 
   <style type = "text/css">
   body {

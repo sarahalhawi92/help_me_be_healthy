@@ -1,59 +1,59 @@
+<!DOCTYPE HTML>
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Protein: The Facts</title>
-	<style type = "text/css">
-	body {
-		background-color: FFFFCC;
-		margin-left: 10%;
-		margin-right: 10%;
-		border: 5px dotted green;
-		padding: 10px 10px 10px 10px;
-		font-family: sans-serif;
-	}
-	ul
-	{
-		background-color: #efe5d0;
-		list-style-type:none;
-		margin:0;
-		padding: 5px 0px 5px 0px;
-	}
-	ul li
-	{
-		display:inline;
-		padding: 5px 10px 5px 10px;
-	}
-	ul li a:link, nav ul li a:visited {
-		color: #954b4b;
-		border-bottom: none;
-		font-weight: bold;
-	}
-	ul li.selected {
-		background-color: #c8b99c;
-	}
-	</style>
+  <title>Protein</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
 </head>
 
 <body>
-	<ul>
-		<li><a href="../index.php">HOME</a></li>
-		<li><a href="../carbohydrates/carbohydrates.html">CARBOHYDRATES</a></li>
-		<li class="selected"><a href="protein.html">PROTEINS</a></li>
-		<li><a href="../fats/fats.html">FATS</a></li>
-		<li><a href="../fibres/fibres.html">FIBRES</a></li>
-		<li><a href="../vitamins and minerals/vitamins and minerals.html">VITAMINS AND MINERALS</a></li>
-	</ul>
-	<h2>What do I need to know about protein?</h2>
-
-	<p>Protein is an essential nutrient found in animal products, nuts, and beans.<br>
-		Your body uses proteins in your diet to build new cells, maintain tissues, and synthesize new proteins that make it possible for you to perform basic bodily functions.</p>
-
-	<p>
-		<a href="fish.php">fish</a> <br>
-		<a href="eggs.php">eggs</a> <br>
-		<a href="beef.php">beef</a> <br>
-		<a href="chicken.php">chicken</a> <br>
-	</p>
-
-</body>
-</html>
+  <div id="container">
+    <img src="../images/sun.png" alt="sunshine" />
+    <div id="main">
+      <header>
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+            <h2>Choose the right lifestyle</h2>
+          </div>
+          <div id="logo_text2">
+            <h3>Contact</h3>
+            <h4>sarah.al-hawi.1@city.ac.uk</h4>
+          </div>
+        </div>
+        <nav>
+          <ul class="sf-menu" id="nav">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a></li>
+            <li><a href="protein.html">Proteins</a></li>
+            <li><a href="../fibres/fibres.html">Fibres</a></li>
+            <li><a href="../fats/fats.html">Fats</a></li>
+            <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+            </ul>
+          </nav>
+        </header>
+        <div id="content">
+          <h1>Information</h1>
+          <p>Protein is an essential nutrient found in animal products, nuts, and beans.
+            Your body uses proteins in your diet to build new cells, maintain tissues, and synthesize new proteins that make it possible for you to perform basic bodily functions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="grass"></div>
+    <!-- javascript at the bottom for fast page loading -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+    <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+    </script>
+  </body>
+  </html>
