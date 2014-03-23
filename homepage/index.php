@@ -23,6 +23,7 @@ if (!isset($_SESSION['user_id'])) {
   <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
 </head>
 
+
 <body>
   <div id="container">
     <img src="images/sun.png" alt="sunshine" />
@@ -49,74 +50,91 @@ if (!isset($_SESSION['user_id'])) {
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="index.php">Home</a></li>
-            <li><a href="carbohydrates/carbohydrates.html">Carbohydrates</a></li>
-            <li><a href="proteins/protein.html">Proteins</a></li>
-            <li><a href="fibres/fibres.html">Fibres</a></li>
-            <li><a href="fats/fats.html">Fats</a></li>
-            <li><a href="vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
-<!--             <li><a href="#">Example Drop Down</a> 
+            <li><a href="carbohydrates/carbohydrates.html">Carbohydrates</a>
               <ul>
-                <li><a href="#">Drop Down One</a></li>
-                <li><a href="#">Drop Down Two</a>
-                  <ul>
-                    <li><a href="#">Sub Drop Down One</a></li>
-                    <li><a href="#">Sub Drop Down Two</a></li>
-                    <li><a href="#">Sub Drop Down Three</a></li>
-                    <li><a href="#">Sub Drop Down Four</a></li>
-                    <li><a href="#">Sub Drop Down Five</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Drop Down Three</a></li>
-                <li><a href="#">Drop Down Four</a></li>
-                <li><a href="#">Drop Down Five</a></li>
+                <li><a href="carbohydrates/bananas.php">Bananas</a></li>
+                <li><a href="carbohydrates/beans.php">Beans</a></li>
+                <li><a href="carbohydrates/brown_rice.php">Brown Rice</a></li>
+                <li><a href="carbohydrates/chickpeas.php">Chickpeas</a></li>
+                <li><a href="carbohydrates/lentils.php">Lentils</a></li>
+                <li><a href="carbohydrates/parsnips.php">Parsnips</a></li>
+                <li><a href="carbohydrates/potatoes.php">Potatoes</a></li>
+                <li><a href="carbohydrates/sweetcorn.php">Sweetcorn</a></li>
               </ul>
-            </li> -->
-            <!-- <li><a href="contact.php">Contact Us</a></li> -->
-            <!-- </ul> -->
+            </li>
+            <li><a href="proteins/protein.html">Proteins</a>
+              <ul>
+                <li><a href="proteins/beef.php">Beef</a></li>
+                <li><a href="proteins/chicken.php">Chicken</a></li>
+                <li><a href="proteins/eggs.php">Eggs</a></li>
+                <li><a href="proteins/fish.php">Fish</a></li>
+              </ul>
+            </li>
+            <li><a href="fibres/fibres.html">Fibres</a>
+              <ul>
+                <li><a href="fibres/beans.php">Beans</a></li>
+                <li><a href="fibres/lentils.php">Lentils</a></li>
+                <li><a href="fibres/pulses.php">Pulses</a></li>
+              </ul>
+            </li>
+            <li><a href="fats/fats.html">Fats</a>
+              <ul>
+                <li><a href="fats/avocodo.php">Avocodo</a></li>
+                <li><a href="fats/mackerel.php">Mackerel</a></li>
+                <li><a href="fats/salmon.php">Salmon</a></li>
+                <li><a href="fats/tuna.php">Tuna</a></li>
+              </ul>
+            </li>
+            <li><a href="vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+              <ul>
+                <li><a href="vitamins and minerals/chickpeas.php">Chickpeas</a></li>
+                <li><a href="vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
+              </ul>
+            </li>
           </nav>
         </header>
         <div id="content">
           <h1>Welcome!</h1>
           <p>This website has been designed to provide a simple set of recipes. These include nutritional information and the price to make the recipes.</p>
           <p>You have the option of creating an account below, which will allow you to save recipes to your profile. You will also be able to create health and fitness goals, as well as calculate your BMI.</p>
-          </div>
-          <?php
+        </div>
+        <?php
 
-          $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
-          mysqli_set_charset($dbc, "utf8");
+        $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+        mysqli_set_charset($dbc, "utf8");
 
-          if (!empty($_SESSION['user_id'])) {
+        if (!empty($_SESSION['user_id'])) {
         // Confirm the successful log-in
-            echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
-          }
+          echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
+        }
 
   // Generate the navigation menu
-          if (isset($_SESSION['username'])) {
+        if (isset($_SESSION['username'])) {
     //echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
-            echo '<a href="user profile/viewprofile.php">View Profile</a><br />';
-            echo '<a href="registration & login/logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
-          }
-          else {
-            echo '<a href="registration & login/login.php">Log In</a><br />';
-            echo '<a href="registration & login/registration.php">Sign Up</a>';
-          }
+          echo '<a href="user profile/viewprofile.php">View Profile</a><br />';
+          echo '<a href="registration & login/logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
+        }
+        else {
+          echo '<a href="registration & login/login.php">Log In</a><br />';
+          echo '<a href="registration & login/registration.php">Sign Up</a>';
+        }
 
-          mysqli_close($dbc);
-          ?>
-        </div>
+        mysqli_close($dbc);
+        ?>
       </div>
     </div>
-    <div id="grass"></div>
-    <!-- javascript at the bottom for fast page loading -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-    <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $('ul.sf-menu').sooperfish();
-    });
-    </script>
-  </body>
-  </html>
+  </div>
+  <div id="grass"></div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('ul.sf-menu').sooperfish();
+  });
+  </script>
+</body>
+</html>
 
 

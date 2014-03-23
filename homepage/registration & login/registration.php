@@ -88,7 +88,7 @@ else {
 
 }
 else {
-  echo '<p class="error">You must enter all of the sign-up data, including the desired password twice.</p>';
+  echo '<p class="error">You must enter all the required sign-up information, including the desired password twice.</p>';
 }
 
 }
@@ -101,7 +101,7 @@ mysqli_close($dbc);
 <html>
 
 <head>
-  <title>Carbohydrates</title>
+  <title>Registration</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -117,7 +117,7 @@ mysqli_close($dbc);
       <header>
         <div id="logo">
           <div id="logo_text">
-            <h1><a href="index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+            <h1><a href="../index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
             <h2>Choose the right lifestyle</h2>
           </div>
           <div id="logo_text2">
@@ -139,25 +139,25 @@ mysqli_close($dbc);
         <div id="content">
           <h1>Information</h1>
 
-          <p>Please enter your username and desired password to sign up.</p>
+          <p>Please enter the required information (marked with an asterick) to sign up.</p>
           <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <fieldset>
               <legend>Registration Info</legend>
-              <label for="username">Username:</label>
+              <label for="username">Username*:</label>
               <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo $username; ?>" /><br />
-              <label for="first_name">First Name (Optional):</label>
+              <label for="first_name">First Name:</label>
               <input type="text" id="first_name" name="first_name" /><br />
-              <label for="last_name">Last Name (Optional):</label>
+              <label for="last_name">Last Name:</label>
               <input type="text" id="last_name" name="last_name" /><br />
               <label for="age">Age:</label>
               <input type="text" id="age" name="age" /><br />
               <label for="num_in_household">Number of People in Household:</label>
               <input type="text" id="num_in_household" name="num_in_household" /><br />
-              <label for="password1">Password:</label>
+              <label for="password1">Password*:</label>
               <input type="password" id="password1" name="password1" /><br />
-              <label for="password2">Password (retype):</label>
+              <label for="password2">Password (retype)*:</label>
               <input type="password" id="password2" name="password2" /><br />
-              <label for="email_address">Email Address:</label>
+              <label for="email_address">Email Address*:</label>
               <input type="text" id="email_address" name="email_address" /><br />
             </fieldset>
             <input type="submit" value="Sign Up" name="submit" />

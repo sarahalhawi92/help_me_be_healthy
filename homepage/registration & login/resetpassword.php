@@ -1,38 +1,86 @@
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Password Reset</title>
-  <style type = "text/css">
-  body {
-    background-color: FFFFCC;
-    margin-left: 10%;
-    margin-right: 10%;
-    border: 5px dotted green;
-    padding: 10px 10px 10px 10px;
-    font-family: sans-serif;
-  }
-  ul
-  {
-    background-color: #efe5d0;
-    list-style-type:none;
-    margin:0;
-    padding: 5px 0px 5px 0px;
-  }
-  ul li
-  {
-    display:inline;
-    padding: 5px 10px 5px 10px;
-  }
-  ul li a:link, nav ul li a:visited {
-    color: #954b4b;
-    border-bottom: none;
-    font-weight: bold;
-  }
-  ul li.selected {
-    background-color: #c8b99c;
-  }
-  </style>
-</head>
+ <!DOCTYPE HTML>
+      <html>
+
+      <head>
+        <title>Reset Password</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <!-- modernizr enables HTML5 elements and feature detects -->
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+      </head>
+
+      <body>
+        <div id="container">
+          <img src="../images/sun.png" alt="sunshine" />
+          <div id="main">
+            <header>
+              <div id="logo">
+                <div id="logo_text">
+                  <h1><a href="../index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+                  <h2>Choose the right lifestyle</h2>
+                </div>
+                <div id="logo_text2">
+                  <h3>Contact</h3>
+                  <h4>sarah.al-hawi.1@city.ac.uk</h4>
+                </div>
+              </div>
+              <div id="tfheader">
+                <form method="GET" action="searchresults.php?">
+                  <h5>Want to search for a recipe?</h5>
+                  <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
+                  <input id="submit" type="submit" value="submit">
+                </form>
+                <div class="tfclear"><br></div>
+              </div>
+              <nav>
+          <ul class="sf-menu" id="nav">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a>
+              <ul>
+                <li><a href="../carbohydrates/bananas.php">Bananas</a></li>
+                <li><a href="../carbohydrates/beans.php">Beans</a></li>
+                <li><a href="../carbohydrates/brown_rice.php">Brown Rice</a></li>
+                <li><a href="../carbohydrates/chickpeas.php">Chickpeas</a></li>
+                <li><a href="../carbohydrates/lentils.php">Lentils</a></li>
+                <li><a href="../carbohydrates/parsnips.php">Parsnips</a></li>
+                <li><a href="../carbohydrates/potatoes.php">Potatoes</a></li>
+                <li><a href="../carbohydrates/sweetcorn.php">Sweetcorn</a></li>
+              </ul>
+            </li>
+            <li><a href="../proteins/protein.html">Proteins</a>
+              <ul>
+                <li><a href="../proteins/beef.php">Beef</a></li>
+                <li><a href="../proteins/chicken.php">Chicken</a></li>
+                <li><a href="../proteins/eggs.php">Eggs</a></li>
+                <li><a href="../proteins/fish.php">Fish</a></li>
+              </ul>
+            </li>
+            <li><a href="../fibres/fibres.html">Fibres</a>
+              <ul>
+                <li><a href="../fibres/beans.php">Beans</a></li>
+                <li><a href="../fibres/lentils.php">Lentils</a></li>
+                <li><a href="../fibres/pulses.php">Pulses</a></li>
+              </ul>
+            </li>
+            <li><a href="../fats/fats.html">Fats</a>
+              <ul>
+                <li><a href="../fats/avocodo.php">Avocodo</a></li>
+                <li><a href="../fats/mackerel.php">Mackerel</a></li>
+                <li><a href="../fats/salmon.php">Salmon</a></li>
+                <li><a href="../fats/tuna.php">Tuna</a></li>
+              </ul>
+            </li>
+            <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+              <ul>
+                <li><a href="../vitamins and minerals/chickpeas.php">Chickpeas</a></li>
+                <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
+              </ul>
+            </li>
+                </nav>
+              </header>
+              <div id="content">
   <?php
 
       // Display any errors.
@@ -119,12 +167,19 @@ if (isset($_POST['submit'])) { // Handle the form.
 } 
 
 ?>
-
-
-    <html>
-    <ul>
-      <li><a href="../index.php">Back to Homepage</a></li>
-    </ul>
-    </html>
-  </body> 
-  </html>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="grass"></div>
+          <!-- javascript at the bottom for fast page loading -->
+          <script type="text/javascript" src="js/jquery.js"></script>
+          <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+          <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+          <script type="text/javascript">
+          $(document).ready(function() {
+            $('ul.sf-menu').sooperfish();
+          });
+          </script>
+        </body>
+        </html>

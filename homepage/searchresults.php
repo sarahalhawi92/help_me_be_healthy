@@ -1,81 +1,164 @@
+<?php
+session_start();
+
+  // If the session vars aren't set, try to set them with a cookie
+if (!isset($_SESSION['user_id'])) {
+  if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+    $_SESSION['user_id'] = $_COOKIE['user_id'];
+    $_SESSION['username'] = $_COOKIE['username'];
+  }
+}
+?>
+
+<!DOCTYPE HTML>
 <html>
-<style type="text/css">
-
-body {
-	background-color: FFFFCC;
-	margin-left: 10%;
-	margin-right: 10%;
-	border: 5px dotted green;
-	padding: 10px 10px 10px 10px;
-	font-family: sans-serif;
-}
-
-table{
-	margin: 10px 0;
-}
-
-</style>
 
 <head>
-	<title>Search Results</title>
+  <title>Search Results</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
 </head>
 
+
 <body>
-	<ul>
-		<li><a href="index.php">Back to Homepage</a></li>
-	</ul>
+  <div id="container">
+    <img src="images/sun.png" alt="sunshine" />
+    <div id="main">
+      <header>
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+            <h2>Choose the right lifestyle</h2>
+          </div>
+          <div id="logo_text2">
+            <h3>Contact</h3>
+            <h4>sarah.al-hawi.1@city.ac.uk</h4>
+          </div>
+        </div>
+        <div id="tfheader">
+          <form method="GET" action="searchresults.php?">
+            <h5>Want to search for a recipe?</h5>
+            <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
+            <input id="submit" type="submit" value="submit">
+          </form>
+          <div class="tfclear"><br></div>
+        </div>
+        <nav>
+          <ul class="sf-menu" id="nav">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="carbohydrates/carbohydrates.html">Carbohydrates</a>
+              <ul>
+                <li><a href="carbohydrates/bananas.php">Bananas</a></li>
+                <li><a href="carbohydrates/beans.php">Beans</a></li>
+                <li><a href="carbohydrates/brown_rice.php">Brown Rice</a></li>
+                <li><a href="carbohydrates/chickpeas.php">Chickpeas</a></li>
+                <li><a href="carbohydrates/lentils.php">Lentils</a></li>
+                <li><a href="carbohydrates/parsnips.php">Parsnips</a></li>
+                <li><a href="carbohydrates/potatoes.php">Potatoes</a></li>
+                <li><a href="carbohydrates/sweetcorn.php">Sweetcorn</a></li>
+              </ul>
+            </li>
+            <li><a href="proteins/protein.html">Proteins</a>
+              <ul>
+                <li><a href="proteins/beef.php">Beef</a></li>
+                <li><a href="proteins/chicken.php">Chicken</a></li>
+                <li><a href="proteins/eggs.php">Eggs</a></li>
+                <li><a href="proteins/fish.php">Fish</a></li>
+              </ul>
+            </li>
+            <li><a href="fibres/fibres.html">Fibres</a>
+              <ul>
+                <li><a href="fibres/beans.php">Beans</a></li>
+                <li><a href="fibres/lentils.php">Lentils</a></li>
+                <li><a href="fibres/pulses.php">Pulses</a></li>
+              </ul>
+            </li>
+            <li><a href="fats/fats.html">Fats</a>
+              <ul>
+                <li><a href="fats/avocodo.php">Avocodo</a></li>
+                <li><a href="fats/mackerel.php">Mackerel</a></li>
+                <li><a href="fats/salmon.php">Salmon</a></li>
+                <li><a href="fats/tuna.php">Tuna</a></li>
+              </ul>
+            </li>
+            <li><a href="vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+              <ul>
+                <li><a href="vitamins and minerals/chickpeas.php">Chickpeas</a></li>
+                <li><a href="vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
+              </ul>
+            </li>
+          </nav>
+        </header>
+        <div id="content">
+          <h1>Search Results</h1>
+          <p>Below are the results based on what you have searched. If you haven't found what you need, please refine your search.</p>
+        </div>
+        <?php
+        $key = $_GET['search']; 
 
+        $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+        mysqli_set_charset($dbc, "utf8");
 
-</body>
+        if (mysqli_connect_errno())
+        {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
 
+        $query = "SELECT `recipe_name`, `ingredient_name`, `category_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
+        $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
-<?php
-$key = $_GET['search']; 
+        ?>
+        <body>
 
-$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
-mysqli_set_charset($dbc, "utf8");
+          <table width="20%" border="1" cellspacing="1" cellpadding="1">
+            <tr>
 
-if (mysqli_connect_errno())
-{
-	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
+              <tr>
+                <td align="center"><strong>Recipe Name</strong></td>
+              </tr>
 
-$query = "SELECT `recipe_name`, `ingredient_name`, `category_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
-$data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
+              <?php
+              while($row = mysqli_fetch_array($data)){
+                ?>
+                <tr>
+                  <td>
+                    <?php 
+                    echo $row['recipe_name'];
+                    $firstStr = $row['category_name'] ;
+                    $secondStr = $row['ingredient_name'];
+                    $fullStr = $firstStr."/".$secondStr.".php";
+                    ?> 
+                  </td>
+                  <td align="center"><a href="../homepage/<?php echo $fullStr; ?>">go to recipe</a></td>
+                </tr>
 
-?>
-<body>
+                <?php
+              }
 
-	<table width="20%" border="1" cellspacing="1" cellpadding="0">
-		<tr>
+              ?>
 
-			<tr>
-				<td align="center"><strong>Recipe Name</strong></td>
-			</tr>
-
-			<?php
-			while($row = mysqli_fetch_array($data)){
-				?>
-				<tr>
-					<td>
-						<?php 
-						echo $row['recipe_name'];
-						$firstStr = $row['category_name'] ;
-						$secondStr = $row['ingredient_name'];
-						$fullStr = $firstStr."/".$secondStr.".php";
-						?> 
-					</td>
-					<td align="center"><a href="../homepage/<?php echo $fullStr; ?>">go to recipe</a></td>
-				</tr>
-
-				<?php
-			}
-
-			?>
-
-		</table>
-	</td>
-</tr>
-</table>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="grass"></div>
+<!-- javascript at the bottom for fast page loading -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+<script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('ul.sf-menu').sooperfish();
+});
+</script>
 </body>
 </html>
+
+
