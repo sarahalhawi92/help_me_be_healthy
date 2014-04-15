@@ -37,11 +37,17 @@
 
           if($query){
 
+            
+
             // send e-mail to ...
             $to=$email_address;
 
+            echo $email_address;
+
             // Your subject
             $subject="Your confirmation link here";
+
+            echo $subject;
 
 
              // Your message
@@ -49,7 +55,11 @@
             $message.="Click on this link to activate your account \r\n";
             $message.="http://localhost:8888/homepage/registration%20&%20login/activation.php?passkey=$email_code";
 
+            echo $message;
+
             $sentmail = mail('$to', '$subject', '$message', 'From: helpmebehealthy.com');
+
+            echo $sentmail;
 
           }
 

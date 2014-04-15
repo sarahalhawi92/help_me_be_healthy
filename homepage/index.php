@@ -10,20 +10,44 @@ if (!isset($_SESSION['user_id'])) {
 }
 ?>
 
-<!DOCTYPE HTML>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
   <title>Helpmebehealthy</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8">
+  <title>jQuery UI Autocomplete - Default functionality</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <!-- modernizr enables HTML5 elements and feature detects -->
-  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+  
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('ul.sf-menu').sooperfish();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#recipe').keyup(function(){
+      var x = "suggest_search.php?keyword=" + $('#recipe').val();
+      $('#recipe').autocomplete({
+        source: x,
+        minLenght:2,
+      });
+    });
+  });
+  </script>
+
+  <style type="text/css"><!--
+  
+  /* style the auto-complete response */
+  li.ui-menu-item { font-size:12px !important; color: #000000;}
+  --></style> 
 </head>
-
-
 <body>
   <div id="container">
     <img src="images/sun.png" alt="sunshine" />
@@ -40,13 +64,13 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div id="tfheader">
-          <form method="GET" action="searchresults.php?">
-            <h5>Want to search for a recipe?</h5>
-            <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
-            <input id="submit" type="submit" value="submit">
-          </form>
-          <div class="tfclear"><br></div>
+          <form action="searchresults.php?">
+          <h5>Want to search for a recipe?</h5>
+          <input class="searchInput" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+          <input id="submit" type="submit" value="submit">
+          <div class="tfclear"></div>
         </div>
+        <div class="tfclear"><br></div>
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="index.php">Home</a></li>
@@ -98,6 +122,7 @@ if (!isset($_SESSION['user_id'])) {
           <p>This website has been designed to provide a simple set of recipes. These include nutritional information and the price to make the recipes.</p>
           <p>You have the option of creating an account below, which will allow you to save recipes to your profile. You will also be able to create health and fitness goals, as well as calculate your BMI.</p>
         </div>
+
         <?php
 
         $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
@@ -124,16 +149,7 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </div>
   </div>
-  <div id="grass"></div>
-  <!-- javascript at the bottom for fast page loading -->
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('ul.sf-menu').sooperfish();
-  });
-  </script>
+    <div id="grass"></div>
 </body>
 </html>
 

@@ -397,6 +397,11 @@ html body ul.sf-menu ul ul {
   margin: 0 0 0 200px;
 }
 
+li.ui-menu-item { 
+  font-size:12px !important; 
+  color: #47433F;
+}
+
 /* Framework for proper showing/hiding/positioning */
 ul.sf-menu,ul.sf-menu * { 
   margin: 0;

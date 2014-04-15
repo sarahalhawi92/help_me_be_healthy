@@ -1,65 +1,9 @@
-<?php
-      // Display any errors.
-error_reporting(E_ALL &~ E_NOTICE);
 
-    // Start the session
-session_start();
-
-    // Make sure the browser is transmitting in UTF-8
-header('Content-type: text/html; charset=utf-8');
-
-    // Clear the error message
-$error_msg = "";
-
-$dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
-mysqli_set_charset($dbc, "utf8");
-
-if (mysqli_connect_errno())
-{
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-$passkey = $_GET['passkey'];
-
-echo $passkey;
-
-$query = "SELECT * FROM users WHERE email_code ='$passkey'";
-$data = mysqli_query($dbc, $query); 
-
-//breaking here
-
-if(mysqli_num_rows($data) == 1){
-
-// Count how many rows the passkey has 
-
-  $count=mysqli_num_rows($data);
-
-  echo $count;
-
-  if($count == 1){
-
-    echo fgdsfdf;
-
-    $query = "UPDATE `users` SET `active` = 1 WHERE `email_code` = '$passkey'";
-
-    $data = mysqli_query($dbc, $query) or die('Query failed: ' . mysql_error());
-
-    echo '<p>Your account has been activated. You\'re now ready to <a href="login.php">log in</a>.</p>';
-
-    // if not found passkey, display message "Wrong Confirmation code" 
-    else {
-      echo "Wrong Confirmation code";
-    }
-  }
-
-}
-
-?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
-  <title>Forgot Password</title>
+  <title>Activate Account</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -68,14 +12,14 @@ if(mysqli_num_rows($data) == 1){
   <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-48661412-1', 'helpmebehealthy.info');
   ga('send', 'pageview');
 
-</script>
+  </script>
 </head>
 
 <body>
@@ -150,19 +94,68 @@ if(mysqli_num_rows($data) == 1){
         <div id="content">
           <h1>Activate your account</h1>
 
+          <?php
+
+          error_reporting(E_ALL &~ E_NOTICE);
+
+          session_start();
+
+          header('Content-type: text/html; charset=utf-8');
+
+          $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+          mysqli_set_charset($dbc, "utf8");
+
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+
+          $passkey = $_GET['passkey'];
+
+          $query = "SELECT * FROM users WHERE email_code ='$passkey'";
+          $data = mysqli_query($dbc, $query);
+
+//breaking here
+
+          if(mysqli_num_rows($data) == 1){
+
+// Count how many rows the passkey has 
+
+            $count=mysqli_num_rows($data);
+
+            if($count = 1){
+
+              $query = "UPDATE `users` SET `active` = 1 WHERE `email_code` = '$passkey'";
+
+              $data = mysqli_query($dbc, $query) or die('Query failed: ' . mysql_error());
+
+            }
+
+            if ($data)
+            {
+              echo "Your account has been activated";
+              echo "<BR>";
+              echo "<a href='login.php'>Go to Login</a>";
+            }
+            else {
+              echo "Wrong Confirmation code";
+            }
+
+          }
+
+          ?>
         </div>
-      </div>
-    </div>
-  </div>
-  <div id="grass"></div>
-  <!-- javascript at the bottom for fast page loading -->
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('ul.sf-menu').sooperfish();
-  });
-  </script>
-</body>
-</html>
+        <div id="grass"></div>
+        <!-- javascript at the bottom for fast page loading -->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+        <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+          $('ul.sf-menu').sooperfish();
+        });
+        </script>
+      </body>
+      </html>
+
+

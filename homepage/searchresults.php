@@ -98,6 +98,7 @@ if (!isset($_SESSION['user_id'])) {
           <p>Below are the results based on what you have searched. If you haven't found what you need, please refine your search.</p>
         </div>
         <?php
+
         $key = $_GET['search']; 
 
         $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
@@ -110,8 +111,9 @@ if (!isset($_SESSION['user_id'])) {
 
         $query = "SELECT `recipe_name`, `ingredient_name`, `category_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
         $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
-
         ?>
+
+
         <body>
 
           <table width="20%" border="1" cellspacing="1" cellpadding="1">
