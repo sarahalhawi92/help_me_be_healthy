@@ -17,10 +17,12 @@ if (!isset($_SESSION['user_id'])) {
   <meta charset="utf-8">
   <title>jQuery UI Autocomplete - Default functionality</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript" src="jquery-ui-1.10.4/development-bundle/ui/jquery.ui.position.js"></script>
 
-  
   <!-- javascript at the bottom for fast page loading -->
   <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
   <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
@@ -36,17 +38,12 @@ if (!isset($_SESSION['user_id'])) {
       var x = "suggest_search.php?keyword=" + $('#recipe').val();
       $('#recipe').autocomplete({
         source: x,
-        minLenght:2,
+        //appendTo: "#results",
+        minLength:2,
       });
     });
   });
   </script>
-
-  <style type="text/css"><!--
-  
-  /* style the auto-complete response */
-  li.ui-menu-item { font-size:12px !important; color: #000000;}
-  --></style> 
 </head>
 <body>
   <div id="container">
@@ -66,11 +63,14 @@ if (!isset($_SESSION['user_id'])) {
         <div id="tfheader">
           <form action="searchresults.php?">
           <h5>Want to search for a recipe?</h5>
-          <input class="searchInput" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+          <div class="ui-widget">
+          <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+          </div>
           <input id="submit" type="submit" value="submit">
           <div class="tfclear"></div>
         </div>
         <div class="tfclear"><br></div>
+
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="index.php">Home</a></li>

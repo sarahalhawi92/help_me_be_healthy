@@ -1,3 +1,4 @@
+
 <?php
 
 $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));

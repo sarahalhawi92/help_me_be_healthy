@@ -451,6 +451,11 @@ ul.sf-menu ul ul {
   margin: 0 0 0 150px;
 }
 
+
+
+.ui-helper-hidden-accessible { display:none; }
+
+
 ul.sf-menu li:hover ul,ul.sf-menu li:focus ul,ul.sf-menu li.sf-hover ul, 
 ul.sf-menu ul li:hover ul,ul.sf-menu ul li:focus ul,ul.sf-menu ul li.sf-hover ul,
 ul.sf-menu ul ul li:hover ul,ul.sf-menu ul ul li:focus ul,ul.sf-menu ul ul li.sf-hover ul,
