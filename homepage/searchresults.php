@@ -21,6 +21,32 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <!-- modernizr enables HTML5 elements and feature detects -->
   <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript" src="jquery-ui-1.10.4/development-bundle/ui/jquery.ui.position.js"></script>
+
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('ul.sf-menu').sooperfish();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#recipe').keyup(function(){
+      var x = "suggest_search.php?keyword=" + $('#recipe').val();
+      $('#recipe').autocomplete({
+        source: x,
+        minLength:2,
+      });
+    });
+  });
+  </script>
 </head>
 
 
@@ -40,13 +66,16 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div id="tfheader">
-          <form method="GET" action="searchresults.php?">
-            <h5>Want to search for a recipe?</h5>
-            <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
-            <input id="submit" type="submit" value="submit">
+          <form method = "GET" action="searchresults.php?">
+          <h5>Want to search for a recipe?</h5>
+          <div class="ui-widget">
+          <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+          <input id="submit" type="submit" value="submit">
           </form>
-          <div class="tfclear"><br></div>
+          </div>
+          <div class="tfclear"></div>
         </div>
+        <div class="tfclear"><br></div>
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="index.php">Home</a></li>
@@ -99,7 +128,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         <?php
 
-        $key = $_GET['search']; 
+        $key = $_GET['recipe']; 
 
         $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
         mysqli_set_charset($dbc, "utf8");
@@ -109,7 +138,7 @@ if (!isset($_SESSION['user_id'])) {
           echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 
-        $query = "SELECT `recipe_name`, `ingredient_name`, `category_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
+        $query = "SELECT `recipe_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
         $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
         ?>
 

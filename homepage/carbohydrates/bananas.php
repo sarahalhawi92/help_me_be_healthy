@@ -3,12 +3,33 @@
 
 <head>
 	<title>Bananas</title>
-	<meta name="description" content="website description" />
-	<meta name="keywords" content="website keywords, website keywords" />
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
-	<!-- modernizr enables HTML5 elements and feature detects -->
-	<script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+	<link rel="stylesheet" href="../jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+	
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+	<!-- javascript at the bottom for fast page loading -->
+	<script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+	<script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('ul.sf-menu').sooperfish();
+	});
+	</script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#recipe').keyup(function(){
+			var x = "../suggest_search.php?keyword=" + $('#recipe').val();
+			$('#recipe').autocomplete({
+				source: x,
+				minLength:2,
+			});
+		});
+	});
+	</script>
 </head>
 
 <body>
@@ -27,13 +48,16 @@
 					</div>
 				</div>
 				<div id="tfheader">
-					<form method="GET" action="searchresults.php?">
+					<form method = "GET" action="searchresults.php?">
 						<h5>Want to search for a recipe?</h5>
-						<input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
-						<input id="submit" type="submit" value="submit">
-					</form>
-					<div class="tfclear"><br></div>
+						<div class="ui-widget">
+							<input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+							<input id="submit" type="submit" value="submit">
+						</form>
+					</div>
+					<div class="tfclear"></div>
 				</div>
+				<div class="tfclear"><br></div>
 				<nav>
 					<ul class="sf-menu" id="nav">
 						<li><a href="../index.php">Home</a></li>
@@ -161,14 +185,5 @@
 </div>
 
 <div id="grass"></div>
-<!-- javascript at the bottom for fast page loading -->
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-<script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$('ul.sf-menu').sooperfish();
-});
-</script>
 </body>
 </html>

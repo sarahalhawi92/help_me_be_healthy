@@ -9,19 +9,16 @@ if (!isset($_SESSION['user_id'])) {
   }
 }
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
   <title>Helpmebehealthy</title>
   <meta charset="utf-8">
-  <title>jQuery UI Autocomplete - Default functionality</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
   
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <script type="text/javascript" src="jquery-ui-1.10.4/development-bundle/ui/jquery.ui.position.js"></script>
 
   <!-- javascript at the bottom for fast page loading -->
   <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
@@ -38,13 +35,13 @@ if (!isset($_SESSION['user_id'])) {
       var x = "suggest_search.php?keyword=" + $('#recipe').val();
       $('#recipe').autocomplete({
         source: x,
-        //appendTo: "#results",
         minLength:2,
       });
     });
   });
   </script>
 </head>
+
 <body>
   <div id="container">
     <img src="images/sun.png" alt="sunshine" />
@@ -61,16 +58,16 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div id="tfheader">
-          <form action="searchresults.php?">
-          <h5>Want to search for a recipe?</h5>
-          <div class="ui-widget">
-          <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+          <form method = "GET" action="searchresults.php?">
+            <h5>Want to search for a recipe?</h5>
+            <div class="ui-widget">
+              <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+              <input id="submit" type="submit" value="submit">
+            </form>
           </div>
-          <input id="submit" type="submit" value="submit">
           <div class="tfclear"></div>
         </div>
         <div class="tfclear"><br></div>
-
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="index.php">Home</a></li>
@@ -115,6 +112,15 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
               </ul>
             </li>
+            <?php if (!empty($_SESSION['user_id'])) ?>
+            <li><a href="viewprofile.php">Your Profile</a>
+              <ul>
+                <li><a href="../homepage/user profile/calculatebmi.php">Calculate BMI</a></li>
+                <li><a href="../homepage/user profile/creategoal.php">Create Goal</a></li>
+                <li><a href="../homepage/user profile/trackgoal.php">Track Goal</a></li>
+                <li><a href="../homepage/registration & login/change_password.php">Settings</a></li>
+              </ul>
+            </li>
           </nav>
         </header>
         <div id="content">
@@ -124,8 +130,8 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
         <?php
-
         $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
+  //$dbc = mysqli_connect('mysql8.000webhost.com', 'a2976397_healthy', 'masabi2014', 'a2976397_healthy') or die("Error " . mysqli_error($dbc));
         mysqli_set_charset($dbc, "utf8");
 
         if (!empty($_SESSION['user_id'])) {
@@ -146,10 +152,12 @@ if (!isset($_SESSION['user_id'])) {
 
         mysqli_close($dbc);
         ?>
+
+
       </div>
     </div>
   </div>
-    <div id="grass"></div>
+  <div id="grass"></div>
 </body>
 </html>
 
