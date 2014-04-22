@@ -3,12 +3,33 @@
 
     <head>
       <title>View Profile</title>
-      <meta name="description" content="website description" />
-      <meta name="keywords" content="website keywords, website keywords" />
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+      <meta charset="utf-8">
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
-      <!-- modernizr enables HTML5 elements and feature detects -->
-      <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+      <link rel="stylesheet" href="../jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+      
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+      <!-- javascript at the bottom for fast page loading -->
+      <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+      <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+      <script type="text/javascript">
+      $(document).ready(function() {
+        $('ul.sf-menu').sooperfish();
+      });
+      </script>
+
+      <script type="text/javascript">
+      $(document).ready(function(){
+        $('#recipe').keyup(function(){
+          var x = "../suggest_search.php?keyword=" + $('#recipe').val();
+          $('#recipe').autocomplete({
+            source: x,
+            minLength:2,
+          });
+        });
+      });
+      </script>
     </head>
 
     <?php
@@ -21,6 +42,8 @@
         $_SESSION['username'] = $_COOKIE['username'];
       }
     }
+
+
     ?>
 
     <body>
@@ -39,13 +62,16 @@
               </div>
             </div>
             <div id="tfheader">
-              <form method="GET" action="searchresults.php?">
+              <form method = "GET" action="searchresults.php?">
                 <h5>Want to search for a recipe?</h5>
-                <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
-                <input id="submit" type="submit" value="submit">
-              </form>
-              <div class="tfclear"><br></div>
+                <div class="ui-widget">
+                  <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+                  <input id="submit" type="submit" value="submit">
+                </form>
+              </div>
+              <div class="tfclear"></div>
             </div>
+            <div class="tfclear"><br></div>
             <nav>
               <ul class="sf-menu" id="nav">
                 <li><a href="../index.php">Home</a></li>
@@ -108,6 +134,10 @@
 
             <?php
 
+            $user_id = $_SESSION['user_id'];
+
+            echo $user_id;
+
     // Make sure the user is logged in before going any further.
             if (!isset($_SESSION['user_id'])) {
               echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
@@ -169,18 +199,43 @@
       </tr>";
       echo "<br>";
       echo "<br>";
+      $maxPrice = 0;
+      $counter = 0;
+      $resultSet = array();
+    }
+
       while($row = mysqli_fetch_array($recipeData))
       {
+        $maxPrice = $maxPrice + $row['recipe_price'];
         echo "<tr>";
         echo "<td>" . $row['recipe_name'] . "</td>";
         echo "<td>" . $row['recipe_calories'] . "</td>";
         echo "<td>" . $row['recipe_price'] . "</td>";
         echo "</tr>";
+        $counter++;
       }
       echo "</table>";
-    }
+      $average = $maxPrice/$counter; 
+
+    //select recipe from database with price range of average
+
+      $query = "SELECT  `recipe_name` FROM  `recipes` WHERE  `recipe_price` <= (SELECT AVG (`recipe_price`) FROM  `recipes` 
+        WHERE  `user_ids` LIKE  '%$user_id%') ORDER BY RAND() LIMIT 1";
+
+    $suggestData = mysqli_query($dbc, $query);
+
+    //if (mysqli_num_rows($suggestData) > 0) 
+    //{
+    //  echo('Based on what you have searched, why not try ' . $row['recipe_name'] . '.');
+   // }
+
+    while($row = mysqli_fetch_array($suggestData)) {
+  echo ('Based on what you have searched, why not try ' . $row['recipe_name'] . '.');
+  echo "<br>";
+}
+
     echo "<br>";
-    
+
     if (mysqli_num_rows($goalsData) > 0) {
       echo "<h>Your Goals:</h>";
       echo "<table border='1' width='50%'>
@@ -214,14 +269,5 @@
     ?>
 
     <div id="grass"></div>
-    <!-- javascript at the bottom for fast page loading -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-    <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $('ul.sf-menu').sooperfish();
-    });
-    </script>
   </body>
   </html>

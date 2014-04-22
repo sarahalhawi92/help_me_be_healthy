@@ -89,6 +89,15 @@
                 <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
               </ul>
             </li>
+            <?php if (!empty($_SESSION['user_id'])) ?>
+            <li><a href="../user profile/viewprofile.php">Your Profile</a>
+              <ul>
+                <li><a href="../user profile/calculatebmi.php">Calculate BMI</a></li>
+                <li><a href="../user profile/creategoal.php">Create Goal</a></li>
+                <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
+                <li><a href="../registration & login/change_password.php">Settings</a></li>
+              </ul>
+            </li>
           </nav>
         </header>
         <div id="content">

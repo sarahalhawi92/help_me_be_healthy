@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
   <link rel="stylesheet" href="../jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
-  
+
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
@@ -100,6 +100,15 @@
               <ul>
                 <li><a href="../vitamins and minerals/chickpeas.php">Chickpeas</a></li>
                 <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
+              </ul>
+            </li>
+            <?php if (!empty($_SESSION['user_id'])) ?>
+            <li><a href="../user profile/viewprofile.php">Your Profile</a>
+              <ul>
+                <li><a href="../user profile/calculatebmi.php">Calculate BMI</a></li>
+                <li><a href="../user profile/creategoal.php">Create Goal</a></li>
+                <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
+                <li><a href="../registration & login/change_password.php">Settings</a></li>
               </ul>
             </li>
           </nav>

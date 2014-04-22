@@ -113,7 +113,7 @@ if (!isset($_SESSION['user_id'])) {
               </ul>
             </li>
             <?php if (!empty($_SESSION['user_id'])) ?>
-            <li><a href="viewprofile.php">Your Profile</a>
+            <li><a href="../homepage/user profile/viewprofile.php">Your Profile</a>
               <ul>
                 <li><a href="../homepage/user profile/calculatebmi.php">Calculate BMI</a></li>
                 <li><a href="../homepage/user profile/creategoal.php">Create Goal</a></li>

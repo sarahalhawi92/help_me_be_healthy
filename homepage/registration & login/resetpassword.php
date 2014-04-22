@@ -1,40 +1,40 @@
  <!DOCTYPE HTML>
-      <html>
+ <html>
 
-      <head>
-        <title>Reset Password</title>
-        <meta name="description" content="website description" />
-        <meta name="keywords" content="website keywords, website keywords" />
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="../css/style.css" />
-        <!-- modernizr enables HTML5 elements and feature detects -->
-        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-      </head>
+ <head>
+  <title>Reset Password</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+</head>
 
-      <body>
-        <div id="container">
-          <img src="../images/sun.png" alt="sunshine" />
-          <div id="main">
-            <header>
-              <div id="logo">
-                <div id="logo_text">
-                  <h1><a href="../index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
-                  <h2>Choose the right lifestyle</h2>
-                </div>
-                <div id="logo_text2">
-                  <h3>Contact</h3>
-                  <h4>sarah.al-hawi.1@city.ac.uk</h4>
-                </div>
-              </div>
-              <div id="tfheader">
-                <form method="GET" action="searchresults.php?">
-                  <h5>Want to search for a recipe?</h5>
-                  <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
-                  <input id="submit" type="submit" value="submit">
-                </form>
-                <div class="tfclear"><br></div>
-              </div>
-              <nav>
+<body>
+  <div id="container">
+    <img src="../images/sun.png" alt="sunshine" />
+    <div id="main">
+      <header>
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="../index.php">Helpmebe<span class="logo_colour">healthy</span></a></h1>
+            <h2>Choose the right lifestyle</h2>
+          </div>
+          <div id="logo_text2">
+            <h3>Contact</h3>
+            <h4>sarah.al-hawi.1@city.ac.uk</h4>
+          </div>
+        </div>
+        <div id="tfheader">
+          <form method="GET" action="searchresults.php?">
+            <h5>Want to search for a recipe?</h5>
+            <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
+            <input id="submit" type="submit" value="submit">
+          </form>
+          <div class="tfclear"><br></div>
+        </div>
+        <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="../index.php">Home</a></li>
             <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a>
@@ -78,20 +78,29 @@
                 <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
               </ul>
             </li>
-                </nav>
-              </header>
-              <div id="content">
-  <?php
+            <?php if (!empty($_SESSION['user_id'])) ?>
+            <li><a href="../user profile/viewprofile.php">Your Profile</a>
+              <ul>
+                <li><a href="../user profile/calculatebmi.php">Calculate BMI</a></li>
+                <li><a href="../user profile/creategoal.php">Create Goal</a></li>
+                <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
+                <li><a href="change_password.php">Settings</a></li>
+              </ul>
+            </li>
+          </nav>
+        </header>
+        <div id="content">
+          <?php
 
       // Display any errors.
-error_reporting(E_ALL &~ E_NOTICE);
+          error_reporting(E_ALL &~ E_NOTICE);
 
 
       // Make sure the browser is transmitting in UTF-8
-header('Content-type: text/html; charset=utf-8');
+          header('Content-type: text/html; charset=utf-8');
 
       // Clear the error message
-$error_msg = "";
+          $error_msg = "";
 
 
 if (isset($_POST['submit'])) { // Handle the form.
@@ -167,19 +176,19 @@ if (isset($_POST['submit'])) { // Handle the form.
 } 
 
 ?>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="grass"></div>
-          <!-- javascript at the bottom for fast page loading -->
-          <script type="text/javascript" src="js/jquery.js"></script>
-          <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-          <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-          <script type="text/javascript">
-          $(document).ready(function() {
-            $('ul.sf-menu').sooperfish();
-          });
-          </script>
-        </body>
-        </html>
+</div>
+</div>
+</div>
+</div>
+<div id="grass"></div>
+<!-- javascript at the bottom for fast page loading -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+<script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('ul.sf-menu').sooperfish();
+});
+</script>
+</body>
+</html>
