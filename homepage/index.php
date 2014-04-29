@@ -131,7 +131,6 @@ if (!isset($_SESSION['user_id'])) {
 
         <?php
         $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
-  //$dbc = mysqli_connect('mysql8.000webhost.com', 'a2976397_healthy', 'masabi2014', 'a2976397_healthy') or die("Error " . mysqli_error($dbc));
         mysqli_set_charset($dbc, "utf8");
 
         if (!empty($_SESSION['user_id'])) {
