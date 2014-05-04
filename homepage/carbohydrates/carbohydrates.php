@@ -1,14 +1,46 @@
+<?php
+session_start();
+
+  // If the session vars aren't set, try to set them with a cookie
+if (!isset($_SESSION['user_id'])) {
+  if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+    $_SESSION['user_id'] = $_COOKIE['user_id'];
+    $_SESSION['username'] = $_COOKIE['username'];
+  }
+}
+?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
   <title>Carbohydrates</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="../css/style.css" />
-  <!-- modernizr enables HTML5 elements and feature detects -->
-  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="../css/style.css" />
+      <link rel="stylesheet" href="../jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+      
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+      <!-- javascript at the bottom for fast page loading -->
+      <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+      <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+      <script type="text/javascript">
+      $(document).ready(function() {
+        $('ul.sf-menu').sooperfish();
+      });
+      </script>
+
+      <script type="text/javascript">
+      $(document).ready(function(){
+        $('#recipe').keyup(function(){
+          var x = "../suggest_search.php?keyword=" + $('#recipe').val();
+          $('#recipe').autocomplete({
+            source: x,
+            minLength:2,
+          });
+        });
+      });
+      </script>
 </head>
 
 <body>
@@ -40,7 +72,7 @@
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="../index.php">Home</a></li>
-            <li><a href="carbohydrates.html">Carbohydrates</a>
+            <li><a href="carbohydrates.php">Carbohydrates</a>
               <ul>
                 <li><a href="bananas.php">Bananas</a></li>
                 <li><a href="beans.php">Beans</a></li>
@@ -52,7 +84,7 @@
                 <li><a href="sweetcorn.php">Sweetcorn</a></li>
               </ul>
             </li>
-            <li><a href="../proteins/protein.html">Proteins</a>
+            <li><a href="../proteins/protein.php">Proteins</a>
               <ul>
                 <li><a href="../proteins/beef.php">Beef</a></li>
                 <li><a href="../proteins/chicken.php">Chicken</a></li>
@@ -60,25 +92,35 @@
                 <li><a href="../proteins/fish.php">Fish</a></li>
               </ul>
             </li>
-            <li><a href="../fibres/fibres.html">Fibres</a>
+            <li><a href="../fibres/fibres.php">Fibres</a>
               <ul>
                 <li><a href="../fibres/beans.php">Beans</a></li>
                 <li><a href="../fibres/lentils.php">Lentils</a></li>
                 <li><a href="../fibres/pulses.php">Pulses</a></li>
               </ul>
             </li>
-            <li><a href="../fats/fats.html">Fats</a>
+            <li><a href="../fats/fats.php">Fats</a>
               <ul>
-                <li><a href="../fats/avocodo.php">Avocodo</a></li>
+                <li><a href="../fats/avocado.php">Avocado</a></li>
                 <li><a href="../fats/mackerel.php">Mackerel</a></li>
                 <li><a href="../fats/salmon.php">Salmon</a></li>
                 <li><a href="../fats/tuna.php">Tuna</a></li>
               </ul>
             </li>
-            <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+            <li><a href="../vitamins and minerals/vitamins and minerals.php">Vitamins & Minerals</a>
               <ul>
                 <li><a href="../vitamins and minerals/chickpeas.php">Chickpeas</a></li>
                 <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
+              </ul>
+            </li>
+            <?php if (isset($_SESSION['user_id'])) {?>
+            <li><a href="../user profile/viewprofile.php">Your Profile</a>
+              <ul>
+                <li><a href="../user profile/calculatebmi.php">Calculate BMI</a></li>
+                <li><a href="../user profile/creategoal.php">Create Goal</a></li>
+                <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
+                <li><a href="../registration & login/change_password.php">Settings</a></li>
+                <?php }?>
               </ul>
             </li>
           </nav>
@@ -91,14 +133,5 @@
     </div>
   </div>
   <div id="grass"></div>
-  <!-- javascript at the bottom for fast page loading -->
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('ul.sf-menu').sooperfish();
-  });
-  </script>
 </body>
 </html>

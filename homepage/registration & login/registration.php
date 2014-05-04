@@ -4,7 +4,6 @@
 
     // Make sure the browser is transmitting in UTF-8
      header('Content-type: text/html; charset=utf-8');
-
      $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
      mysqli_set_charset($dbc, "utf8");
 
@@ -37,47 +36,49 @@
 
           if($query){
 
+            echo '<p class="login">You are now ready to <a href="login.php">log in.</a></p>';
+
 
 
             // send e-mail to ...
-            $to=$email_address;
+            //$to=$email_address;
 
-            echo $email_address;
+            //echo $email_address;
 
             // Your subject
-            $subject="Your confirmation link here";
+            //$subject="Your confirmation link here";
 
-            echo $subject;
+            //echo $subject;
 
 
              // Your message
-            $message="Your Comfirmation link \r\n";
-            $message.="Click on this link to activate your account \r\n";
-            $message.="http://localhost:8888/homepage/registration%20&%20login/activation.php?passkey=$email_code";
+            //$message="Your Comfirmation link \r\n";
+            //$message.="Click on this link to activate your account \r\n";
+            //$message.="http://localhost:8888/homepage/registration%20&%20login/activation.php?passkey=$email_code";
 
-            echo $message;
+            //echo $message;
 
-            $sentmail = mail('$to', '$subject', '$message', 'From: helpmebehealthy.com');
+            //$sentmail = mail('$to', '$subject', '$message', 'From: helpmebehealthy.com');
 
-            echo $sentmail;
+            //echo $sentmail;
 
           }
 
            // if not found 
-          else {
-            echo "Email not found in database";
-          }
+          //else {
+         //   echo "Email not found in database";
+         // }
 
            // if your email succesfully sent
-          if($sentmail){
+          //if($sentmail){
 
-            echo "Your Confirmation link Has Been Sent To Your Email Address.";
+          //   echo '<p class="login">You are now ready to <a href="login.php">log in.</a></p>';
 
-          }
+         // }
 
           else {
 
-            echo "Cannot send Confirmation link to your e-mail address";
+            echo "There is a problem. Please try again later.";
 
 } // Confirm success with the user
 echo '<p>Your new account has been successfully created.</p>';
@@ -167,24 +168,61 @@ mysqli_close($dbc);
           <div class="tfclear"></div>
         </div>
         <div class="tfclear"><br></div>
+        <div class="tfclear"><br></div>
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="../index.php">Home</a></li>
-            <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a></li>
-            <li><a href="../proteins/protein.html">Proteins</a></li>
-            <li><a href="../fibres/fibres.html">Fibres</a></li>
-            <li><a href="../fats/fats.html">Fats</a></li>
-            <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
-            </ul>
-            <?php if (!empty($_SESSION['user_id'])) ?>
+            <li><a href="../carbohydrates/carbohydrates.php">Carbohydrates</a>
+              <ul>
+                <li><a href="../carbohydrates/bananas.php">Bananas</a></li>
+                <li><a href="../carbohydrates/beans.php">Beans</a></li>
+                <li><a href="../carbohydrates/brown_rice.php">Brown Rice</a></li>
+                <li><a href="../carbohydrates/chickpeas.php">Chickpeas</a></li>
+                <li><a href="../carbohydrates/lentils.php">Lentils</a></li>
+                <li><a href="../carbohydrates/parsnips.php">Parsnips</a></li>
+                <li><a href="../carbohydrates/potatoes.php">Potatoes</a></li>
+                <li><a href="../carbohydrates/sweetcorn.php">Sweetcorn</a></li>
+              </ul>
+            </li>
+            <li><a href="../proteins/protein.php">Proteins</a>
+              <ul>
+                <li><a href="../proteins/beef.php">Beef</a></li>
+                <li><a href="../proteins/chicken.php">Chicken</a></li>
+                <li><a href="../proteins/eggs.php">Eggs</a></li>
+                <li><a href="../proteins/fish.php">Fish</a></li>
+              </ul>
+            </li>
+            <li><a href="../fibres/fibres.php">Fibres</a>
+              <ul>
+                <li><a href="../fibres/beans.php">Beans</a></li>
+                <li><a href="../fibres/lentils.php">Lentils</a></li>
+                <li><a href="../fibres/pulses.php">Pulses</a></li>
+              </ul>
+            </li>
+            <li><a href="../fats/fats.php">Fats</a>
+              <ul>
+                <li><a href="../fats/avocado.php">Avocado</a></li>
+                <li><a href="../fats/mackerel.php">Mackerel</a></li>
+                <li><a href="../fats/salmon.php">Salmon</a></li>
+                <li><a href="../fats/tuna.php">Tuna</a></li>
+              </ul>
+            </li>
+            <li><a href="../vitamins and minerals/vitamins and minerals.php">Vitamins & Minerals</a>
+              <ul>
+                <li><a href="../vitamins and minerals/chickpeas.php">Chickpeas</a></li>
+                <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
+              </ul>
+            </li>
+            <?php if (isset($_SESSION['user_id'])) {?>
             <li><a href="../user profile/viewprofile.php">Your Profile</a>
               <ul>
                 <li><a href="../user profile/calculatebmi.php">Calculate BMI</a></li>
                 <li><a href="../user profile/creategoal.php">Create Goal</a></li>
                 <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
-                <li><a href="change_password.php">Settings</a></li>
+                <li><a href="../registration & login/change_password.php">Settings</a></li>
               </ul>
             </li>
+            <?php exit(); }?>
           </nav>
         </header>
         <div id="content">

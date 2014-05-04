@@ -96,7 +96,7 @@
         <nav>
           <ul class="sf-menu" id="nav">
             <li><a href="../index.php">Home</a></li>
-            <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a>
+            <li><a href="../carbohydrates/carbohydrates.php">Carbohydrates</a>
               <ul>
                 <li><a href="../carbohydrates/bananas.php">Bananas</a></li>
                 <li><a href="../carbohydrates/beans.php">Beans</a></li>
@@ -108,7 +108,7 @@
                 <li><a href="../carbohydrates/sweetcorn.php">Sweetcorn</a></li>
               </ul>
             </li>
-            <li><a href="../proteins/protein.html">Proteins</a>
+            <li><a href="../proteins/protein.php">Proteins</a>
               <ul>
                 <li><a href="../proteins/beef.php">Beef</a></li>
                 <li><a href="../proteins/chicken.php">Chicken</a></li>
@@ -116,14 +116,14 @@
                 <li><a href="../proteins/fish.php">Fish</a></li>
               </ul>
             </li>
-            <li><a href="../fibres/fibres.html">Fibres</a>
+            <li><a href="../fibres/fibres.php">Fibres</a>
               <ul>
                 <li><a href="../fibres/beans.php">Beans</a></li>
                 <li><a href="../fibres/lentils.php">Lentils</a></li>
                 <li><a href="../fibres/pulses.php">Pulses</a></li>
               </ul>
             </li>
-            <li><a href="../fats/fats.html">Fats</a>
+            <li><a href="../fats/fats.php">Fats</a>
               <ul>
                 <li><a href="../fats/avocodo.php">Avocodo</a></li>
                 <li><a href="../fats/mackerel.php">Mackerel</a></li>
@@ -131,7 +131,7 @@
                 <li><a href="../fats/tuna.php">Tuna</a></li>
               </ul>
             </li>
-            <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+            <li><a href="../vitamins and minerals/vitamins and minerals.php">Vitamins & Minerals</a>
               <ul>
                 <li><a href="../vitamins and minerals/chickpeas.php">Chickpeas</a></li>
                 <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>

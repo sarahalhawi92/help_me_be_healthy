@@ -60,7 +60,7 @@
             <nav>
               <ul class="sf-menu" id="nav">
                 <li><a href="../index.php">Home</a></li>
-                <li><a href="../carbohydrates/carbohydrates.html">Carbohydrates</a>
+                <li><a href="../carbohydrates/carbohydrates.php">Carbohydrates</a>
                   <ul>
                     <li><a href="../carbohydrates/bananas.php">Bananas</a></li>
                     <li><a href="../carbohydrates/beans.php">Beans</a></li>
@@ -72,7 +72,7 @@
                     <li><a href="../carbohydrates/sweetcorn.php">Sweetcorn</a></li>
                   </ul>
                 </li>
-                <li><a href="../proteins/protein.html">Proteins</a>
+                <li><a href="../proteins/protein.php">Proteins</a>
                   <ul>
                     <li><a href="../proteins/beef.php">Beef</a></li>
                     <li><a href="../proteins/chicken.php">Chicken</a></li>
@@ -80,14 +80,14 @@
                     <li><a href="../proteins/fish.php">Fish</a></li>
                   </ul>
                 </li>
-                <li><a href="../fibres/fibres.html">Fibres</a>
+                <li><a href="../fibres/fibres.php">Fibres</a>
                   <ul>
                     <li><a href="../fibres/beans.php">Beans</a></li>
                     <li><a href="../fibres/lentils.php">Lentils</a></li>
                     <li><a href="../fibres/pulses.php">Pulses</a></li>
                   </ul>
                 </li>
-                <li><a href="../fats/fats.html">Fats</a>
+                <li><a href="../fats/fats.php">Fats</a>
                   <ul>
                     <li><a href="../fats/avocodo.php">Avocodo</a></li>
                     <li><a href="../fats/mackerel.php">Mackerel</a></li>
@@ -95,18 +95,10 @@
                     <li><a href="../fats/tuna.php">Tuna</a></li>
                   </ul>
                 </li>
-                <li><a href="../vitamins and minerals/vitamins and minerals.html">Vitamins & Minerals</a>
+                <li><a href="../vitamins and minerals/vitamins and minerals.php">Vitamins & Minerals</a>
                   <ul>
                     <li><a href="../vitamins and minerals/chickpeas.php">Chickpeas</a></li>
                     <li><a href="../vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
-                  </ul>
-                </li>
-                <li><a href="viewprofile.php">Your Profile</a>
-                  <ul>
-                    <li><a href="calculatebmi.php">Calculate BMI</a></li>
-                    <li><a href="creategoal.php">Create Goal</a></li>
-                    <li><a href="trackgoal.php">Track Goal</a></li>
-                    <li><a href="../registration & login/change_password.php">Settings</a></li>
                   </ul>
                 </li>
                 <?php if (!empty($_SESSION['user_id'])) ?>
@@ -122,7 +114,7 @@
             </header>
             <div id="content">
 
-              <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="width: 800px">
                 <fieldset>
                   <label for="current_password">Current Password:</label>
                   <input type="text" id = "current_password" name="current_password" 
@@ -131,6 +123,7 @@
                   <label for="confirm_new_password">Confirm New Password:</label>
                   <input type="confirm_new_password" id = "confirm_new_password" name="confirm_new_password" />
                 </fieldset>
+                <br>
                 <input type="submit" value="Change Password" name="submit" />
               </form>
             </div>
