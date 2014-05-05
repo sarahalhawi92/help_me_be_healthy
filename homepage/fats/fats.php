@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+  // If the session vars aren't set, try to set them with a cookie
+if (!isset($_SESSION['user_id'])) {
+  if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+    $_SESSION['user_id'] = $_COOKIE['user_id'];
+    $_SESSION['username'] = $_COOKIE['username'];
+  }
+}
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -101,14 +112,5 @@
     </div>
   </div>
   <div id="grass"></div>
-  <!-- javascript at the bottom for fast page loading -->
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('ul.sf-menu').sooperfish();
-  });
-  </script>
 </body>
 </html>

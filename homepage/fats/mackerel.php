@@ -126,7 +126,6 @@ if (!isset($_SESSION['user_id'])) {
         </header>
         <div id="content">
           <h1>Information</h1>
-          <p>Some text</p>
         </div>
 
         <?php
