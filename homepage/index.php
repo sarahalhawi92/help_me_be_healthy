@@ -125,6 +125,7 @@ if (!isset($_SESSION['user_id'])) {
           </nav>
         </header>
         <div id="content">
+          <h2>some test text</h2>
           <h1>Welcome!</h1>
           <p>This website has been designed to provide a simple set of recipes. These include nutritional information and the price to make the recipes.</p>
           <p>You have the option of creating an account below, which will allow you to save recipes to your profile. You will also be able to create health and fitness goals, as well as calculate your BMI.</p>
