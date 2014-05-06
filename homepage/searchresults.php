@@ -21,7 +21,7 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <!-- modernizr enables HTML5 elements and feature detects -->
   <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-    <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
   
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -67,11 +67,11 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         <div id="tfheader">
           <form method = "GET" action="searchresults.php?">
-          <h5>Want to search for a recipe?</h5>
-          <div class="ui-widget">
-          <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
-          <input id="submit" type="submit" value="submit">
-          </form>
+            <h5>Want to search for a recipe?</h5>
+            <div class="ui-widget">
+              <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
+              <input id="submit" type="submit" value="submit">
+            </form>
           </div>
           <div class="tfclear"></div>
         </div>
@@ -120,6 +120,16 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="vitamins and minerals/sweetpotato.php">Sweet Potato</a></li>
               </ul>
             </li>
+            <?php if (isset($_SESSION['user_id'])) {?>
+            <li><a href="../user profile/viewprofile.php">Your Profile</a>
+              <ul>
+                <li><a href="../user profile/calculatebmi.php">Calculate BMI</a></li>
+                <li><a href="../user profile/creategoal.php">Create Goal</a></li>
+                <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
+                <li><a href="../registration & login/change_password.php">Settings</a></li>
+                <?php }?>
+              </ul>
+            </li>
           </nav>
         </header>
         <div id="content">
@@ -138,7 +148,7 @@ if (!isset($_SESSION['user_id'])) {
           echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 
-        $query = "SELECT `recipe_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
+        $query = "SELECT `recipe_name`, `category_name`, `ingredient_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
         $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
         ?>
 

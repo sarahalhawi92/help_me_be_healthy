@@ -47,7 +47,7 @@
               </div>
             </div>
             <div id="tfheader">
-              <form method="GET" action="searchresults.php?">
+              <form method="GET" action="../searchresults.php?">
                 <h5>Want to search for a recipe?</h5>
                 <input id="search" name ="search" type="text" placeholder="Type Here" size="21" maxlength="120">
                 <input id="submit" type="submit" value="submit">

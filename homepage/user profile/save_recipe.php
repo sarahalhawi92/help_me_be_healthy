@@ -71,7 +71,7 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div id="tfheader">
-          <form method = "GET" action="searchresults.php?">
+          <form method = "GET" action="../searchresults.php?">
             <h5>Want to search for a recipe?</h5>
             <div class="ui-widget">
               <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
@@ -178,6 +178,7 @@ if (!isset($_SESSION['user_id'])) {
           if ($result)
           {
             echo "Recipe successfully saved to your profile";
+            echo "<BR>";
             echo "<BR>";
             echo "<a href='viewprofile.php'>Go to your saved recipes</a>";
 

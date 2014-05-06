@@ -72,7 +72,7 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div id="tfheader">
-          <form method = "GET" action="searchresults.php?">
+          <form method = "GET" action="../searchresults.php?">
             <h5>Want to search for a recipe?</h5>
             <div class="ui-widget">
               <input class="searchInput ui-widget" id="recipe" name="recipe" type="text" placeholder="Type Here" />
@@ -140,7 +140,6 @@ if (!isset($_SESSION['user_id'])) {
         </header>
         <div id="content">
           <h1>Profile</h1>
-          <p>Some text</p>
         </div>
 
         <?php
@@ -232,11 +231,6 @@ if (!isset($_SESSION['user_id'])) {
       WHERE  `user_ids` LIKE  '%$user_id%') ORDER BY RAND() LIMIT 1";
 
 $suggestData = mysqli_query($dbc, $query);
-
-    //if (mysqli_num_rows($suggestData) > 0) 
-    //{
-    //  echo('Based on what you have searched, why not try ' . $row['recipe_name'] . '.');
-   // }
 
 while($row = mysqli_fetch_array($suggestData)) {
   echo ('Based on what you have searched, why not try ' . $row['recipe_name'] . '.');
