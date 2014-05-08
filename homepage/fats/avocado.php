@@ -149,7 +149,7 @@ if (!isset($_SESSION['user_id'])) {
           echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 
-        $query ="SELECT * FROM recipes WHERE category_name Like 'fats%' AND ingredient_name = 'avocados'";
+        $query ="SELECT * FROM recipes WHERE category_name Like 'fats%' AND ingredient_name = 'avocado'";
         $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
         ?>

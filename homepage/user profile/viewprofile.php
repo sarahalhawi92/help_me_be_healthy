@@ -227,17 +227,25 @@ if (!isset($_SESSION['user_id'])) {
 
     //select recipe from database with price range of average
 
-    $query = "SELECT  `recipe_name` FROM  `recipes` WHERE  `recipe_price` <= (SELECT AVG (`recipe_price`) FROM  `recipes` 
+    $query = "SELECT  `recipe_name`, `category_name`, `ingredient_name` FROM  `recipes` WHERE  `recipe_price` <= (SELECT AVG (`recipe_price`) FROM  `recipes` 
       WHERE  `user_ids` LIKE  '%$user_id%') ORDER BY RAND() LIMIT 1";
 
 $suggestData = mysqli_query($dbc, $query);
+$firstStr = $row['category_name'] ;
+$secondStr = $row['ingredient_name'];
+$fullStr = $firstStr."/".$secondStr.".php";
 
-while($row = mysqli_fetch_array($suggestData)) {
-  echo ('Based on what you have searched, why not try ' . $row['recipe_name'] . '.');
-  echo "<br>";
+while($row = mysqli_fetch_array($suggestData)){
+  ?>
+  <?php 
+  $recipe_name = $row['recipe_name'];
+  $firstStr = $row['category_name'] ;
+  $secondStr = $row['ingredient_name'];
+  $fullStr = $firstStr."/".$secondStr.".php";
+  ?> 
+  Based on what you have searched, why not try<a href="../<?php echo $fullStr; ?>"> "<?php echo $recipe_name; ?>" </a>
+  <?php
 }
-
-echo "<br>";
 
 if (mysqli_num_rows($goalsData) > 0) {
   echo "<h>Your Goals:</h>";
