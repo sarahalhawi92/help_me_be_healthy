@@ -117,7 +117,7 @@
 
 
                 <label for="username">Email Address:</label>
-                <input type="text" name="email_address" size = "20">
+                <input type="text" name="email_address" size = "30">
                 <input type="submit" value="Submit" name="submit" />
               </div>
             </div>
