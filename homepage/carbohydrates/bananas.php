@@ -3,10 +3,10 @@ session_start();
 
   // If the session vars aren't set, try to set them with a cookie
 if (!isset($_SESSION['user_id'])) {
-  if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-    $_SESSION['user_id'] = $_COOKIE['user_id'];
-    $_SESSION['username'] = $_COOKIE['username'];
-  }
+	if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+		$_SESSION['user_id'] = $_COOKIE['user_id'];
+		$_SESSION['username'] = $_COOKIE['username'];
+	}
 }
 ?>
 <!DOCTYPE HTML>
@@ -39,6 +39,17 @@ if (!isset($_SESSION['user_id'])) {
 				minLength:2,
 			});
 		});
+	});
+	</script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".select").click(function(){
+			if (!confirm("Are you sure you want to go to this recipe? Doing so will take you to an external page.")){
+				return false;
+			}
+		});
+
 	});
 	</script>
 </head>
@@ -187,7 +198,7 @@ if (!isset($_SESSION['user_id'])) {
 									<td><?php echo $row['recipe_fibre']; ?></td> 
 									<td><?php echo $row['recipe_sodium']; ?></td> 
 									<td><?php echo $row['recipe_potassium']; ?></td> 
-									<td align="center"><a href=<?php echo $row['recipe_source']; ?>>Click here to view the recipe</a></td>
+									<td align="center"><a href=<?php echo $row['recipe_source']; ?> class="select">Click here to view the recipe</a></td>
 									<td align="center"><a href="../user profile/save_recipe.php?id=<?php echo $row['recipe_id']; ?>">save</a></td>
 								</tr>
 
