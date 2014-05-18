@@ -118,31 +118,83 @@
         <div id="content">
 
           <?php 
+
           error_reporting(0);
+
           $email=$_POST['email_address'];
+
           if($_POST['submit']=='Submit')
           {
 
             $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
             mysqli_set_charset($dbc, "utf8");
 
-            $query="select * from users where email_address='$email'";
-            $result=mysql_query($query) or die(error);
-            if(mysql_num_rows($result))
-            {
-              echo "User exist";
-            }
-            else
-            {
-              echo "No user exist with this email id";
-            }
-          }
-          ?>
+            $query = "SELECT `user_id` FROM `users` WHERE `email_address`= '" . $_POST['email_address'] . "' ";
+            $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
 
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="grass"></div>
+            while($row = mysqli_fetch_array($data)){
+
+              $_SESSION['user_id'] = $row['user_id'];
+            }
+
+            if (mysqli_num_rows($data) == 1) {
+
+             $temp_pass = substr (md5(uniqid(rand(),1)), 3, 10);
+
+             echo $temp_pass;
+
+             $query = "UPDATE `users` SET `password` = sha1('$temp_pass') WHERE `user_id` = '" . $_SESSION['user_id'] . "'";
+
+             mysqli_query($dbc, $query) or die("Error " . mysqli_error($data));
+
+             echo "Your password has successfully been reset";
+           }
+
+           else
+           {
+             echo "No user exists with this email address. Please try again.";
+           }
+         }
+
+         if (mysqli_num_rows($data) == 1){
+
+          $to=$_POST['email_address'];
+
+          echo $to;
+
+          $subject="Reset your Password";
+
+          echo $subject;
+
+          $header="from: helpmebehealthy <helpmebehealthy.com>";
+
+          echo $header;
+
+          $message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your username. ";
+
+          echo $message;
+
+          $sentmail = mail($to,$subject,$message,$header);
+
+          echo $sentmail;
+
+          echo "Please check your email for instructions on how to login into your account";
+
+        } else {
+
+         echo "Cannot send  link to your e-mail address";
+
+       }
+
+       mysqli_close($dbc);
+
+       exit();
+       ?>
+
+     </div>
+   </div>
+ </div>
+</div>
+<div id="grass"></div>
 </body>
 </html>
