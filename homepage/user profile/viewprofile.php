@@ -196,6 +196,10 @@ if (!isset($_SESSION['user_id'])) {
     }
     echo "<br>";
 
+    //BMI graph code
+
+    
+
 
     if (mysqli_num_rows($recipeData) > 0) {
       echo "<h>Saved recipes:</h>";

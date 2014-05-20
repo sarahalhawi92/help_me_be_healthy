@@ -175,6 +175,13 @@ if (!isset($_SESSION['user_id'])) {
             $kg=$_POST['kg'];
             $mt=$_POST['mt'];
 
+            $query = "UPDATE `users` SET `height`= $mt, `weight` = $kg WHERE `user_id` = " . $_SESSION['user_id'];
+
+            $data = mysqli_query($dbc, $query);
+            if (!mysqli_query($dbc,$query)) {
+              echo "Failed to store";
+            }
+
             if(empty($kg) || empty($mt))
             {
               echo "<label class='err'><center>All fields are required</center></label>";
@@ -210,7 +217,8 @@ if (!isset($_SESSION['user_id'])) {
               }
               else
               {
-                echo "You are morbidly obese.";
+                echo "Your BMI is ".$bmi." which means you are morbidly obese";
+
 
               } 
               include("index.php");
@@ -223,7 +231,7 @@ if (!isset($_SESSION['user_id'])) {
                 echo "Failed to store";
               }
 
-              
+
 
             }
           }

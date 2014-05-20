@@ -1,113 +1,112 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>BMI Calculator</title>
-  <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-  <script src= "http://documentcloud.github.com/underscore/underscore.js"></script>
-  <style type="text/css">
+<meta charset="utf-8">
+<meta content="utf-8" http-equiv="encoding"> 
+<style> /* set the CSS */
 
-  .center
-  {
-    margin-left:auto;
-    margin-right:auto;
-    width:75em;
-    font-family:Verdana;
-    font-size: 07pt;
-  }
-  </style>
+body { font: 12px Arial;}
 
-</head>
+path { 
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+</style>
 <body>
-  <div class = "center">
-    <form method="post">
-      Height: <input type="number" name="Height in Inches" value="" size="4" maxlength="4" id="weight" />
-      Weight: <input type="number" name="Weight in Pounds" value="" size="5" maxlength="5" id="height"/>
-      Age: <input type="number" name="Age" value="" size="25" maxlength="3" id="age"/>
-      <input type="submit" name="submit" value="calculate BMI" />
-    </form>    
-    <h1 id="bmiReturn">
-    </h1>
-    <ul id="bmiList">
-    </ul>
-  </div>
 
-  <script>  
-//callback to form
+  <!DOCTYPE html>
+  <body>
 
-$(document).ready( function (e) {
-  $('form').submit(function (e) { 
-    var age = $('#age').val();
-    var height = $('#height').val();
-    var weight = $('#weight').val();        
-    $("#bmiReturn").text(calcBmi(height,weight));
-    return false;              
-  })
-});
+    <!-- load the d3.js library --> 
+    <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
 
-//calculate BMI with weight and height
-function calcBmi (height, weight){
-  return(Math.round((weight/(height*height)*703)*100)/100);
-};
+    <script>
 
-
-// Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
-  width = 600 - margin.left - margin.right,
-  height = 270 - margin.top - margin.bottom;
-
+  // Set the dimensions of the canvas / graph
+  var margin = {top: 30, right: 20, bottom: 50, left: 70},
+  width = 700 - margin.left - margin.right,
+  height = 600 - margin.top - margin.bottom;
 
 // Set the ranges
-var x = d3.time.scale().range([0, width]);
-var y = d3.scale.linear().range([height, 0]);
+var x=d3.scale.linear([20,80]).range([0,width]);
+var y = d3.scale.linear([20,80]).range([height, 0]);
 
 // Define the axes
 var xAxis = d3.svg.axis().scale(x)
-  .orient("bottom").ticks(5);
+.orient("bottom").ticks(17);
 
 var yAxis = d3.svg.axis().scale(y)
-  .orient("left").ticks(5);
+.orient("left").ticks(17);
 
 // Define the line
 var valueline = d3.svg.line()
-  .x(function(d) { return x(d.bmi); })
-  .y(function(d) { return y(d.close); });
-    
+.x(function(d) { return x(d.weight); })
+.y(function(d) { return y(d.height); })
+.defined(function(d) { return !isNaN(d.value); });
+
 // Adds the svg canvas
 var svg = d3.select("body")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
-d3.csv("bmi_data.csv", function(data) {
-        dataset = data.map(function(d) { return [ +d["BMI"]]; });
+d3.csv("bmi.csv", function(error, data) {
+
+  console.log(data);
+
+  data.forEach(function(d) {
+    d.weight = +d.weight;
+    d.height = +d.height;
+  });
 
   // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.close; })]);
+  x.domain(d3.extent(data, function(d) { return d.weight; }));
+
+  y.domain([1.4, 2]);
 
   // Add the valueline path.
   svg.append("path")    // Add the valueline path.
-    .attr("class", "line")
-    .attr("d", valueline(data));
+  .attr("class", "line")
+  .attr("d", valueline(data));
+
+  svg.append("text")      // text label for the x axis
+  .attr("x", 320 )
+  .attr("y", 560 )
+  .style("text-anchor", "middle")
+  .text("Weight (Kilograms)");
 
   // Add the X Axis
   svg.append("g")     // Add the X Axis
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxis);
+
 
   // Add the Y Axis
   svg.append("g")     // Add the Y Axis
-    .attr("class", "y axis")
-    .call(yAxis);
+  .attr("class", "y axis")
+  .call(yAxis);
 
+  //Create Y axis label
+  svg.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 0-margin.left)
+  .attr("x",0 - (h / 2))
+  .attr("dy", "1em")
+  .style("text-anchor", "middle")
+  .text("Height");
 });
 
- 
 </script>
 </body>
-</html>
