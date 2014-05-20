@@ -19,7 +19,7 @@ article, aside, figure, footer, header, hgroup, nav, section {
 }
 
 body { 
-  font: normal .8em arial, sans-serif;
+  font: normal 0.8em arial, sans-serif;
   background: #C4E9E8 url(../images/back.png) repeat-x;
   color: #555;
 }
@@ -28,6 +28,17 @@ p {
   padding: 0 0 16px 0;
   line-height: 1.7em;
 }
+
+#p1 {
+  font: normal 0.9em arial, sans-serif;
+  color: #58FA58;
+}
+
+#p2 {
+  font: normal 0.9em arial, sans-serif;
+  color: #FF0000;
+}
+
 
 h1, h2, h3, h4, h5, h6 { 
   color: #555;

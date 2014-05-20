@@ -142,12 +142,13 @@
 
             if ($data)
             {
-              echo "Your account has been activated";
+              echo "Your account has been activated! ";
               echo "<BR>";
-              echo "<a href='login.php'>Go to Login</a>";
+              echo "<BR>";
+              echo "<a href='login.php'>You are now ready to login</a>";
             }
             else {
-              echo "Wrong Confirmation code";
+              echo "Your activation link has expired. Click here to send another one.";
             }
 
           }

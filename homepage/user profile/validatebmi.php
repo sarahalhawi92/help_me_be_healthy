@@ -188,8 +188,8 @@ if (!isset($_SESSION['user_id'])) {
             }
             else
             {
-              $bmi = $kg/($mt*$mt);
-              $bmi=round($bmi,2);
+              $mt= $mt*$mt;
+              $bmi=round($kg/$mt,2);
               if ( $bmi <= 18.5 ) 
               {
                 echo "Your BMI is " .$bmi."  which means you are underweight";
@@ -222,6 +222,8 @@ if (!isset($_SESSION['user_id'])) {
               if (!mysqli_query($dbc,$query)) {
                 echo "Failed to store";
               }
+
+              
 
             }
           }

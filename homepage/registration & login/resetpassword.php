@@ -141,13 +141,11 @@
 
              $temp_pass = substr (md5(uniqid(rand(),1)), 3, 10);
 
-             echo $temp_pass;
-
              $query = "UPDATE `users` SET `password` = sha1('$temp_pass') WHERE `user_id` = '" . $_SESSION['user_id'] . "'";
 
              mysqli_query($dbc, $query) or die("Error " . mysqli_error($data));
 
-             echo "Your password has successfully been reset";
+             echo "Your password has successfully been reset. ";
            }
 
            else
@@ -160,25 +158,15 @@
 
           $to=$_POST['email_address'];
 
-          echo $to;
-
           $subject="Reset your Password";
 
-          echo $subject;
-
-          $header="from: helpmebehealthy <helpmebehealthy.com>";
-
-          echo $header;
+          $header="from: helpmebehealthy <helpmebehealthy.info>";
 
           $message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your username. ";
 
-          echo $message;
-
           $sentmail = mail($to,$subject,$message,$header);
 
-          echo $sentmail;
-
-          echo "Please check your email for instructions on how to login into your account";
+          echo "Please check your email for instructions on how to login into your account.";
 
         } else {
 
