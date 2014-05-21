@@ -140,6 +140,15 @@ if (!isset($_SESSION['user_id'])) {
 
         $key = $_GET['recipe']; 
 
+        if (!isset($_SESSION['user_id'])) {
+          if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
+            $_SESSION['user_id'] = $_COOKIE['user_id'];
+            $_SESSION['username'] = $_COOKIE['username'];
+          }
+        }
+
+        $user_id = $_SESSION['user_id'];
+
         $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
         mysqli_set_charset($dbc, "utf8");
 
@@ -148,8 +157,25 @@ if (!isset($_SESSION['user_id'])) {
           echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 
-        $query = "SELECT `recipe_name`, `category_name`, `ingredient_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
-        $data= mysqli_query($dbc,$query) or die('Query failed: ' . mysqli_error());
+        $query1 = "SELECT `recipe_name`, `category_name`, `ingredient_name` FROM `recipes` WHERE `ingredient_name` LIKE '%$key%' OR  `recipe_name` LIKE '%$key%'";
+        $data= mysqli_query($dbc,$query1) or die('Query failed: ' . mysqli_error());
+
+        $query2 = "SELECT `search_term` FROM `search_queries` WHERE `search_term` LIKE '%$key%'";
+        $data2= mysqli_query($dbc,$query2) or die('Query failed: ' . mysqli_error());
+
+        //to do-if result is returned for above query, concatenate the current user id to the list of user ids
+
+        // while($row = mysqli_fetch_array($data2)){
+        //   echo $row['search_term']; 
+        //   $search_term = $row['search_term']; 
+        // }
+
+
+        if (isset($_SESSION['user_id']))  {
+
+          $query3 = "INSERT INTO `search_queries` (`user_ids`, `search_term`) VALUES ('$user_id', '$key')";
+          $data3= mysqli_query($dbc,$query3) or die('Query failed: ' . mysqli_error());
+        }
         ?>
 
 
