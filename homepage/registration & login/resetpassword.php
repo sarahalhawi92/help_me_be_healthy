@@ -162,17 +162,19 @@
 
           $header="from: helpmebehealthy <helpmebehealthy.info>";
 
-          $message="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your username. ";
+          $message="Hello, \r\n \r\n";
 
+          $message.="Your password to log into helpmebehealthy has been temporarily changed to '$temp_pass'. Please log in using this password and your username.\r\n \r\n ";
+
+          $message.="You can change this password after you have logged in by selecting: your profile > settings from the navigation bar.\r\n \r\n ";
+
+          $message.="Regards, \r\n \r\n";
+          $message.="helpmebehealthy.info ";
           $sentmail = mail($to,$subject,$message,$header);
 
           echo "Please check your email for instructions on how to login into your account.";
 
-        } else {
-
-         echo "Cannot send  link to your e-mail address";
-
-       }
+        } 
 
        mysqli_close($dbc);
 
@@ -182,7 +184,6 @@
      </div>
    </div>
  </div>
-</div>
-<div id="grass"></div>
+ <div id="grass"></div>
 </body>
 </html>

@@ -9,7 +9,8 @@ mysqli_set_charset($dbc, "utf8");
 
 
 if (isset($_POST['submit'])) {
-        // Grab the profile data from the POST
+
+   // Grab the profile data from the POST
   $username = mysqli_real_escape_string($dbc, trim($_POST['username']));
   $first_name = mysqli_real_escape_string($dbc, trim($_POST['first_name']));
   $last_name = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
@@ -26,7 +27,8 @@ if (isset($_POST['submit'])) {
     $data = mysqli_query($dbc, $query);
 
     if (mysqli_num_rows($data) == 0) {
-            // The username is unique, so insert the data into the database
+
+      // The username is unique, so insert the data into the database
       $query = "INSERT INTO `users` (`user_id`, `username`, `first_name`, `last_name`, `age`, `num_in_household`,`password`, `email_address`, `email_code`) 
       VALUES (NULL, '$username', '$first_name', '$last_name', '$age', '$num_in_household', SHA('$password1'), '$email_address', '$email_code')";
 
@@ -52,17 +54,9 @@ if (isset($_POST['submit'])) {
         $message.="Regards, \r\n \r\n";
         $message.="helpmebehealthy.info ";
 
-            //$sentmail = mail('$to', '$subject', '$message', 'From: helpmebehealthy.com');
         $sentmail = mail($to,$subject,$message,$header);
-
       }
-      // if not found 
-      else {
-        echo "Email not found in database";
-      }
-
     }
-
     else {
             // An account already exists for this username, so display an error message
       echo '<p id="p2">An account already exists for this username. Please use a different email address.</p>';

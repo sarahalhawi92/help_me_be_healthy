@@ -155,15 +155,9 @@ if (!isset($_SESSION['user_id'])) {
             }
           }
 
-
-    // Make sure the browser is transmitting in UTF-8
           header('Content-type: text/html; charset=utf-8');
 
-      // Clear the error message
           $error_msg = "";
-
-  //if (isset($_SESSION['user_id']))
-  //  echo $_SESSION['user_id'];
 
           $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
           mysqli_set_charset($dbc, "utf8");
@@ -228,10 +222,8 @@ if (!isset($_SESSION['user_id'])) {
 
               $data = mysqli_query($dbc, $query);
               if (!mysqli_query($dbc,$query)) {
-                echo "Failed to store";
+                echo "Sorry, your request has failed. Please try again.";
               }
-
-
 
             }
           }

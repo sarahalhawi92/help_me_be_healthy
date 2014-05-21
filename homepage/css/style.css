@@ -32,11 +32,13 @@ p {
 #p1 {
   font: normal 0.9em arial, sans-serif;
   color: #58FA58;
+  font-size:150%;
 }
 
 #p2 {
   font: normal 0.9em arial, sans-serif;
   color: #FF0000;
+  font-size:150%;
 }
 
 
