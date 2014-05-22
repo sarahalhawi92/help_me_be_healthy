@@ -163,19 +163,20 @@ if (!isset($_SESSION['user_id'])) {
         $query2 = "SELECT `search_term` FROM `search_queries` WHERE `search_term` LIKE '%$key%'";
         $data2= mysqli_query($dbc,$query2) or die('Query failed: ' . mysqli_error());
 
-        //to do-if result is returned for above query, concatenate the current user id to the list of user ids
+        if (isset($_SESSION['user_id'])) {
 
-        // while($row = mysqli_fetch_array($data2)){
-        //   echo $row['search_term']; 
-        //   $search_term = $row['search_term']; 
-        // }
+          if (mysqli_num_rows($data2) == 1) {
 
+          $query= "UPDATE search_queries SET user_ids = CONCAT(user_ids,',', $user_id) WHERE search_term LIKE '%$key%'";
+          $result= mysqli_query($dbc, $query);
 
-        if (isset($_SESSION['user_id']))  {
+        } else {
 
           $query3 = "INSERT INTO `search_queries` (`user_ids`, `search_term`) VALUES ('$user_id', '$key')";
           $data3= mysqli_query($dbc,$query3) or die('Query failed: ' . mysqli_error());
+
         }
+      }
         ?>
 
 
