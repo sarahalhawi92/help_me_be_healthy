@@ -99,6 +99,7 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="../user profile/creategoal.php">Create Goal</a></li>
                 <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
                 <li><a href="../registration & login/change_password.php">Settings</a></li>
+                <li><a href="../homepage/user profile/trends.php">Trends</a></li>
                 <?php }?>
               </ul>
             </li>

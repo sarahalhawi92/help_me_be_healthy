@@ -132,6 +132,7 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="creategoal.php">Create Goal</a></li>
                 <li><a href="trackgoal.php">Track Goal</a></li>
                 <li><a href="../registration & login/change_password.php">Settings</a></li>
+                <li><a href="trends.php">Trends</a></li>
                 <?php }?>
               </ul>
             </li>
@@ -201,7 +202,6 @@ if (!isset($_SESSION['user_id'])) {
           while($row = mysqli_fetch_array($data5)){
 
             $user_ages = $row['GROUP_CONCAT(age)'];
-            echo $user_ages;
           }
 
           ?>
@@ -230,7 +230,8 @@ if (!isset($_SESSION['user_id'])) {
           </td>
         </tr>
       </table>
-      <h4>What others like you have searched for</h4>
+      <h4>What others like you have searched for</h4><br>
+      <h5><b>Based on age</b></h5>
       <table width="50%" border="1" cellspacing="2" cellpadding="0">
         <tr>
 
@@ -246,16 +247,40 @@ if (!isset($_SESSION['user_id'])) {
             <tr>
               <td><?php echo $row['search_term']; ?></td>
               <td><?php echo $row['date_time_of_search']; ?></td>
-                <?php
-              }
+              <?php
+            }
 
-              ?>
-            </table>
-          </td>
+            ?>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <h5><b>Based on number in household</b></h5>
+    <table width="50%" border="1" cellspacing="2" cellpadding="0">
+      <tr>
+
+        <tr>
+          <td align="center"><strong>Search Query</strong></td>
+          <td align="center"><strong>Date and Time of Search</strong></td>
+          <td align="center"><strong>Age</strong></td>
         </tr>
-      </table>
-    </div>
-  </div>
+
+        <?php
+        while($row = mysqli_fetch_array($data4)){
+          ?>
+          <tr>
+            <td><?php echo $row['search_term']; ?></td>
+            <td><?php echo $row['date_time_of_search']; ?></td>
+            <?php
+          }
+
+          ?>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
 </div>
 <div id="grass"></div>
 </body>
