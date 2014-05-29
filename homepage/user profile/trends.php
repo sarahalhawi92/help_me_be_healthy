@@ -189,64 +189,89 @@ if (!isset($_SESSION['user_id'])) {
             $user_ids = $row['GROUP_CONCAT(user_id)'];
           }
 
+          //look up those user ids in search queries table and display results
+
           $query4 = "SELECT * FROM search_queries WHERE user_ids IN ( $user_ids )";
 
           $data4= mysqli_query($dbc,$query4) or die('Query failed: ' . mysqli_error());
 
-          //look up those user ids in search queries table and display results
+          //put the age in the table where search results are displayed
 
-          $query5= "SELECT GROUP_CONCAT(age) FROM users WHERE user_id IN ( $user_ids )";
+          $query5= "SELECT GROUP_CONCAT(user_ids) FROM search_queries WHERE user_ids IN ( $user_ids )";
 
           $data5= mysqli_query($dbc,$query5) or die('Query failed: ' . mysqli_error());
 
           while($row = mysqli_fetch_array($data5)){
 
-            $user_ages = $row['GROUP_CONCAT(age)'];
+            $user_ids2 = $row['GROUP_CONCAT(user_ids)'];
           }
 
-          ?>
-          <h4>What you have searched for</h4>
-          <table width="50%" border="1" cellspacing="2" cellpadding="0">
-            <tr>
+          $query6= "SELECT age FROM users WHERE user_id IN ( $user_ids2 )";
 
+          $data6= mysqli_query($dbc,$query6) or die('Query failed: ' . mysqli_error());
+
+          // //do the same as above but for number in household
+
+          $query7 ="SELECT `num_in_household` FROM `users` WHERE `user_id` LIKE '%$user_id%'";
+
+          $data7= mysqli_query($dbc,$query7) or die('Query failed: ' . mysqli_error());
+
+          while($row = mysqli_fetch_array($data7)){
+
+           $num_in_household =  $row['num_in_household'];
+         }
+
+  //get all users with similar age
+
+         $query8 ="SELECT GROUP_CONCAT(num_in_household), GROUP_CONCAT(user_id) FROM users WHERE num_in_household LIKE  '%$num_in_household%'";
+
+         $data8= mysqli_query($dbc,$query8) or die('Query failed: ' . mysqli_error());
+
+         while($row = mysqli_fetch_array($data8)){
+
+           $num_in_household = $row['GROUP_CONCAT(num_in_household)'];
+           $user_ids = $row['GROUP_CONCAT(user_id)'];
+         }
+
+ //          //look up those user ids in search queries table and display results
+
+         $query9 = "SELECT * FROM search_queries WHERE user_ids IN ( $user_ids )";
+
+         $data9= mysqli_query($dbc,$query9) or die('Query failed: ' . mysqli_error());
+
+ //          //put the age in the table where search results are displayed
+
+         $query10= "SELECT GROUP_CONCAT(user_ids) FROM search_queries WHERE user_ids IN ( $user_ids )";
+
+         $data10= mysqli_query($dbc,$query10) or die('Query failed: ' . mysqli_error());
+
+         while($row = mysqli_fetch_array($data10)){
+
+           $user_ids3 = $row['GROUP_CONCAT(user_ids)'];
+         }
+
+         $query11= "SELECT num_in_household FROM users WHERE user_id IN ( $user_ids3 )";
+
+         $data11= mysqli_query($dbc,$query11) or die('Query failed: ' . mysqli_error());
+
+         ?>
+         <h4>What you have searched for</h4>
+         <table width="50%" border="1" cellspacing="2" cellpadding="0">
+          <tr>
+
+            <tr>
+              <td align="center"><strong>Search Query</strong></td>
+              <td align="center"><strong>Date and Time of Search</strong></td>
+            </tr>
+
+            <?php
+            while($row = mysqli_fetch_array($data)){
+              ?>
               <tr>
-                <td align="center"><strong>Search Query</strong></td>
-                <td align="center"><strong>Date and Time of Search</strong></td>
+                <td><?php echo $row['search_term']; ?></td>
+                <td><?php echo $row['date_time_of_search']; ?></td>
               </tr>
 
-              <?php
-              while($row = mysqli_fetch_array($data)){
-                ?>
-                <tr>
-                  <td><?php echo $row['search_term']; ?></td>
-                  <td><?php echo $row['date_time_of_search']; ?></td>
-                </tr>
-
-                <?php
-              }
-
-              ?>
-            </table>
-          </td>
-        </tr>
-      </table>
-      <h4>What others like you have searched for</h4><br>
-      <h5><b>Based on age</b></h5>
-      <table width="50%" border="1" cellspacing="2" cellpadding="0">
-        <tr>
-
-          <tr>
-            <td align="center"><strong>Search Query</strong></td>
-            <td align="center"><strong>Date and Time of Search</strong></td>
-            <td align="center"><strong>Age</strong></td>
-          </tr>
-
-          <?php
-          while($row = mysqli_fetch_array($data4)){
-            ?>
-            <tr>
-              <td><?php echo $row['search_term']; ?></td>
-              <td><?php echo $row['date_time_of_search']; ?></td>
               <?php
             }
 
@@ -255,14 +280,14 @@ if (!isset($_SESSION['user_id'])) {
         </td>
       </tr>
     </table>
-    <h5><b>Based on number in household</b></h5>
+    <h4>What others like you have searched for</h4><br>
+    <h5><b>Based on age</b></h5>
     <table width="50%" border="1" cellspacing="2" cellpadding="0">
       <tr>
 
         <tr>
           <td align="center"><strong>Search Query</strong></td>
           <td align="center"><strong>Date and Time of Search</strong></td>
-          <td align="center"><strong>Age</strong></td>
         </tr>
 
         <?php
@@ -279,6 +304,69 @@ if (!isset($_SESSION['user_id'])) {
       </td>
     </tr>
   </table>
+  <table width="10%" border="1" cellspacing="2" cellpadding="0" style="position: absolute; top: 752px; right: 480px;">
+    <tr>
+
+      <tr>
+        <td align="center"><strong>Age</strong></td>
+      </tr>
+
+      <?php
+      while($row = mysqli_fetch_array($data6)){
+        ?>
+        <tr>
+          <td><?php echo $row['age']; ?></td>
+          <?php
+        }
+
+        ?>
+      </table>
+    </td>
+  </tr>
+</table>
+<h5><b>Based on number in household</b></h5>
+<table width="50%" border="1" cellspacing="2" cellpadding="0">
+  <tr>
+
+    <tr>
+      <td align="center"><strong>Search Query</strong></td>
+      <td align="center"><strong>Date and Time of Search</strong></td>
+    </tr>
+
+    <?php
+    while($row = mysqli_fetch_array($data9)){
+      ?>
+      <tr>
+        <td><?php echo $row['search_term']; ?></td>
+        <td><?php echo $row['date_time_of_search']; ?></td>
+        <?php
+      }
+
+      ?>
+    </table>
+  </td>
+</tr>
+</table>
+<table width="18%" border="1" cellspacing="2" cellpadding="0" style="position: absolute; top: 1125px; right: 405px;">
+  <tr>
+
+    <tr>
+      <td align="center"><strong>Number in Household</strong></td>
+    </tr>
+
+    <?php
+    while($row = mysqli_fetch_array($data11)){
+      ?>
+      <tr>
+        <td><?php echo $row['num_in_household']; ?></td>
+        <?php
+      }
+
+      ?>
+    </table>
+  </td>
+</tr>
+</table>
 </div>
 </div>
 </div>
