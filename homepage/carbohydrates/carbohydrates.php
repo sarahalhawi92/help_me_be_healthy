@@ -120,14 +120,14 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="../user profile/creategoal.php">Create Goal</a></li>
                 <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
                 <li><a href="../registration & login/change_password.php">Settings</a></li>
-                <li><a href="../homepage/user profile/trends.php">Trends</a></li>
+                <li><a href="../user profile/trends.php">Trends</a></li>
                 <?php }?>
               </ul>
             </li>
           </nav>
         </header>
         <div id="content">
-          <h1>Information</h1>
+          <h1>Carbohydrates</h1>
           <p>Carbohydrate is a nutrient that our body needs, it is an organic compound made up of carbon, hydrogen and oxygen. Carbohydrates are the main energy source for our body.It is recommended that about 45-60% of our energy intake should come from carbohydrates.</p>
         </div>
       </div>

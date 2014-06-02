@@ -162,12 +162,13 @@
                     <li><a href="../user profile/creategoal.php">Create Goal</a></li>
                     <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
                     <li><a href="change_password.php">Settings</a></li>
-                    <li><a href="../homepage/user profile/trends.php">Trends</a></li>
+                    <li><a href="../user profile/trends.php">Trends</a></li>
                   </ul>
                 </li>
               </nav>
             </header>
             <div id="content">
+              <h1>Change Password</h1>
 
               <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="width: 800px">
                 <fieldset>

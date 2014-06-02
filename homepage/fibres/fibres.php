@@ -120,14 +120,14 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="../user profile/creategoal.php">Create Goal</a></li>
                 <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
                 <li><a href="../registration & login/change_password.php">Settings</a></li>
-                <li><a href="../homepage/user profile/trends.php">Trends</a></li>
+                <li><a href="../user profile/trends.php">Trends</a></li>
                 <?php }?>
               </ul>
             </li>
           </nav>
         </header>
         <div id="content">
-          <h1>Information</h1>
+          <h1>Fibres</h1>
           <p>Too much saturated fat can raise our cholesterol, which increases the risk of heart disease. It's important to cut down on fat and choose foods that contain unsaturated fat. We need some fat in our diet because it helps the body absorb certain nutrients. There are two main types of fat found in food: saturated and unsaturated. The focus here will be on recipes containing unsaturated fats. </p>
         </div>
       </div>

@@ -120,14 +120,14 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="../user profile/creategoal.php">Create Goal</a></li>
                 <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
                 <li><a href="../registration & login/change_password.php">Settings</a></li>
-                <li><a href="../homepage/user profile/trends.php">Trends</a></li>
+                <li><a href="../user profile/trends.php">Trends</a></li>
                 <?php }?>
               </ul>
             </li>
           </nav>
         </header>
         <div id="content">
-          <h1>Information</h1>
+          <h1>Protein</h1>
           <p>Protein is an essential nutrient found in animal products, nuts, and beans.
             Your body uses proteins in your diet to build new cells, maintain tissues, and synthesize new proteins that make it possible for you to perform basic bodily functions.</p>
           </div>

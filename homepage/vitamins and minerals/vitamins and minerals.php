@@ -120,14 +120,14 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="../user profile/creategoal.php">Create Goal</a></li>
                 <li><a href="../user profile/trackgoal.php">Track Goal</a></li>
                 <li><a href="../registration & login/change_password.php">Settings</a></li>
-                <li><a href="../homepage/user profile/trends.php">Trends</a></li>
+                <li><a href="../user profile/trends.php">Trends</a></li>
                 <?php }?>
               </ul>
             </li>
           </nav>
         </header>
         <div id="content">
-          <h1>Information</h1>
+          <h1>Vitamins & Minerals</h1>
           <p>Minerals are essential for human metabolism. They are involved in responses of the nervous system and muscles, the absorption and secretions of the body's fluids, and maintain a delicate water balance within the body. The bones and teeth of our body have high mineral contents which accounts for their hardness and rigidity.</p>
         </div>
       </div>

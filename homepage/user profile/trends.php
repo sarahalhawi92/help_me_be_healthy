@@ -1,14 +1,14 @@
 <?php
+
 session_start();
 
-  // If the session vars aren't set, try to set them with a cookie
 if (!isset($_SESSION['user_id'])) {
   if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
     $_SESSION['user_id'] = $_COOKIE['user_id'];
     $_SESSION['username'] = $_COOKIE['username'];
   }
 }
-?>
+?> 
 <!DOCTYPE HTML>
 <html>
 
@@ -42,19 +42,6 @@ if (!isset($_SESSION['user_id'])) {
   });
   </script>
 </head>
-
-<?php
-session_start();
-
-    // If the session vars aren't set, try to set them with a cookie
-if (!isset($_SESSION['user_id'])) {
-  if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-    $_SESSION['user_id'] = $_COOKIE['user_id'];
-    $_SESSION['username'] = $_COOKIE['username'];
-  }
-}
-?>
-
 <body>
   <div id="container">
     <img src="../images/sun.png" alt="sunshine" />
@@ -221,7 +208,7 @@ if (!isset($_SESSION['user_id'])) {
            $num_in_household =  $row['num_in_household'];
          }
 
-  //get all users with similar age
+        //get all users with similar age
 
          $query8 ="SELECT GROUP_CONCAT(num_in_household), GROUP_CONCAT(user_id) FROM users WHERE num_in_household LIKE  '%$num_in_household%'";
 
@@ -233,13 +220,13 @@ if (!isset($_SESSION['user_id'])) {
            $user_ids = $row['GROUP_CONCAT(user_id)'];
          }
 
- //          //look up those user ids in search queries table and display results
+         //look up those user ids in search queries table and display results
 
          $query9 = "SELECT * FROM search_queries WHERE user_ids IN ( $user_ids )";
 
          $data9= mysqli_query($dbc,$query9) or die('Query failed: ' . mysqli_error());
 
- //          //put the age in the table where search results are displayed
+         //put the age in the table where search results are displayed
 
          $query10= "SELECT GROUP_CONCAT(user_ids) FROM search_queries WHERE user_ids IN ( $user_ids )";
 
@@ -257,8 +244,6 @@ if (!isset($_SESSION['user_id'])) {
          ?>
          <h4>What you have searched for</h4>
          <table width="50%" border="1" cellspacing="2" cellpadding="0">
-          <tr>
-
             <tr>
               <td align="center"><strong>Search Query</strong></td>
               <td align="center"><strong>Date and Time of Search</strong></td>
@@ -271,20 +256,13 @@ if (!isset($_SESSION['user_id'])) {
                 <td><?php echo $row['search_term']; ?></td>
                 <td><?php echo $row['date_time_of_search']; ?></td>
               </tr>
-
               <?php
             }
-
             ?>
-          </table>
-        </td>
-      </tr>
     </table>
     <h4>What others like you have searched for</h4><br>
     <h5><b>Based on age</b></h5>
     <table width="50%" border="1" cellspacing="2" cellpadding="0">
-      <tr>
-
         <tr>
           <td align="center"><strong>Search Query</strong></td>
           <td align="center"><strong>Date and Time of Search</strong></td>
@@ -296,15 +274,12 @@ if (!isset($_SESSION['user_id'])) {
           <tr>
             <td><?php echo $row['search_term']; ?></td>
             <td><?php echo $row['date_time_of_search']; ?></td>
+            </tr>
             <?php
           }
-
           ?>
-        </table>
-      </td>
-    </tr>
   </table>
-  <table width="10%" border="1" cellspacing="2" cellpadding="0" style="position: absolute; top: 752px; right: 480px;">
+  <table width="10%" border="1" cellspacing="2" cellpadding="0" style="position: relative; left:320px; bottom:170px;">
     <tr>
 
       <tr>
@@ -316,13 +291,10 @@ if (!isset($_SESSION['user_id'])) {
         ?>
         <tr>
           <td><?php echo $row['age']; ?></td>
+          </tr>
           <?php
         }
-
         ?>
-      </table>
-    </td>
-  </tr>
 </table>
 <h5><b>Based on number in household</b></h5>
 <table width="50%" border="1" cellspacing="2" cellpadding="0">
@@ -339,15 +311,13 @@ if (!isset($_SESSION['user_id'])) {
       <tr>
         <td><?php echo $row['search_term']; ?></td>
         <td><?php echo $row['date_time_of_search']; ?></td>
+        </tr>
         <?php
       }
 
       ?>
-    </table>
-  </td>
-</tr>
 </table>
-<table width="18%" border="1" cellspacing="2" cellpadding="0" style="position: absolute; top: 1125px; right: 405px;">
+<table width="18%" border="1" cellspacing="2" cellpadding="0" style="position: relative; left:320px; bottom:170px;">
   <tr>
 
     <tr>
@@ -359,13 +329,11 @@ if (!isset($_SESSION['user_id'])) {
       ?>
       <tr>
         <td><?php echo $row['num_in_household']; ?></td>
+        </tr>
         <?php
       }
 
       ?>
-    </table>
-  </td>
-</tr>
 </table>
 </div>
 </div>
