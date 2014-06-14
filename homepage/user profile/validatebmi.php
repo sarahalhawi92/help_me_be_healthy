@@ -220,7 +220,6 @@ if (!isset($_SESSION['user_id'])) {
 
               $query = "UPDATE `users` SET `user_bmi`= $bmi WHERE `user_id` = " . $_SESSION['user_id'];
 
-
               $data = mysqli_query($dbc, $query);
               if (!mysqli_query($dbc,$query)) {
                 echo "Sorry, your request has failed. Please try again.";

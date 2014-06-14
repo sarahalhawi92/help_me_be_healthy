@@ -199,9 +199,7 @@ if (!isset($_SESSION['user_id'])) {
 
     //BMI graph code
 
-    
-
-
+  
     if (mysqli_num_rows($recipeData) > 0) {
       echo "<h>Saved recipes:</h>";
       echo "<table border='1' width='45%'>
@@ -231,6 +229,8 @@ if (!isset($_SESSION['user_id'])) {
     $average = $maxPrice/$counter; 
 
     //select recipe from database with price range of average
+
+    //select randomly based on price and calories
 
     $query = "SELECT  `recipe_name`, `category_name`, `ingredient_name` FROM  `recipes` WHERE  `recipe_price` <= (SELECT AVG (`recipe_price`) FROM  `recipes` 
       WHERE  `user_ids` LIKE  '%$user_id%') ORDER BY RAND() LIMIT 1";

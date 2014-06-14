@@ -38,6 +38,7 @@ if (!isset($_SESSION['user_id'])) {
 
           if (!empty($_POST['username']) && !empty($_POST['password'])){
             $password = sha1($password);
+            
             // Look up the username and password in the database
 
             $query = "SELECT `user_id`, `username` FROM `users` WHERE `username` = '$username' AND `password` = '$password'";

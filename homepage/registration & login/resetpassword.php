@@ -173,7 +173,7 @@
           $message.="helpmebehealthy.info ";
           $sentmail = mail($to,$subject,$message,$header);
 
-          echo "Please check your email for instructions on how to login into your account.";
+          echo "Please check your email for instructions on how to login into your account. Please check your spam folder if the email doesn't appear in your main inbox.";
 
         } 
 

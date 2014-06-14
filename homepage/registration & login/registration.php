@@ -22,9 +22,13 @@ if (isset($_POST['submit'])) {
   $email_code = mysqli_real_escape_string($dbc, md5($_POST['$username'] + microtime()));
 
   if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2']) && !empty($_POST['email_address']) && ($password1 == $password2)) {
-          // Make sure someone isn't already registered using this username
+      
+      // Make sure someone isn't already registered using this username
+
     $query = "SELECT * FROM users WHERE username = '$username'";
     $data = mysqli_query($dbc, $query);
+
+    // If no result is returned then insert a new row into the database
 
     if (mysqli_num_rows($data) == 0) {
 
@@ -37,17 +41,17 @@ if (isset($_POST['submit'])) {
 
       if($query){ 
 
-        echo '<p id="p1">Your new account has been successfully created. Please check your email for a link to activate your account. </p>'; 
+        echo '<p id="p1">Your new account has been successfully created. Please check your email for a link to activate your account. Please check your spam folder if no email appears in your main inbox.</p>'; 
 
-        // send e-mail to ...
+        // who email is sent to
         $to=$email_address;
 
-        // Your subject
+        // subject
         $subject="Account Confirmation";
 
         $header="from: helpmebehealthy <helpmebehealthy.info";
 
-        // Your message
+        // message
         $message="Hello, \r\n \r\n";
         $message.="Please click on the link below to activate your account: \r\n \r\n";
         $message.="http://localhost:8888/homepage/registration%20&%20login/activation.php?passkey=$email_code \r\n \r\n";
@@ -59,7 +63,7 @@ if (isset($_POST['submit'])) {
     }
     else {
             // An account already exists for this username, so display an error message
-      echo '<p id="p2">An account already exists for this username. Please use a different email address.</p>';
+      echo '<p id="p2">An account already exists for this username. Please choose a different username.</p>';
       $username = "";
 
     }

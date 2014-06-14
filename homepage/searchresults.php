@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id'])) {
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.4/development-bundle/ui/jquery.ui.position.js"></script>
 
-  <!-- javascript at the bottom for fast page loading -->
+  <!-- javascript for fast page loading -->
   <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
   <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
   <script type="text/javascript">
@@ -173,7 +173,7 @@ if (!isset($_SESSION['user_id'])) {
 
         } else {
 
-          $query3 = "INSERT INTO `search_queries` (`user_ids`, `search_term`) VALUES ('$user_id', '$key')";
+          $query3 = "INSERT INTO `search_queries` (`search_id`, `user_ids`, `search_term`) VALUES (NULL, '$user_id', '$key')";
           $data3= mysqli_query($dbc,$query3) or die('Query failed: ' . mysqli_error());
 
         }

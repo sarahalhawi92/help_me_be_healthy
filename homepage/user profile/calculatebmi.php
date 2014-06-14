@@ -145,7 +145,7 @@ if (!isset($_SESSION['user_id'])) {
             <table cellpadding="1" cellspacing="1">
               <tr>
                 <form action="validatebmi.php" method="post">
-                  <td>Kilogram</td><td><input type="text" name="kg" placeholder="  In kilograms" maxlength="4"/></td>
+                  <td>Weight</td><td><input type="text" name="kg" placeholder="  In kilograms" maxlength="4"/></td>
                 </tr>
                 <td>Height</td><td><input type="text" name="mt" placeholder="  In metres" maxlength="4"/></td>
               </tr>

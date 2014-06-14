@@ -1,0 +1,214 @@
+CREATE TABLE `categories` (
+  `category_id` int(20) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `category_name`) VALUES
+(1, 'carbohydrates'),
+(2, 'proteins'),
+(3, 'fibres'),
+(4, 'vitamins'),
+(5, 'minerals'),
+(6, 'fats');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipes`
+--
+
+CREATE TABLE `recipes` (
+  `recipe_id` int(3) NOT NULL AUTO_INCREMENT,
+  `user_ids` varchar(10000) NOT NULL,
+  `ingredient_name` varchar(30) NOT NULL,
+  `recipe_name` varchar(300) NOT NULL,
+  `recipe_price` float(4,2) NOT NULL,
+  `recipe_calories` bigint(200) NOT NULL,
+  `recipe_fat` varchar(30) NOT NULL,
+  `recipe_cholestrol` varchar(30) NOT NULL,
+  `recipe_carbs` varchar(30) NOT NULL,
+  `recipe_protein` varchar(30) NOT NULL,
+  `recipe_fibre` varchar(30) NOT NULL,
+  `recipe_sodium` varchar(30) NOT NULL,
+  `recipe_potassium` varchar(30) NOT NULL,
+  `recipe_source` varchar(300) NOT NULL,
+  `category_id` int(3) NOT NULL,
+  `category_name` varchar(300) NOT NULL,
+  PRIMARY KEY (`recipe_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+
+--
+-- Dumping data for table `recipes`
+--
+
+INSERT INTO `recipes` (`recipe_id`, `user_ids`, `ingredient_name`, `recipe_name`, `recipe_price`, `recipe_calories`, `recipe_fat`, `recipe_cholestrol`, `recipe_carbs`, `recipe_protein`, `recipe_fibre`, `recipe_sodium`, `recipe_potassium`, `recipe_source`, `category_id`, `category_name`) VALUES
+(8, '1,2,47,48,48,49,63,64,70,71', 'bananas', 'banana corn fritters', 10.45, 243, '8 grams', '43 milligrams', '41 grams', '5 grams', '4 grams', '326 milligrams', '286 milligrams', 'http://www.eatingwell.com/recipes/banana_corn_fritters.html', 1, 'carbohydrates'),
+(9, '1,49,64', 'bananas', 'banana bread', 9.14, 187, '4.3 grams', '40 milligrams', '34.4 grams', '3.3 grams', '1.1 grams', '198 milligrams', 'N/A', 'http://www.myrecipes.com/recipe/classic-banana-bread-10000000549764/', 1, 'carbohydrates'),
+(10, '1,63,64', 'beans', 'Linguine With Italian Tuna and White Beans', 7.26, 386, '6 grams', 'N/A', '62 grams', '26 grams', '9 grams', 'N/A', 'N/A', 'http://www.self.com/fooddiet/recipes/2011/10/linguine-with-italian-tuna-and-white-beans', 1, 'carbohydrates'),
+(11, '1', 'beans', 'Black Bean and Corn Chili', 7.81, 100, '0.7 grams', 'N/A', '21.1 grams', '5.5 grams', '5.5 grams', '479 milligrams', 'N/A', 'http://caloriecount.about.com/black-bean-corn-chili-recipe-r33553', 1, 'carbohydrates'),
+(12, '1', 'brown_rice', 'Curry Scallops & Cilantro Rice', 10.79, 305, '5 grams', '35 milligrams', '44 grams', '19 grams', '3 grams', '750 milligrams', '342 milligrams', 'http://www.eatingwell.com/recipes/curry_scallops.html', 1, 'carbohydrates'),
+(13, '1', 'brown_rice', 'Moroccan-Style Stuffed Peppers', 16.34, 451, '12 grams', '87 milligrams', '48 grams', '36 grams', '8 grams', '628 milligrams', '1410 milligrams', 'http://www.eatingwell.com/recipes/Moroccan_stuffed_peppers.html', 1, 'carbohydrates'),
+(14, '1,63,70', 'chickpeas', 'Middle Eastern Chickpea Platter', 11.36, 313, '11 grams', '8 milligrams', '46 grams', '11 grams', '10 grams', '648 milligrams', '622 milligrams', 'http://www.eatingwell.com/recipes/middle_eastern_chickpea_platter.html', 1, 'carbohydrates, vitamins'),
+(15, '1', 'chickpeas', 'Indian-Spiced Eggplant & Cauliflower Stew', 10.36, 198, '6 grams', 'N/A', '31 grams', '6 grams', '8 grams', '605 milligrams', '358 milligrams', 'http://www.eatingwell.com/recipes/indian_spiced_eggplant_cauliflower_stew.html', 1, 'carbohydrates, vitamins'),
+(16, '1', 'lentils', 'Squash, Chickpea & Red Lentil Stew', 14.99, 294, '7 grams', 'N/A', '48 grams', '14 grams', '11 grams', '578 milligrams', '1029 milligrams', 'http://www.eatingwell.com/recipes/squash_chickpea_red_lentil_stew.html', 1, 'carbohydrates'),
+(17, '1', 'lentils', 'Lemony Lentil Salad with Salmon', 14.10, 354, '18 grams', '31 milligrams', '25 grams', '24 grams', '9 grams', '194 milligrams', '743 milligrams', 'http://www.eatingwell.com/recipes/lemony_lentil_salad_with_salmon.html', 1, 'carbohydrates'),
+(18, '1', 'parsnips', 'Autumn Chicken Stew', 14.48, 208, '6 grams', '42 milligrams', '21 grams', '19 grams', '4 grams', '621 milligrams', '630 milligrams', 'http://www.eatingwell.com/recipes/autumn_chicken_stew.html', 1, 'carbohydrates'),
+(19, '1', 'parsnips', 'Creamy Parsnips & Pears', 6.15, 112, '2 grams', '4 milligrams', '24 grams', '2 grams', '5 grams', '85 milligrams', '470 milligrams', 'http://www.eatingwell.com/recipes/creamy_parsnips_pears.html', 1, 'carbohydrates'),
+(20, '1', 'potatoes', 'Garlicky Roasted Potatoes with Herbs', 6.00, 195, '4.2 grams', 'N/A', '32 grams', '4.1 grams', '2.2 grams', '299 milligrams', 'N/A', 'http://www.myrecipes.com/recipe/garlicky-roasted-potatoes-with-herbs-10000001559233/', 1, 'carbohydrates'),
+(21, '1', 'potatoes', 'Cajun-Stuffed Potatoes', 16.61, 451, '16.5 grams', '182 milligrams', '46.8 grams', '27.8 grams', '3.9 grams', '546 milligrams', 'N/A', 'http://www.myrecipes.com/recipe/cajun-stuffed-potatoes-50400000119696/', 1, 'carbohydrates'),
+(22, '1', 'sweetcorn', 'Coconut Creamed Corn\r\n', 6.29, 148, '5 grams', 'N/A', '24 grams', '5 grams', '3 grams', '178 milligrams', '319 milligrams', 'http://www.eatingwell.com/recipes/coconut_creamed_corn.html', 1, 'carbohydrates'),
+(23, '1', 'sweetcorn', 'Corn & Broccoli Calzones\r\n', 9.29, 350, '7 grams', '21 milligrams', '50 grams', '17 grams', '4 grams', '509 milligrams', '250 milligrams', 'http://www.eatingwell.com/recipes/corn_broccoli_calzones.html', 1, 'carbohydrates'),
+(24, '1', 'salmon', 'Red Thai salmon curry', 11.01, 326, '22 grams', '', '5 grams', '27 grams', '2 grams', '', '', 'http://www.bbcgoodfood.com/recipes/4728/red-thai-salmon-curry', 6, 'fats'),
+(25, '1', 'salmon', 'Salmon Scallopini with Almond Orzo', 9.40, 369, '17 grams', '71 milligrams', '24 grams', '26 grams', '2 grams', '543 milligrams', '', 'http://www.health.com/health/recipe/0,,10000000523894,00.html', 6, 'fats'),
+(26, '1', 'tuna', 'Pistachio-Crusted Tuna Steaks', 0.00, 241, '7 grams', '55 milligrams', '8 grams', '29 grams', '1 gram', '402 milligrams', '635 milligrams', 'http://www.eatingwell.com/recipes/pistachio_crusted_tuna_steaks.html', 6, 'fats'),
+(27, '1', 'tuna', 'Skillet Tuna Noodle Casserole\r\n', 0.00, 406, '8 grams', '53 milligrams', '47 grams', '32 grams', '5 grams', '684 milligrams', '593 milligrams', 'http://www.eatingwell.com/recipes/skillet_tuna_noodle_casserole.html', 6, 'fats'),
+(28, '1', 'mackerel', 'Korean Grilled Mackerel', 0.00, 221, '7 grams', '87 milligrams', '4 grams', '34 grams', 'N/A', '612 milligrams', '721 milligrams', 'http://www.eatingwell.com/recipes/korean_grilled_mackerel.html', 6, 'fats'),
+(29, '1', 'mackerel', 'Healthy Smoked Mackerel With Tomato and Mixed Beans\r\n', 0.00, 353, '39.2 grams', '133.1 milligrams', '36.7 grams', '54.7 grams', '11.2 grams', '159.3 grams', 'N/A', 'http://www.food.com/recipe/very-healthy-smoked-mackerel-with-tomato-and-mixed-beans-235757', 6, 'fats'),
+(30, '1', 'avocado', 'Avocado Stuffed Mushrooms', 0.00, 178, '17 grams', '6.3 milligrams', '6.7 grams', '3.4 grams', 'N/A', '254 milligrams', 'N/A', 'http://www.avocadocentral.com/avocado-recipes/Hass-Avocado-Stuffed-Marinated-Mushrooms', 6, 'fats'),
+(31, '1', 'avocado', 'Chili-Dusted Avocado Potatoes', 0.00, 329, '15.9 grams', 'N/A', '38.5 grams', '11.7 grams', '5.8 grams', '452 milligrams', 'N/A', 'http://www.prevention.com/food/cook/25-healthy-avocado-recipes?s=21', 6, 'fats'),
+(32, '1', 'beans', 'Linguine With Italian Tuna and White Beans', 6.94, 386, '6 grams', '', '62 grams', '26 grams', '9 grams', '', '', 'http://www.self.com/fooddiet/recipes/2011/10/linguine-with-italian-tuna-and-white-beans', 3, 'fibres'),
+(33, '1', 'beans', 'Bean Bolognese', 8.92, 443, '11 grams', '9 milligrams', '67 grams', '19 grams', '14 grams', '707 milligrams', '281 milligrams', 'http://www.eatingwell.com/recipes/bean_bolognese.html', 3, 'fibres'),
+(34, '1', 'lentils', 'Curried Red Lentil Soup', 0.00, 233, '3 grams', 'N/A', '35 grams', '18 grams', '13 grams', '756 milligrams', '910 milligrams', 'http://www.eatingwell.com/recipes/curried_red_lentil_soup.html', 3, 'fibres'),
+(35, '1', 'lentils', 'Baked Curried Brown Rice & Lentil Pilaf', 0.00, 348, '5 grams', '8 milligrams', '62 grams', '16 grams', '13 grams', '327 milligrams', '578 milligrams', 'http://www.eatingwell.com/recipes/baked_curried_brown_rice_lentil_pilaf.html', 3, 'fibres'),
+(36, '1', 'pulses', 'Taco Salad', 0.00, 447, '19 grams', '108 milligrams', '27 grams', '42 grams', '10 grams', '628 milligrams', '1126 milligrams', 'http://www.eatingwell.com/recipes/taco_salad.html', 3, 'fibres'),
+(37, '1', 'pulses', 'Fiesta Beans', 0.00, 169, '4 grams', '13 milligrams', '21 grams', '10 grams', '7 grams', '519 milligrams', '64 milligrams', 'http://www.eatingwell.com/recipes/easy_fiesta_beans.html', 3, 'fibres'),
+(38, '1,48', 'fish', 'Bourbon-Glazed Salmon', 13.44, 353, '14.1 grams', '87 milligrams', '13 grams', '37.4 grams', '0.3 grams', '87 milligrams', 'N/A', 'http://www.health.com/health/recipe/0,,10000001662929,00.html', 2, 'proteins'),
+(39, '1', 'fish', 'Fish Couscous with Onion T''faya', 14.66, 464, '18 grams', '54 milligrams', '39 grams', '37 grams', '6 grams', '702 milligrams', '839 milligrams', 'http://www.fitnessmagazine.com/recipes/recipecomdetail.jsp?recipeId=25132073', 2, 'proteins'),
+(40, '1', 'eggs', 'Green Eggs & Ham Frittata', 0.00, 217, '15 grams', '296 milligrams', '6 grams', '14 grams', '1 gram', '418 milligrams', '320 milligrams', 'http://www.eatingwell.com/recipes/green_eggs_ham_frittata.html', 2, 'proteins'),
+(41, '1', 'eggs', 'Simple Baked Eggs', 0.00, 109, '8.7 grams', '223 milligrams', '0.8 grams', '6.5 grams', '0.1 grams', '380 milligrams', 'N/A', 'http://www.myrecipes.com/recipe/simple-baked-eggs-10000001687642/', 2, 'proteins'),
+(42, '1,2', 'meat', 'Italian-Style Meat Loaf', 0.00, 263, '12.1 grams', '67 milligrams', '11.9 grams', '27.8 grams', '1.4 grams', '859 milligrams', 'N/A', 'http://www.myrecipes.com/recipe/italian-style-meat-loaf-10000001160605/', 2, 'proteins'),
+(43, '1', 'meat', 'Meatballs and Peppers', 0.00, 263, '9.8 grams', '70 milligrams', '12.4 grams', '30.2 grams', '1.9 grams', '788 milligrams', 'N/A', 'http://www.myrecipes.com/recipe/meatballs-peppers-10000000223101/', 2, 'proteins'),
+(44, '1,48', 'chicken', 'Chicken Breasts with Mushroom Cream Sauce', 0.00, 275, '15 grams', '84 milligrams', '5 grams', '25 grams', '1 gram', '373 milligrams', '370 milligrams', 'http://www.eatingwell.com/recipes/mushroom_cream_chicken.html', 2, 'proteins'),
+(45, '1,48', 'chicken', 'Chicken Shawarma', 0.00, 376, '14 grams', '64 milligrams', '34 grams', '31 grams', '6 grams', '606 milligrams', '603 milligrams', 'http://www.eatingwell.com/recipes/chicken_shawarma.html', 2, 'proteins'),
+(46, '1,70', 'sweet potato', 'Sweet Potato Casserole\r\n', 7.73, 193, '6.3 grams', '38 milligrams', '31.4 grams', '2.9 grams', '1.9 grams', '235 milligrams', 'N/A', 'http://www.health.com/health/recipe/0,,10000001545713,00.html', 4, 'vitamins'),
+(47, '1', 'sweet potato', 'Lamb and Sweet Potato-Curry Stew\r\n', 13.43, 449, '9.8 grams', '65 milligrams', '60.4 grams', '29.6 grams', '8.2 grams', '608 milligrams', 'N/A', 'http://www.health.com/health/recipe/0,,10000000521806,00.html', 4, 'vitamins'),
+(48, '1', 'sweet potato', 'Sweet Potato Casserole\r\n', 7.73, 193, '6.3 grams', '38 milligrams', '31.4 grams', '2.9 grams', '1.9 grams', '235 milligrams', 'N/A', 'http://www.health.com/health/recipe/0,,10000001545713,00.html', 4, 'vitamins'),
+(49, '1', 'sweet potato', 'Lamb and Sweet Potato-Curry Stew\r\n', 13.43, 449, '9.8 grams', '65 milligrams', '60.4 grams', '29.6 grams', '8.2 grams', '608 milligrams', 'N/A', 'http://www.health.com/health/recipe/0,,10000000521806,00.html', 4, 'vitamins');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `search_queries`
+--
+
+CREATE TABLE `search_queries` (
+  `user_ids` varchar(10000) NOT NULL,
+  `search_term` varchar(10000) NOT NULL,
+  `date_time_of_search` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `search_queries`
+--
+
+INSERT INTO `search_queries` (`user_ids`, `search_term`, `date_time_of_search`) VALUES
+('64,60,78', 'bananas', '2014-05-22 10:12:43'),
+('64,70,70,70,70,70,70,70', 'potatoes', '2014-05-30 16:22:34'),
+('64', 'corn', '2014-05-21 16:17:19'),
+('64', 'courgette', '2014-05-21 16:22:31'),
+('64', 'sweetcorn', '2014-05-21 16:22:57'),
+('64', 'salmon', '2014-05-21 16:33:30'),
+('64', 'beans', '2014-05-21 16:34:53'),
+('64', 'chickpeas', '2014-05-22 10:09:57'),
+('70', 'banana corn fritters', '2014-05-30 12:16:52'),
+('70', 'banana', '2014-05-30 12:17:06'),
+('70', 'corn', '2014-05-30 12:17:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(3) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `age` int(100) NOT NULL,
+  `num_in_household` int(10) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `email_address` varchar(50) NOT NULL,
+  `active` tinyint(4) NOT NULL,
+  `email_code` varchar(65) NOT NULL,
+  `user_bmi` float(4,2) NOT NULL,
+  `height` float(4,2) NOT NULL,
+  `weight` int(100) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `first_name`, `last_name`, `age`, `num_in_household`, `password`, `email_address`, `active`, `email_code`, `user_bmi`, `height`, `weight`) VALUES
+(1, 'sarah', 'Sarah', 'Al-Hawi', 20, 5, '71bf3bc704f0cbc2d5e21a2ce02abcd933f1729d', 'shawi3333@gmail.com', 0, 'a63e934179f4d464b226c8c6ce9dc48c', 0.00, 0.00, 0),
+(9, 'test2', 'Sarah', 'Al-Hawi', 25, 0, '537bf41310b661d7501c8eedef6b22bfa1a5e204', 'sarah_alhawi@hotmail.co.uk', 0, '0a4fbe3c59c3e401913aaab75c0fc188', 0.00, 0.00, 0),
+(47, 'testing', 'Sarah', 'Al-Hawi', 23, 0, '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', 'shawi3333@gmail.com', 0, '782de48bfcfa2e9b0ba7968f28a8234f', 0.00, 0.00, 0),
+(48, 'sarah1', '', '', 21, 0, 'ad7fddf845081b82799d19bcfee7070497059e2c', 'shawi3333+1@gmail.com', 0, '3c75c8d88b3b46fc05959b807049b99a', 57.14, 0.00, 0),
+(49, 'test', 'Sarah', '', 0, 0, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'shawi3333@gmail.com', 0, '9f0449cf665fe83ebdaf8a4cff39c0c5', 35.50, 0.00, 0),
+(50, 'a11', 'A', 'W', 25, 3, '8308651804facb7b9af8ffc53a33a22d6a1c8ac2', 'adrian.m.h.wu@gmail.com', 0, 'f09f61bfad2dca36b32912fbfccb4966', 0.00, 0.00, 0),
+(51, 'test3', '', '', 34, 0, '3ebfa301dc59196f18593c45e519287a23297589', 'shawi3333@gmail.com', 0, '5809ef5abe4cc40a9acbbfb5cd6ee4ed', 0.00, 0.00, 0),
+(52, 'test4', '', '', 29, 0, '1ff2b3704aede04eecb51e50ca698efd50a1379b', 'shawi3333+2@gmail.com', 0, '8c5dfdbc320366613f0f6fbd503e19c6', 0.00, 0.00, 0),
+(53, 'test5', '', '', 32, 0, '911ddc3b8f9a13b5499b6bc4638a2b4f3f68bf23', 'shawi3333+3@gmail.com', 0, '09c271d9ab52a9c38c12e7f7d5af3bd8', 0.00, 0.00, 0),
+(54, 'test6', '', '', 0, 0, 'a66df261120b6c2311c6ef0b1bab4e583afcbcc0', 'shawi3333+4@gmail.com', 0, 'a8add8fc2dafdda8aedcb139eedb4f91', 0.00, 0.00, 0),
+(55, 'test7', '', '', 40, 0, 'ea3243132d653b39025a944e70f3ecdf70ee3994', 'shawi3333+5@gmail.com', 1, '8b6660e7334135816634f9c48718d792', 0.00, 0.00, 0),
+(56, 'test8', '', '', 39, 0, 'd03f9d34194393019e6d12d7c942827ebd694443', 'shawi3333+8@gmail.com', 1, 'a07ae9fd219798f4921ebfe12c905d19', 0.00, 0.00, 0),
+(57, 'test9', '', '', 42, 0, '53d525836cc96d089a5a4218b464fda532f7debe', 'shawi3333+9@gmail.com', 0, '58f004ed04a92bde1867e1f95971f5cc', 0.00, 0.00, 0),
+(58, 'test10', '', '', 43, 0, '168f4029f416ee06565f12e697dfc1534ae69d32', 'shawi3333+10@gmail.com', 0, 'e6dc17ba73f8c0ede54a8d5abd9070ed', 0.00, 0.00, 0),
+(59, 'test11', '', '', 33, 0, '100c4e57374fc998e57164d4c0453bd3a4876a58', 'shawi3333+11@gmail.com', 0, '200fb6c7d35524e45fb800e22264dc7e', 0.00, 0.00, 0),
+(60, 'test12', '', '', 35, 0, '4ff1a33e188b7b86123d6e3be2722a23514a83b4', 'shawi3333+12@gmail.com', 0, '0be68a0d22ec7543256361b84b2b7b48', 0.00, 0.00, 0),
+(61, 'test13', '', '', 24, 0, 'd804cd9cc0c42b0652bab002f67858ab803c40c6', 'shawi3333+13@gmail.com', 0, 'fc93aa3da909813bf660571701112bb6', 0.00, 0.00, 0),
+(63, 'test20', 'Sarah', '', 28, 0, '57e5a4df68387d1d97210cf40c41104ce9256cf6', 'shawi3333@gmail.com', 0, 'c14094bab32128c8934c0b5e4812777f', 68.75, 0.00, 0),
+(64, 'test100', '', '', 22, 5, '8046bf6eefbb0a26c29c62fc8f9deff7a6c26e9b', 'shawi3333+14@gmail.com', 0, '16a5af152dc8eae7b0d3c97aede3552a', 23.16, 1.87, 81),
+(65, 'test200', '', '', 19, 0, '71d6dcd94e3316111603f027bb4c71a8bcc80abd', 'shawi3333+20@gmail.com', 0, 'b0504ea1efbd06522df00c5f183073a6', 0.00, 0.00, 0),
+(66, 'test159', '', '', 15, 0, '551754d8edad5a2fe2a67d8c584e6de06dbc2ce9', 'shawi3333+159@gmail.com', 1, 'a866ada1e3da209c6c07c509ddd1d302', 0.00, 0.00, 0),
+(67, 'test160', '', '', 34, 0, 'e7b3be361a91b968124b78f84ef768957764b26f', 'shawi3333+160@gmail.com', 0, '8ec6e688c747f581b2fc434f9f8be195', 0.00, 0.00, 0),
+(68, 'test161', '', '', 0, 0, 'd232dfbe4513aa2ff6a2dd24f39ff7f67ea14d5d', 'shawi3333+161@gmail.com', 0, '47d2045139945662debe0e9d654c62c6', 0.00, 0.00, 0),
+(69, 'test163', '', '', 44, 0, '1374c20d8fe848616b1ba5b4f1884f00f557f81a', 'shawi3333+163@gmail.com', 0, '9084d4288a592820d46a7b5a51b3a2c9', 0.00, 0.00, 0),
+(70, 'sarahistesting', '', '', 0, 0, '936b645928f84171bba9583ac2e34187457df8dc', 'shawi3333+102@gmail.com', 1, '27a4c7b7a5965cdf26d7c2bcf8f10bb3', 23.42, 1.64, 63),
+(71, 'sarahblah', 'Sarah', 'Alhawi', 0, 0, '4939154895bbab36a4a84263947060dc4a785525', 'shawi3333@gmail.com', 0, 'b2d2480a0d65acc3c0de9322a269a230', 0.00, 0.00, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_goals`
+--
+
+CREATE TABLE `users_goals` (
+  `goal_id` tinyint(3) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(10000) NOT NULL,
+  `goal` varchar(30) NOT NULL,
+  `time` varchar(30) NOT NULL,
+  `office` varchar(30) NOT NULL,
+  `gym` varchar(30) NOT NULL,
+  `gym_yes` varchar(30) NOT NULL,
+  `food` varchar(30) NOT NULL,
+  PRIMARY KEY (`goal_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `users_goals`
+--
+
+INSERT INTO `users_goals` (`goal_id`, `user_id`, `goal`, `time`, `office`, `gym`, `gym_yes`, `food`) VALUES
+(1, '', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', '3 - 4 times a Week', 'Chicken'),
+(2, '', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', '3 - 4 times a Week', 'Chicken'),
+(3, '', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Once a Week', 'Cheese, Nuts'),
+(4, '', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Once a Week', 'Cheese, Nuts'),
+(5, '', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Twice a Week', 'Chicken, Beef'),
+(6, '', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Twice a Week', 'Chicken, Beef'),
+(7, '', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Twice a Week', 'Cheese, Bread'),
+(8, '2', 'Get Fitter', '1 month or Less', 'Yes', 'Yes', 'More than 4 times a Week', 'Junk Food'),
+(9, '2', 'Tone Up', '1 month or Less', 'Yes', 'Yes', 'Once a Week', 'Nuts'),
+(10, '1', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Twice a Week', 'Lamb'),
+(11, '47', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Once a Week', 'Chicken, Beef'),
+(12, '49', 'Tone Up', '1 month or Less', 'Yes', 'Yes', 'Once a Week', 'Cheese'),
+(13, '49', 'Get Fitter', '3 - 6 Months', 'Yes', 'Yes', 'Once a Week', 'Chicken, Beef'),
+(14, '63', 'Lose Weight', '1 month or Less', 'Yes', '', 'Once a Week', 'Lamb, Fish (Any), Cheese'),
+(15, '70', 'Lose Weight', '1 month or Less', 'Yes', 'Yes', 'Twice a Week', 'Chicken, Lamb, Nuts, Fruit');

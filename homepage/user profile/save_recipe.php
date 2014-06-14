@@ -163,7 +163,8 @@ if (!isset($_SESSION['user_id'])) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
 
-// get value of id that sent from address bar
+           // get value of id that sent from address bar
+
           $id=$_GET['id'];
 
           $query = "SELECT * FROM recipes WHERE user_ids LIKE '%$user_id%' AND recipe_id = $id";
@@ -173,6 +174,13 @@ if (!isset($_SESSION['user_id'])) {
 
             $query= "UPDATE recipes SET user_ids = CONCAT(user_ids,',', $user_id) WHERE recipe_id = $id";
             $result= mysqli_query($dbc, $query);
+
+          } else {
+
+            echo "This recipe is already saved to your profile.";
+            echo "<BR>";
+            echo "<BR>";
+            echo "<a href='viewprofile.php'>Go to your saved recipes</a>";
 
           }
 

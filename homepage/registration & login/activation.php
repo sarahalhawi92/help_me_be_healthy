@@ -125,11 +125,10 @@
           $query = "SELECT * FROM users WHERE email_code ='$passkey'";
           $data = mysqli_query($dbc, $query);
 
-//breaking here
 
           if(mysqli_num_rows($data) == 1){
 
-// Count how many rows the passkey has 
+          // Count how many rows the passkey has 
 
             $count=mysqli_num_rows($data);
 
@@ -148,9 +147,11 @@
               echo "<BR>";
               echo "<a href='login.php'>You are now ready to login</a>";
             }
-            else {
-              echo "Your activation link has expired. Click here to send another one.";
-            }
+            // else {
+            //   echo "Your activation link has expired. Click <a href='viewprofile.php'>here</a> to send another one.";
+
+
+            // }
 
           }
 
