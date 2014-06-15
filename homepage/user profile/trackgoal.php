@@ -244,8 +244,8 @@ if (!isset($_SESSION['user_id'])) {
 
               <p><b>And finally, what is your gender?</b></p>
 
-              <input type="radio" name="male[]" value="male">  Male  <br>
-              <input type="radio" name="female[]" value="female"> Female  <br><br> 
+              <input type="radio" name="gender[]" value="male">  Male  <br>
+              <input type="radio" name="gender[]" value="female"> Female  <br><br> 
 
               <input type="submit">
 
@@ -324,21 +324,94 @@ if (!isset($_SESSION['user_id'])) {
                 $calorie_intake = $row['GROUP_CONCAT(calorie_intake)'];
               }
             }
+
+            //radar chart
+
+            if ( isset($_POST['carbs']) ) { 
+
+             $carbs = $_POST['carbs'];
+
+             $query_6 = "UPDATE `users` SET `calories_from_carbs` = $carbs WHERE `user_id` = " . $_SESSION['user_id'];
+             $data_6 = mysqli_query($dbc, $query_6);
+
+             while($row = mysqli_fetch_array($data_6))
+             {
+              $carbs = $row['calories_from_carbs'];
+            }
           }
 
-        mysqli_close($dbc);
+          if ( isset($_POST['proteins']) ) { 
 
-        ?>
+           $proteins = $_POST['proteins'];
 
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <title>Line Chart</title>
-          <script src="Chart.js"></script>
-          <script type="text/javascript">
-          function createChart() {
-            var data = {
-              labels : ["14/06","15/06","17/06","18/06","19/06","20/06","21/6","22/6","23/6"],
+           $query_7 = "UPDATE `users` SET `calories_from_proteins` = $proteins WHERE `user_id` = " . $_SESSION['user_id'];
+           $data_7 = mysqli_query($dbc, $query_7);
+
+           while($row = mysqli_fetch_array($data_7))
+           {
+            $proteins = $row['calories_from_proteins'];
+          }
+        }
+
+        if ( isset($_POST['fats']) ) { 
+
+         $fats = $_POST['fats'];
+
+         $query_8 = "UPDATE `users` SET `calories_from_fats` = $fats WHERE `user_id` = " . $_SESSION['user_id'];
+         $data_8 = mysqli_query($dbc, $query_8);
+
+         while($row = mysqli_fetch_array($data_8))
+         {
+          $fats = $row['calories_from_fats'];
+        }
+      }
+
+      $query_9 = "SELECT CONCAT(`calories_from_carbs`, ',', `calories_from_fats`, ',', `calories_from_proteins`) FROM `users` WHERE `user_id` = " . $_SESSION['user_id'];
+      $data_9 = mysqli_query($dbc, $query_9);
+
+      while($row = mysqli_fetch_array($data_9))
+      {
+        $all_intake = $row['CONCAT(`calories_from_carbs`, \',\', `calories_from_fats`, \',\', `calories_from_proteins`)'];
+      }
+
+      //get gender of user
+
+      if ( isset($_POST['gender']) ) { 
+
+         $_POST['gender'] = implode(', ', $_POST['gender']); //Converts an array into a single string
+         $gender = $_POST['gender'];
+       }
+
+       $query_10 = "UPDATE `users` SET `gender` = '$gender' WHERE `user_id` = " . $_SESSION['user_id'];
+       $data_10 = mysqli_query($dbc, $query_10);
+
+       while($row = mysqli_fetch_array($data_10))
+       {
+        $gender = $row['gender'];
+      }
+
+      //if male do this, if female do this
+
+      if (preg_match('/^m/', $gender)) {
+        $male =array(220,1200,855);
+      } else if (preg_match('/^fe/', $gender)){
+        $female =array(180,920,630);
+      }
+    }
+
+    mysqli_close($dbc);
+
+    ?>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Line Chart</title>
+      <script src="Chart.js"></script>
+      <script type="text/javascript">
+      function createChart() {
+        var data = {
+          labels : ["14/06","15/06","17/06","18/06","19/06","20/06","21/6","22/6","23/6"],
               //weight in blue
               datasets_Y1 : [
               {
@@ -360,20 +433,61 @@ if (!isset($_SESSION['user_id'])) {
 
             }
 
-            var barChart = new Chart(document.getElementById("trChart").getContext("2d")).LineDoubleY(data,{Y1_scaleOverride:true,Y2_scaleOverride:true,Y1_scaleStepWidth:5,Y1_scaleStartValue:40, Y2_scaleStepWidth:100,Y2_scaleStartValue:400, scaleFontColor: "#ff0000"});
+            var barChart = new Chart(document.getElementById("trChart").getContext("2d")).LineDoubleY(data,{Y1_scaleOverride:true,Y2_scaleOverride:true,Y1_scaleStepWidth:5,Y1_scaleStartValue:40, Y2_scaleStepWidth:100,Y2_scaleStartValue:400, scaleFontColor: "#000000"});
 
           }
-        </script></head>
-        <body onload="createChart();">
-          <canvas id="trChart" width="600" height="450"></canvas>
-          <p> Weight is shown from the left and calories is shown from the right. </p>
-          <?php } ?>
+          //radar chart showing calories from carbs, proteins, fats- different for men and women
+          function createChart2() {
+            var data = {
+              labels: ["Calories From Carbohydrates", "Calories From Fats", "Calories From Proteins"],
+              datasets : [
+              {
+                fillColor : "rgba(220,220,220,0.5)",
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                data : [<?php echo $all_intake; ?>]
+              },
+              {
+                fillColor : "rgba(151,187,205,0.5)",
+                strokeColor : "rgba(151,187,205,1)",
+                pointColor : "rgba(151,187,205,1)",
+                pointStrokeColor : "#fff",
+                data : [<?php if (preg_match('/^m/', $gender)) { echo $male[0] . ", " . $male[1] . ", " . $male[2]; } else if (preg_match('/^fe/', $gender)){ echo $female[0] . ", " . $female[1] . ", " . $female[2]; } ?>] 
+              }
+              ]  }
 
-        </body></html>
-      </div>
-    </div>
-  </div>
+              var options = {
 
-  <div id="grass"></div>
+        //Boolean - If we show the scale above the chart data           
+        scaleOverlay : false,
+        scaleShowLabels : true,
+        scaleFontSize : 10,
+        scaleFontColor : "#000000"
+      }
+
+      var cht = document.getElementById('tsChart');
+      var ctx = cht.getContext('2d');
+      ctx.canvas.width = 600;
+      ctx.canvas.height = 550;
+      var radarChart = new Chart(ctx).Radar(data,options);
+    }
+  </script></head>
+  <body onload="createChart(); createChart2();">
+    <h2>Weight VS Calories</h2>
+    <canvas id="trChart" width="600" height="450"></canvas>
+    <br><br>
+    <p> Weight is shown from the left and calories is shown from the right. </p>
+    <h2>Carbohydrate, Protein and Fat Intake</h2>
+    <p>The chart below shows you how your intake of carbohydrates, proteins and fats compares to what the recommended amount is. </p>
+    <canvas id="tsChart"></canvas>
+    <?php } ?>
+
+  </body></html>
+</div>
+</div>
+</div>
+
+<div id="grass"></div>
 </body>
 </html>

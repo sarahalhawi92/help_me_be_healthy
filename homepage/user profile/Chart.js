@@ -349,7 +349,7 @@ window.Chart = function(context){
             datasetStroke : true,
             datasetStrokeWidth : 2,
             datasetFill : true,
-            animation :false,
+            animation :true,
             animationSteps : 60,
             animationEasing : "easeOutQuart",
             onAnimationComplete : null
@@ -1088,8 +1088,6 @@ window.Chart = function(context){
         calculateDrawingSizes();
         
         valueBounds = getValueBounds();
-        
-        
         
         //Check and set the scale
         labelTemplateString = (config.scaleShowLabels)? config.scaleLabel : "";
