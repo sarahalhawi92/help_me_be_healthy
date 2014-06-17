@@ -202,7 +202,7 @@ window.Chart = function(context){
     
         chart.Radar.defaults = {
             scaleOverlay : false,
-            scaleOverride : false,
+            scaleOverride : true,
             scaleSteps : null,
             scaleStepWidth : null,
             scaleStartValue : null,
@@ -217,7 +217,7 @@ window.Chart = function(context){
             scaleFontColor : "#666",
             scaleShowLabelBackdrop : true,
             scaleBackdropColor : "rgba(255,255,255,0.75)",
-            scaleBackdropPaddingY : 2,
+            scaleBackdropPaddingY : 10,
             scaleBackdropPaddingX : 2,
             angleShowLineOut : true,
             angleLineColor : "rgba(0,0,0,.1)",

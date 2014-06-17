@@ -4,6 +4,30 @@
     src: local("Yanone Kaffeesatz"), url('../fonts/YanoneKaffeesatz-Regular.ttf'); 
 } 
 
+.container {
+  width: 600px;
+  margin: 10 auto;
+  overflow: auto;
+
+  .title {
+    text-align: center;
+    color: #FFA500;
+  }
+
+  .title__link {
+    display: inline-block;
+    color: white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.chart-demo {
+  float: left;
+  width: 800px;
+}
 html { 
   height: 100%;
 }
