@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
   $email_code = mysqli_real_escape_string($dbc, md5($_POST['$username'] + microtime()));
 
   if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2']) && !empty($_POST['email_address']) && ($password1 == $password2)) {
-      
+
       // Make sure someone isn't already registered using this username
 
     $query = "SELECT * FROM users WHERE username = '$username'";
@@ -69,9 +69,15 @@ if (isset($_POST['submit'])) {
     }
 
   }
-  else {
-    echo '<p class="p2">You must enter all the required sign-up information, including the desired password twice.</p>';
+  elseif (empty($_POST['username']) || empty($_POST['password1']) || empty($_POST['password2']) || empty($_POST['email_address'])) {
+    echo '<p id="p2">You must enter all the required sign-up information, including the desired password twice.</p>';
   }
+  elseif ($password1 != $password2) {
+
+  echo '<p id="p2">The passwords that you entered do not match. Please try again.</p>';
+
+
+}
 
 }
 

@@ -125,7 +125,7 @@ if (!isset($_SESSION['user_id'])) {
             </li>
           </nav>
         </header>
-        <div id="content">
+        <div id="content" style="display: inline-block;">
 
           <?php
 
@@ -242,6 +242,9 @@ if (!isset($_SESSION['user_id'])) {
          $data11= mysqli_query($dbc,$query11) or die('Query failed: ' . mysqli_error());
 
          ?>
+
+         <!-- html for tables -->
+
          <h4>What you have searched for</h4>
          <table width="50%" border="1" cellspacing="2" cellpadding="0">
             <tr>
@@ -261,6 +264,7 @@ if (!isset($_SESSION['user_id'])) {
             ?>
     </table>
     <h4>What others like you have searched for</h4><br>
+    <div>
     <h5><b>Based on age</b></h5>
     <table width="50%" border="1" cellspacing="2" cellpadding="0">
         <tr>
@@ -279,6 +283,7 @@ if (!isset($_SESSION['user_id'])) {
           }
           ?>
   </table>
+</div>
   <table width="10%" border="1" cellspacing="2" cellpadding="0" style="position: relative; left:320px; bottom:170px;">
     <tr>
 
