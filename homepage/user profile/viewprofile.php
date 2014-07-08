@@ -177,7 +177,6 @@ if (!isset($_SESSION['user_id'])) {
 
         if (mysqli_num_rows($data) == 1) 
         {
-      // The user row was found so display the user data
           $row = mysqli_fetch_array($data);
           echo '<table>';
           if (!empty($row['username'])) {
@@ -190,18 +189,15 @@ if (!isset($_SESSION['user_id'])) {
             echo '<tr><td class="label">BMI:</td><td>' . $row['user_bmi'] . '</td></tr>';
           }
           echo '</table>';
-    } // End of check for a single row of user results
+    } 
     else 
     {
       echo '<p class="error">There was a problem accessing your profile.</p>';
     }
-    echo "<br>";
-
-    //BMI graph code
 
   
     if (mysqli_num_rows($recipeData) > 0) {
-      echo "<h>Saved recipes:</h>";
+      echo "<b><h>Saved recipes:</b></h>";
       echo "<table border='1' width='45%'>
       <tr>
       <th>Recipe Name</th>
@@ -229,11 +225,10 @@ if (!isset($_SESSION['user_id'])) {
     $average = $maxPrice/$counter; 
 
     //select recipe from database with price range of average
+    //select randomly based on price
 
-    //select randomly based on price and calories
-
-    $query = "SELECT  `recipe_name`, `category_name`, `ingredient_name` FROM  `recipes` WHERE  `recipe_price` <= (SELECT AVG (`recipe_price`) FROM  `recipes` 
-      WHERE  `user_ids` LIKE  '%$user_id%') ORDER BY RAND() LIMIT 1";
+    $query = "SELECT  `recipe_name`, `category_name`, `ingredient_name` FROM  `recipes` WHERE  `recipe_price` <= (SELECT AVG (`recipe_price`) 
+            FROM  `recipes` WHERE  `user_ids` LIKE  '%$user_id%') ORDER BY RAND() LIMIT 1";
 
 $suggestData = mysqli_query($dbc, $query);
 $firstStr = $row['category_name'] ;
@@ -250,10 +245,12 @@ while($row = mysqli_fetch_array($suggestData)){
   ?> 
   Based on what you have searched, why not try<a href="../<?php echo $fullStr; ?>"> "<?php echo $recipe_name; ?>" </a>
   <?php
+  echo "<br>";
+  echo "<br>";
 }
 
 if (mysqli_num_rows($goalsData) > 0) {
-  echo "<h>Your Goals:</h>";
+  echo "<h><b>Your Goals:</b></h>";
   echo "<table border='1' width='50%'>
   <tr>
   <th>Goal</th>

@@ -366,7 +366,8 @@ if (!isset($_SESSION['user_id'])) {
         }
       }
 
-      $query_9 = "SELECT CONCAT(`calories_from_carbs`, ',', `calories_from_fats`, ',', `calories_from_proteins`) FROM `users` WHERE `user_id` = " . $_SESSION['user_id'];
+      $query_9 = "SELECT CONCAT(`calories_from_carbs`, ',', `calories_from_fats`, ',', `calories_from_proteins`) 
+                FROM `users` WHERE `user_id` = " . $_SESSION['user_id'];
       $data_9 = mysqli_query($dbc, $query_9);
 
       while($row = mysqli_fetch_array($data_9))
@@ -393,9 +394,9 @@ if (!isset($_SESSION['user_id'])) {
     //if male do this, if female do this
 
     if (preg_match('/^m/', $gender)) {
-      $male =array(220,1200,855);
+      $male =array(1200,220,855);
     } else if (preg_match('/^fe/', $gender)){
-      $female =array(180,920,630);
+      $female =array(920,180,630);
     }
   }
 
@@ -453,7 +454,8 @@ if (!isset($_SESSION['user_id'])) {
               strokeColor : "rgba(151,187,205,1)",
               pointColor : "rgba(151,187,205,1)",
               pointStrokeColor : "#fff",
-              data : [<?php if (preg_match('/^m/', $gender)) { echo $male[0] . ", " . $male[1] . ", " . $male[2]; } else if (preg_match('/^fe/', $gender)){ echo $female[0] . ", " . $female[1] . ", " . $female[2]; } ?>] 
+              data : [<?php if (preg_match('/^m/', $gender)) { echo $male[0] . ", " . $male[1] . ", " . $male[2]; } 
+                            else if (preg_match('/^fe/', $gender)){ echo $female[0] . ", " . $female[1] . ", " . $female[2]; } ?>] 
             }
             ]  }
 
@@ -506,6 +508,7 @@ if (!isset($_SESSION['user_id'])) {
           <p> Weight is shown from the left and calories is shown from the right. </p>
           <h2>Carbohydrate, Protein and Fat Intake</h2>
           <p>The chart below shows you how your intake of carbohydrates, proteins and fats compares to what the recommended amount is. </p>
+          <p>In light blue you can see the recommended amount from each food group. In grey is what you are having. </p>
           <div style=" width: 620px; height:500px; display: inline-block; margin-top:-120px">
             <canvas id="tsChart" width="620px" height="600px" top=""></canvas>
          </div>

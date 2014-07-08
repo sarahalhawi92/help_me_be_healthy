@@ -7,7 +7,10 @@ if (!isset($_SESSION['user_id'])) {
     $_SESSION['user_id'] = $_COOKIE['user_id'];
     $_SESSION['username'] = $_COOKIE['username'];
   }
+
 }
+$user_id = $_SESSION['user_id'];
+echo $user_id;
 ?> 
 <!DOCTYPE HTML>
 <html>
@@ -129,17 +132,6 @@ if (!isset($_SESSION['user_id'])) {
 
           <?php
 
-          session_start();
-
-          if (!isset($_SESSION['user_id'])) {
-            if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-              $_SESSION['user_id'] = $_COOKIE['user_id'];
-              $_SESSION['username'] = $_COOKIE['username'];
-            }
-          }
-
-          $user_id = $_SESSION['user_id'];
-
           $dbc = mysqli_connect('localhost', 'root', 'root', 'help_me_be_healthy') or die("Error " . mysqli_error($dbc));
           mysqli_set_charset($dbc, "utf8");
 
@@ -166,34 +158,25 @@ if (!isset($_SESSION['user_id'])) {
 
           //get all users with similar age
 
-          $query3 ="SELECT GROUP_CONCAT(age), GROUP_CONCAT(user_id) FROM users WHERE age LIKE  '%$trimmed_age%'";
+          $query3 ="SELECT GROUP_CONCAT(age ORDER BY age),GROUP_CONCAT(user_id) FROM users WHERE age LIKE '$trimmed_age%'"; 
 
           $data3= mysqli_query($dbc,$query3) or die('Query failed: ' . mysqli_error());
 
           while($row = mysqli_fetch_array($data3)){
 
-            $ages = $row['GROUP_CONCAT(age)'];
+            $ages = $row['GROUP_CONCAT(age ORDER BY age)'];
             $user_ids = $row['GROUP_CONCAT(user_id)'];
           }
 
           //look up those user ids in search queries table and display results
 
-          $query4 = "SELECT * FROM search_queries WHERE user_ids IN ( $user_ids )";
+          $query4 = "SELECT search_term, date_time_of_search FROM search_queries WHERE user_ids IN ( $user_ids )";
 
           $data4= mysqli_query($dbc,$query4) or die('Query failed: ' . mysqli_error());
 
           //put the age in the table where search results are displayed
 
-          $query5= "SELECT GROUP_CONCAT(user_ids) FROM search_queries WHERE user_ids IN ( $user_ids )";
-
-          $data5= mysqli_query($dbc,$query5) or die('Query failed: ' . mysqli_error());
-
-          while($row = mysqli_fetch_array($data5)){
-
-            $user_ids2 = $row['GROUP_CONCAT(user_ids)'];
-          }
-
-          $query6= "SELECT age FROM users WHERE user_id IN ( $user_ids2 )";
+          $query6= "SELECT age FROM users WHERE user_id IN ( $user_ids ) ORDER BY age ASC";
 
           $data6= mysqli_query($dbc,$query6) or die('Query failed: ' . mysqli_error());
 
@@ -208,36 +191,27 @@ if (!isset($_SESSION['user_id'])) {
            $num_in_household =  $row['num_in_household'];
          }
 
-        //get all users with similar age
+        //get all users with similar number in household
 
-         $query8 ="SELECT GROUP_CONCAT(num_in_household), GROUP_CONCAT(user_id) FROM users WHERE num_in_household LIKE  '%$num_in_household%'";
+         $query8 ="SELECT GROUP_CONCAT(num_in_household ORDER BY num_in_household), GROUP_CONCAT(user_id) FROM users WHERE num_in_household LIKE  '$num_in_household%'";
 
          $data8= mysqli_query($dbc,$query8) or die('Query failed: ' . mysqli_error());
 
          while($row = mysqli_fetch_array($data8)){
 
-           $num_in_household = $row['GROUP_CONCAT(num_in_household)'];
-           $user_ids = $row['GROUP_CONCAT(user_id)'];
+           $num_in_household = $row['GROUP_CONCAT(num_in_household ORDER BY num_in_household)'];
+           $user_ids2 = $row['GROUP_CONCAT(user_id)'];
          }
 
          //look up those user ids in search queries table and display results
 
-         $query9 = "SELECT * FROM search_queries WHERE user_ids IN ( $user_ids )";
+         $query9 = "SELECT search_term, date_time_of_search FROM search_queries WHERE user_ids IN ( $user_ids2 )";
 
          $data9= mysqli_query($dbc,$query9) or die('Query failed: ' . mysqli_error());
 
-         //put the age in the table where search results are displayed
+         //put the number in household in the table where search results are displayed
 
-         $query10= "SELECT GROUP_CONCAT(user_ids) FROM search_queries WHERE user_ids IN ( $user_ids )";
-
-         $data10= mysqli_query($dbc,$query10) or die('Query failed: ' . mysqli_error());
-
-         while($row = mysqli_fetch_array($data10)){
-
-           $user_ids3 = $row['GROUP_CONCAT(user_ids)'];
-         }
-
-         $query11= "SELECT num_in_household FROM users WHERE user_id IN ( $user_ids3 )";
+         $query11= "SELECT num_in_household FROM users WHERE user_id IN ( $user_ids2 ) ORDER BY num_in_household ASC";
 
          $data11= mysqli_query($dbc,$query11) or die('Query failed: ' . mysqli_error());
 
@@ -245,8 +219,18 @@ if (!isset($_SESSION['user_id'])) {
 
          <!-- html for tables -->
 
-         <h4>What you have searched for</h4>
-         <table width="50%" border="1" cellspacing="2" cellpadding="0">
+         <?php 
+
+         $check_query = "SELECT `user_ids` FROM search_queries WHERE `user_ids` LIKE '%$user_id%'";
+         $data_check = mysqli_query($dbc,$check_query) or die('Query failed: ' . mysqli_error());
+
+         if (mysqli_num_rows($data_check) == 0){ 
+          echo "You have not made any search queries. Please make a search to view the content of this page.";
+        } else {
+          ?>
+
+          <h4>What you have searched for</h4>
+          <table width="50%" border="1" cellspacing="2" cellpadding="0">
             <tr>
               <td align="center"><strong>Search Query</strong></td>
               <td align="center"><strong>Date and Time of Search</strong></td>
@@ -256,93 +240,85 @@ if (!isset($_SESSION['user_id'])) {
             while($row = mysqli_fetch_array($data)){
               ?>
               <tr>
-                <td><?php echo $row['search_term']; ?></td>
-                <td><?php echo $row['date_time_of_search']; ?></td>
+                <td style="text-align:center"><?php echo $row['search_term']; ?></td>
+                <td style="text-align:center"><?php echo $row['date_time_of_search']; ?></td>
               </tr>
               <?php
             }
             ?>
-    </table>
-    <h4>What others like you have searched for</h4><br>
-    <div>
-    <h5><b>Based on age</b></h5>
-    <table width="50%" border="1" cellspacing="2" cellpadding="0">
-        <tr>
-          <td align="center"><strong>Search Query</strong></td>
-          <td align="center"><strong>Date and Time of Search</strong></td>
-        </tr>
+          </table>
+          <h4>What others like you have searched for</h4><br>
+          <div>
+            <h5><b>Based on age</b></h5>
+            <?php 
 
-        <?php
-        while($row = mysqli_fetch_array($data4)){
-          ?>
-          <tr>
-            <td><?php echo $row['search_term']; ?></td>
-            <td><?php echo $row['date_time_of_search']; ?></td>
-            </tr>
-            <?php
-          }
-          ?>
-  </table>
-</div>
-  <table width="10%" border="1" cellspacing="2" cellpadding="0" style="position: relative; left:320px; bottom:170px;">
-    <tr>
+            $check_query2 = "SELECT `age` FROM users WHERE user_id = $user_id";
+            $data_check2 = mysqli_query($dbc,$check_query2) or die('Query failed: ' . mysqli_error());
 
-      <tr>
-        <td align="center"><strong>Age</strong></td>
-      </tr>
+            if (mysqli_num_rows($data_check2) == 0){ 
+              echo "You have not entered your age during registration.";
+              echo '<br>';
+              echo '<br>';
+              echo '<br>';
+            } else {
+              ?>
+              <table width="50%" border="1" cellspacing="2" cellpadding="0">
+                <tr>
+                  <td align="center"><strong>Search Query</strong></td>
+                  <td align="center"><strong>Date and Time of Search</strong></td>
+                  <td align="center"><strong>Age</strong></td>
+                </tr>
+                <?php
+                while(($row = mysqli_fetch_array($data4)) && ($row2 = mysqli_fetch_array($data6))){
+                  ?>
+                  <tr>
+                    <td style="text-align:center"><?php echo $row['search_term']; ?></td>
+                    <td style="text-align:center"><?php echo $row['date_time_of_search']; ?></td>
+                    <td style="text-align:center"><?php echo $row2['age']; ?></td>
+                  </tr>
+                  <?php
+                }
+                ?>
+              </table>
+            </div>
+          </table>
+          <?php }?>
+          <h5><b>Based on number in household</b></h5>
+          <?php 
 
-      <?php
-      while($row = mysqli_fetch_array($data6)){
-        ?>
-        <tr>
-          <td><?php echo $row['age']; ?></td>
-          </tr>
-          <?php
-        }
-        ?>
-</table>
-<h5><b>Based on number in household</b></h5>
-<table width="50%" border="1" cellspacing="2" cellpadding="0">
-  <tr>
+          $check_query3 = "SELECT `num_in_household` FROM users WHERE user_id = $user_id";
+          $data_check3 = mysqli_query($dbc,$check_query3) or die('Query failed: ' . mysqli_error());
 
-    <tr>
-      <td align="center"><strong>Search Query</strong></td>
-      <td align="center"><strong>Date and Time of Search</strong></td>
-    </tr>
-
-    <?php
-    while($row = mysqli_fetch_array($data9)){
-      ?>
-      <tr>
-        <td><?php echo $row['search_term']; ?></td>
-        <td><?php echo $row['date_time_of_search']; ?></td>
-        </tr>
-        <?php
-      }
-
-      ?>
-</table>
-<table width="18%" border="1" cellspacing="2" cellpadding="0" style="position: relative; left:320px; bottom:170px;">
-  <tr>
-
-    <tr>
-      <td align="center"><strong>Number in Household</strong></td>
-    </tr>
-
-    <?php
-    while($row = mysqli_fetch_array($data11)){
-      ?>
-      <tr>
-        <td><?php echo $row['num_in_household']; ?></td>
-        </tr>
-        <?php
-      }
-
-      ?>
-</table>
-</div>
-</div>
-</div>
-<div id="grass"></div>
-</body>
-</html>
+          if (mysqli_num_rows($data_check3) == 0){ 
+            echo "You have not entered the number of people in your household during registration.";
+            echo '<br>';
+            echo '<br>';
+            echo '<br>';
+          } else { ?>
+          <table width="70%" border="1" cellspacing="2" cellpadding="0">
+            <tr>
+              <tr>
+                <td align="center"><strong>Search Query</strong></td>
+                <td align="center"><strong>Date and Time of Search</strong></td>
+                <td align="center"><strong>Number in Household</strong></td>
+              </tr>
+              <?php
+              while(($row3 = mysqli_fetch_array($data9)) && ($row4 = mysqli_fetch_array($data11))){
+                ?>
+                <tr>
+                  <td style="text-align:center"><?php echo $row3['search_term']; ?></td>
+                  <td style="text-align:center"><?php echo $row3['date_time_of_search']; ?></td>
+                  <td style="text-align:center"><?php echo $row4['num_in_household']; ?></td>
+                </tr>
+                <?php
+              }
+              ?>
+              <?php }?>
+              <?php }?>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="grass"></div>
+    </body>
+    </html>

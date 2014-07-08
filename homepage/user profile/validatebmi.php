@@ -214,7 +214,6 @@ if (!isset($_SESSION['user_id'])) {
               {
                 echo "Your BMI is ".$bmi." which means you are morbidly obese";
 
-
               } 
               include("index.php");
 

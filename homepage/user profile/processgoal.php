@@ -163,68 +163,71 @@
               echo "Failed to connect to MySQL: " . mysqli_connect_error();
             }
 
-//Check whether the form has been submitted
+            //Check whether the form has been submitted
+
             if (array_key_exists('check_submit', $_POST)) {
 
              if ( isset($_POST['goal']) ) { 
 
-     $_POST['goal'] = implode(', ', $_POST['goal']); //Converts an array into a single string
+               $_POST['goal'] = implode(', ', $_POST['goal']); //Converts an array into a single string
 
-     $goal = $_POST['goal'];
+               $goal = $_POST['goal'];
 
-   }
+             }
 
-   if ( isset($_POST['time']) ) { 
+             if ( isset($_POST['time']) ) { 
 
-     $_POST['time'] = implode(', ', $_POST['time']); 
+               $_POST['time'] = implode(', ', $_POST['time']); 
 
-     $time = $_POST['time'];
+               $time = $_POST['time'];
 
-   }
+             }
 
-   if ( isset($_POST['office']) ) {
+             if ( isset($_POST['office']) ) {
 
-     $_POST['office'] = implode(', ', $_POST['office']); 
+               $_POST['office'] = implode(', ', $_POST['office']); 
 
-     $office = $_POST['office'];
+               $office = $_POST['office'];
 
-   }
+             }
 
-   if ( isset($_POST['gym']) ) {
+             if ( isset($_POST['gym']) ) {
 
-     $_POST['gym'] = implode(', ', $_POST['gym']); 
+               $_POST['gym'] = implode(', ', $_POST['gym']); 
 
-     $gym = $_POST['gym'];
+               $gym = $_POST['gym'];
 
-   }
+             }
 
-   if ( isset($_POST['gymyes']) ) { 
-     $_POST['gymyes'] = implode(', ', $_POST['gymyes']); //Converts an array into a single string
+             if ( isset($_POST['gymyes']) ) { 
 
-     $gym_yes = $_POST['gymyes'];
+             $_POST['gymyes'] = implode(', ', $_POST['gymyes']); //Converts an array into a single string
 
-   }
+             $gym_yes = $_POST['gymyes'];
 
-   if ( isset($_POST['food']) ) { 
-     $_POST['food'] = implode(', ', $_POST['food']); //Converts an array into a single string
+           }
 
-     $food = $_POST['food'];
+           if ( isset($_POST['food']) ) { 
 
-   }
+           $_POST['food'] = implode(', ', $_POST['food']); //Converts an array into a single string
 
-   $query = "INSERT INTO `users_goals` (`goal_id`, `user_id`, `goal`, `time`, `office`, `gym`, `gym_yes`, `food`) VALUES (NULL, '$user_id', '$goal', '$time', '$office', '$gym', '$gym_yes', '$food')";
+           $food = $_POST['food'];
 
-   $data = mysqli_query($dbc, $query) or die("Error " . mysqli_error($data));
+         }
 
- }
+         $query = "INSERT INTO `users_goals` (`goal_id`, `user_id`, `goal`, `time`, `office`, `gym`, `gym_yes`, `food`) VALUES (NULL, '$user_id', '$goal', '$time', '$office', '$gym', '$gym_yes', '$food')";
+
+         $data = mysqli_query($dbc, $query) or die("Error " . mysqli_error($data));
+
+       }
 
 
- echo 'This goal has successfully been saved to your profile!';
+       echo 'This goal has successfully been saved to your profile!';
 
- ?>
+       ?>
 
-</div>
+     </div>
 
-<div id="grass"></div>
-</body>
-</html>
+     <div id="grass"></div>
+   </body>
+   </html>

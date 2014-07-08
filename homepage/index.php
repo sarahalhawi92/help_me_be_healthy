@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_id'])) {
     $_SESSION['username'] = $_COOKIE['username'];
   }
 }
+
 ?>
 <!doctype html>
 <html lang="en">
