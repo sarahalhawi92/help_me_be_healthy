@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 }
 $user_id = $_SESSION['user_id'];
-echo $user_id;
+
 ?> 
 <!DOCTYPE HTML>
 <html>
@@ -255,70 +255,83 @@ echo $user_id;
             $check_query2 = "SELECT `age` FROM users WHERE user_id = $user_id";
             $data_check2 = mysqli_query($dbc,$check_query2) or die('Query failed: ' . mysqli_error());
 
-            if (mysqli_num_rows($data_check2) == 0){ 
-              echo "You have not entered your age during registration.";
-              echo '<br>';
-              echo '<br>';
-              echo '<br>';
-            } else {
-              ?>
-              <table width="50%" border="1" cellspacing="2" cellpadding="0">
-                <tr>
-                  <td align="center"><strong>Search Query</strong></td>
-                  <td align="center"><strong>Date and Time of Search</strong></td>
-                  <td align="center"><strong>Age</strong></td>
-                </tr>
-                <?php
-                while(($row = mysqli_fetch_array($data4)) && ($row2 = mysqli_fetch_array($data6))){
-                  ?>
+            while($row = mysqli_fetch_array($data_check2)){
+
+              if($row['age'] == 0 ) {
+
+                echo "You have not entered your age during registration.";
+                echo '<br>';
+                echo '<br>';
+                echo '<br>';
+
+              }
+
+
+              else {
+                ?>
+                <table width="50%" border="1" cellspacing="2" cellpadding="0">
                   <tr>
-                    <td style="text-align:center"><?php echo $row['search_term']; ?></td>
-                    <td style="text-align:center"><?php echo $row['date_time_of_search']; ?></td>
-                    <td style="text-align:center"><?php echo $row2['age']; ?></td>
+                    <td align="center"><strong>Search Query</strong></td>
+                    <td align="center"><strong>Date and Time of Search</strong></td>
+                    <td align="center"><strong>Age</strong></td>
                   </tr>
                   <?php
-                }
-                ?>
-              </table>
-            </div>
-          </table>
-          <?php }?>
-          <h5><b>Based on number in household</b></h5>
-          <?php 
-
-          $check_query3 = "SELECT `num_in_household` FROM users WHERE user_id = $user_id";
-          $data_check3 = mysqli_query($dbc,$check_query3) or die('Query failed: ' . mysqli_error());
-
-          if (mysqli_num_rows($data_check3) == 0){ 
-            echo "You have not entered the number of people in your household during registration.";
-            echo '<br>';
-            echo '<br>';
-            echo '<br>';
-          } else { ?>
-          <table width="70%" border="1" cellspacing="2" cellpadding="0">
-            <tr>
-              <tr>
-                <td align="center"><strong>Search Query</strong></td>
-                <td align="center"><strong>Date and Time of Search</strong></td>
-                <td align="center"><strong>Number in Household</strong></td>
-              </tr>
-              <?php
-              while(($row3 = mysqli_fetch_array($data9)) && ($row4 = mysqli_fetch_array($data11))){
-                ?>
-                <tr>
-                  <td style="text-align:center"><?php echo $row3['search_term']; ?></td>
-                  <td style="text-align:center"><?php echo $row3['date_time_of_search']; ?></td>
-                  <td style="text-align:center"><?php echo $row4['num_in_household']; ?></td>
-                </tr>
-                <?php
-              }
-              ?>
-              <?php }?>
-              <?php }?>
+                  while(($row = mysqli_fetch_array($data4)) && ($row2 = mysqli_fetch_array($data6))){
+                    ?>
+                    <tr>
+                      <td style="text-align:center"><?php echo $row['search_term']; ?></td>
+                      <td style="text-align:center"><?php echo $row['date_time_of_search']; ?></td>
+                      <td style="text-align:center"><?php echo $row2['age']; ?></td>
+                    </tr>
+                    <?php
+                  }
+                  ?>
+                </table>
+              </div>
             </table>
+            <?php }?>
+            <?php }?>
+            <h5><b>Based on number in household</b></h5>
+            <?php 
+
+            $check_query3 = "SELECT `num_in_household` FROM users WHERE user_id = $user_id";
+            $data_check3 = mysqli_query($dbc,$check_query3) or die('Query failed: ' . mysqli_error());
+
+            while($row = mysqli_fetch_array($data_check3)){
+
+              if($row['num_in_household'] == 0 ) {
+
+                echo "You have not entered the number of people in your household during registration.";
+                echo '<br>';
+                echo '<br>';
+                echo '<br>';
+              }
+              else { ?>
+              <table width="70%" border="1" cellspacing="2" cellpadding="0">
+                <tr>
+                  <tr>
+                    <td align="center"><strong>Search Query</strong></td>
+                    <td align="center"><strong>Date and Time of Search</strong></td>
+                    <td align="center"><strong>Number in Household</strong></td>
+                  </tr>
+                  <?php
+                  while(($row3 = mysqli_fetch_array($data9)) && ($row4 = mysqli_fetch_array($data11))){
+                    ?>
+                    <tr>
+                      <td style="text-align:center"><?php echo $row3['search_term']; ?></td>
+                      <td style="text-align:center"><?php echo $row3['date_time_of_search']; ?></td>
+                      <td style="text-align:center"><?php echo $row4['num_in_household']; ?></td>
+                    </tr>
+                    <?php
+                  }
+                  ?>
+                  <?php }?>
+                  <?php }?>
+                  <?php }?>
+                </table>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div id="grass"></div>
-    </body>
-    </html>
+          <div id="grass"></div>
+        </body>
+        </html>

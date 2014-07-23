@@ -161,7 +161,7 @@ if (!isset($_SESSION['user_id'])) {
           else {
             $query = "SELECT goal FROM users_goals WHERE user_id LIKE  '%" . $_SESSION['user_id'] . "%'";
           }
-          $data = mysqli_query($dbc, $query);
+          $data = mysqli_query($dbc, $query) or die('Query failed: ' . mysqli_error());
 
           if (mysqli_num_rows($data) > 0) {
             echo "<h>Your Goals:</h>";
@@ -255,7 +255,7 @@ if (!isset($_SESSION['user_id'])) {
 
           <?php
           if (mysqli_num_rows($data) == 0) {
-            echo '<p class="creategoal">You have no goals saved. Create a <a href="creategoal.php">goal</a> here.</p>';
+            echo '<p class="creategoal">You have no goals saved. Create a <a href="creategoal.php">goal</a> here.</p>' ;
           }
 
           ?>
@@ -367,7 +367,7 @@ if (!isset($_SESSION['user_id'])) {
       }
 
       $query_9 = "SELECT CONCAT(`calories_from_carbs`, ',', `calories_from_fats`, ',', `calories_from_proteins`) 
-                FROM `users` WHERE `user_id` = " . $_SESSION['user_id'];
+      FROM `users` WHERE `user_id` = " . $_SESSION['user_id'];
       $data_9 = mysqli_query($dbc, $query_9);
 
       while($row = mysqli_fetch_array($data_9))
@@ -412,7 +412,7 @@ if (!isset($_SESSION['user_id'])) {
     <script type="text/javascript">
     function createChart() {
       var data = {
-        labels : ["14/06","15/06","17/06","18/06","19/06","20/06","21/6","22/6","23/6"],
+        labels : ["14/07","15/07","17/07","18/07","19/07","20/07","21/07","22/07","23/07"],
             //weight in blue
             datasets_Y1 : [
             {
@@ -443,19 +443,21 @@ if (!isset($_SESSION['user_id'])) {
             labels: ["Calories From Carbohydrates", "Calories From Fats", "Calories From Proteins"],
             datasets : [
             {
-              fillColor : "rgba(220,220,220,0.5)",
+              //actual in red
+              fillColor : "rgba(255, 0, 0, 0.5)",
               strokeColor : "rgba(220,220,220,1)",
               pointColor : "rgba(220,220,220,1)",
               pointStrokeColor : "#fff",
               data : [<?php echo $all_intake; ?>]
             },
             {
-              fillColor : "rgba(151,187,205,0.5)",
+              //recommended in green
+              fillColor : "rgba(152,251,152, 0.5)",
               strokeColor : "rgba(151,187,205,1)",
               pointColor : "rgba(151,187,205,1)",
               pointStrokeColor : "#fff",
               data : [<?php if (preg_match('/^m/', $gender)) { echo $male[0] . ", " . $male[1] . ", " . $male[2]; } 
-                            else if (preg_match('/^fe/', $gender)){ echo $female[0] . ", " . $female[1] . ", " . $female[2]; } ?>] 
+              else if (preg_match('/^fe/', $gender)){ echo $female[0] . ", " . $female[1] . ", " . $female[2]; } ?>] 
             }
             ]  }
 
@@ -508,18 +510,18 @@ if (!isset($_SESSION['user_id'])) {
           <p> Weight is shown from the left and calories is shown from the right. </p>
           <h2>Carbohydrate, Protein and Fat Intake</h2>
           <p>The chart below shows you how your intake of carbohydrates, proteins and fats compares to what the recommended amount is. </p>
-          <p>In light blue you can see the recommended amount from each food group. In grey is what you are having. </p>
+          <p>In green you can see the recommended amount from each food group. In red is what you are having. </p>
           <div style=" width: 620px; height:500px; display: inline-block; margin-top:-120px">
             <canvas id="tsChart" width="620px" height="600px" top=""></canvas>
-         </div>
-         <?php } ?>
+          </div>
+          <?php } ?>
 
-       </body>
+        </body>
 
-     </div>
-   </div>
- </div>
+      </div>
+    </div>
+  </div>
 
- <div id="grass"></div>
+  <div id="grass"></div>
 </body>
 </html>
