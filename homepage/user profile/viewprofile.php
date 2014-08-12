@@ -225,7 +225,6 @@ if (!isset($_SESSION['user_id'])) {
 
     if ($counter > 0){
       $average = $maxPrice/$counter; 
-
     }
     
 

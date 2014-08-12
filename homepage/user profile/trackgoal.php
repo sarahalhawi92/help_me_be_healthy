@@ -407,7 +407,8 @@ if (!isset($_SESSION['user_id'])) {
     <script type="text/javascript">
     function createChart() {
       var data = {
-        labels : ["12/08","13/08","14/08","15/08","16/08","17/08","18/08","19/08","20/08"],
+        //three weeks between labels
+        labels : ["12/08","2/09","23/09","14/10","04/11","25/11","16/12","06/01","27/01"],
             //weight in blue
             datasets_Y1 : [
             {
@@ -502,7 +503,7 @@ if (!isset($_SESSION['user_id'])) {
         <body onload="createChart(); createChart2();">
           <h2>Weight VS Calories</h2>
           <canvas id="trChart" width="600" height="400"></canvas>
-          <p> Weight is shown from the left and calories is shown from the right. </p>
+          <br><br><p> Weight is shown from the left and calories is shown from the right. </p>
           <h2>Carbohydrate, Protein and Fat Intake</h2>
           <p>The chart below shows you how your intake of carbohydrates, proteins and fats compares to what the recommended amount is. </p>
           <p>In green you can see the recommended amount from each food group. In red is what you are having. </p>

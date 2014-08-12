@@ -157,6 +157,8 @@
 
           ?>
         </div>
+        </div>
+        </div>
         <div id="grass"></div>
         <!-- javascript at the bottom for fast page loading -->
         <script type="text/javascript" src="js/jquery.js"></script>

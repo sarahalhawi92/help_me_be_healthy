@@ -194,25 +194,25 @@ if (!isset($_SESSION['user_id'])) {
               $bmi=round($kg/$mt,2);
               if ( $bmi <= 18.5 ) 
               {
-                echo "Your BMI is " .$bmi."  which means you are underweight";
+                echo "Your BMI is " .$bmi."  which means you are underweight.";
 
               }
 
               else if ( $bmi>18.5 && $bmi <= 24.9) {
-                echo  "Your BMI is ".$bmi." which means you are normal";
+                echo  "Your BMI is ".$bmi." which means you are at a healthy weight.";
               }
 
               else if ( $bmi>29.9 && $bmi< 24.9 ) {
-                echo "Your BMI is ".$bmi." which means you are overweight";
+                echo "Your BMI is ".$bmi." which means you are overweight.";
               }
 
               else if ( $bmi >29.9 && $bmi<=39.9 ) {
-                echo "Your BMI is ".$bmi." which means you are obese";
+                echo "Your BMI is ".$bmi." which means you are obese.";
 
               }
               else
               {
-                echo "Your BMI is ".$bmi." which means you are morbidly obese";
+                echo "Your BMI is ".$bmi." which means you are morbidly obese.";
 
               } 
               include("index.php");
@@ -231,7 +231,6 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         </div>
         </div>
-
         <div id="grass"></div>
       </body>
       </html>
