@@ -197,6 +197,8 @@ if (!isset($_SESSION['user_id'])) {
           </form>
 
         </div>
+        </div>
+        </div>
 
         <div id="grass"></div>
       </body>

@@ -222,7 +222,12 @@ if (!isset($_SESSION['user_id'])) {
       $counter++;
     }
     echo "</table>";
-    $average = $maxPrice/$counter; 
+
+    if ($counter > 0){
+      $average = $maxPrice/$counter; 
+
+    }
+    
 
     //select recipe from database with price range of average
     //select randomly based on price
