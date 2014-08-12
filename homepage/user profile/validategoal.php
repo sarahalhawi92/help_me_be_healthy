@@ -194,6 +194,8 @@ if ( isset($_POST['not_sure']) ) {
 ?>
 
 </div>
+</div>
+</div>
 
 <div id="grass"></div>
 </body>

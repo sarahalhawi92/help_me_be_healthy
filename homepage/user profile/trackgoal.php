@@ -237,11 +237,6 @@ if (!isset($_SESSION['user_id'])) {
               <input type="text" name="fats" maxlength="4"> 
               <br><br>
 
-<!--               <p><b>Do you exercise regularly? (so this will be a minumum of twice a week doing intense exercise e.g. running/swimming/cycling)</b></p>
-
-              <input type="radio" name="exercise[]" value="Yes">  Yes  <br>
-              <input type="radio" name="exercise[]" value="No">  No  <br><br> -->
-
               <p><b>And finally, what is your gender?</b></p>
 
               <input type="radio" name="gender[]" value="male">  Male  <br>
@@ -412,7 +407,7 @@ if (!isset($_SESSION['user_id'])) {
     <script type="text/javascript">
     function createChart() {
       var data = {
-        labels : ["14/07","15/07","17/07","18/07","19/07","20/07","21/07","22/07","23/07"],
+        labels : ["12/08","13/08","14/08","15/08","16/08","17/08","18/08","19/08","20/08"],
             //weight in blue
             datasets_Y1 : [
             {

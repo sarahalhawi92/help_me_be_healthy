@@ -180,7 +180,7 @@ $user_id = $_SESSION['user_id'];
 
           $data6= mysqli_query($dbc,$query6) or die('Query failed: ' . mysqli_error());
 
-          // //do the same as above but for number in household
+          // do the same as above but for number in household
 
           $query7 ="SELECT `num_in_household` FROM `users` WHERE `user_id` LIKE '%$user_id%'";
 

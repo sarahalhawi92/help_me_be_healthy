@@ -143,7 +143,7 @@ if (!isset($_SESSION['user_id'])) {
 
   // Generate the navigation menu
         if (isset($_SESSION['username'])) {
-    //echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>');
+
           echo '<a href="user profile/viewprofile.php">View Profile</a><br />';
           echo '<a href="registration & login/logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
         }
@@ -160,5 +160,3 @@ if (!isset($_SESSION['user_id'])) {
   <div id="grass"></div>
 </body>
 </html>
-
-
